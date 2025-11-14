@@ -41,3 +41,51 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackGround3
+    uniqueID: 1239811677
+    locked: 0
+  - name: BackGround2
+    uniqueID: 23114675
+    locked: 0
+  - name: BackGround1
+    uniqueID: 1626945673
+    locked: 0
+  - name: Down6
+    uniqueID: 3552166073
+    locked: 0
+  - name: Down5
+    uniqueID: 2766151001
+    locked: 0
+  - name: Down4
+    uniqueID: 2217247665
+    locked: 0
+  - name: Down3
+    uniqueID: 3987574113
+    locked: 0
+  - name: Down2
+    uniqueID: 411954929
+    locked: 0
+  - name: Down1
+    uniqueID: 2528023253
+    locked: 0
+  - name: Middle
+    uniqueID: 1481911719
+    locked: 0
+  - name: Up1
+    uniqueID: 1326180441
+    locked: 0
+  - name: Up2
+    uniqueID: 3481137609
+    locked: 0
+  - name: Up3
+    uniqueID: 1497311497
+    locked: 0
+  - name: Up4
+    uniqueID: 737571703
+    locked: 0
+  - name: Up5
+    uniqueID: 3285229889
+    locked: 0
+  - name: Up6
+    uniqueID: 2675709639
+    locked: 0
