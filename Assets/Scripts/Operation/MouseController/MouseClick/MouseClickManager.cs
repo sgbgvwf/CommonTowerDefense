@@ -16,7 +16,6 @@ public class MouseClickManager : MonoBehaviour
 
 
 
-
     private void Awake()
     {
         inputControl = new InputController();
@@ -43,6 +42,7 @@ public class MouseClickManager : MonoBehaviour
 
     public void LeftClick(InputAction.CallbackContext leftClick)
     {
+        //mouseRelativePosition.enabled = true;
         //Debug.Log("leftClick.performed");
         if(mouseStateDetection.currentState == MousePointState.DefenseTower)
         {
@@ -60,8 +60,15 @@ public class MouseClickManager : MonoBehaviour
     public void RightClick(InputAction.CallbackContext rightClick)
     {
         //Debug.Log("rightClick.performed");
+        if(mouseStateDetection.currentState == MousePointState.Place)
+        {
+            Debug.Log("建造");
+        }
 
-
+        if (mouseStateDetection.currentState == MousePointState.DefenseTower)
+        {
+            Debug.Log("查看");
+        }
 
 
 
