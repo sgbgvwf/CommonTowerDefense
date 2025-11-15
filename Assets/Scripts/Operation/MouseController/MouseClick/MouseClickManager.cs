@@ -9,7 +9,7 @@ public class MouseClickManager : MonoBehaviour
 
     public MouseRelativePosition mouseRelativePosition;
 
-
+    public MouseStateDetection mouseStateDetection;
 
 
 
@@ -44,7 +44,10 @@ public class MouseClickManager : MonoBehaviour
     public void LeftClick(InputAction.CallbackContext leftClick)
     {
         //Debug.Log("leftClick.performed");
-
+        if(mouseStateDetection.currentState == MousePointState.DefenseTower)
+        {
+            Debug.Log("²ð³ý");
+        }
 
 
 
