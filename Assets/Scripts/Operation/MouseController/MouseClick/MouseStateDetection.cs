@@ -39,7 +39,6 @@ public class MouseStateDetection : MonoBehaviour
 
         }
 
-
         //Debug.Log(currentState);
 
     }
@@ -69,6 +68,8 @@ public class MouseStateDetection : MonoBehaviour
         SwitchState(MousePointState.Air);
     }
     
+
+
 
     private void SwitchState(MousePointState newState)
     {
