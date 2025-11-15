@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - DefenseTower
+  - Ground
+  - Air
+  - Water
   layers:
   - Default
   - TransparentFX
