@@ -2,7 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hurt : MonoBehaviour
+public interface IDamageable
+{
+    public void TakeDamage(DamageInfomation damage);
+}
+
+public class Hurt : MonoBehaviour, IDamageable
 {
     private Health health;
 
@@ -56,10 +61,18 @@ public class Hurt : MonoBehaviour
         if(damage.effectType == EffectType.Instant)//单次伤害
         {
             health.deltaHealth = -finalDamage;//负号最后处理
-            health.HealthDecrease(attacker);
+            //health.health -= finalDamage;
+            health.HealthDecrease(damage);
+            Debug.Log(health.deltaHealth);
             health.deltaHealth = 0;//确保伤害只有一次
         }
+        else if(damage.effectType == EffectType.Continuous)
+        {
 
+
+
+
+        }
 
 
 

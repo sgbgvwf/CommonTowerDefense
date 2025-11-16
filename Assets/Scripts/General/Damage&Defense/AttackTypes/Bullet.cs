@@ -10,8 +10,8 @@ public class Bullet : MonoBehaviour
     [Header("攻击类型")]
     public DamageType damageType;
 
-
-
+    [Header("持续类型")]
+    public EffectType effectType;
 
 
     [Header("子弹穿透")]
@@ -24,14 +24,17 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log(other.name);
         //Hurt enemy = other.GetComponent<Hurt>();
+        IDamageable damageTarget = other.GetComponent<IDamageable>();
 
-        if(other != null && other.tag == "Enemy")
+        if (other != null /*&& other.tag == "Enemy"*/)
         {
 
             DamageInfomation damageInfomation = new DamageInfomation(attack, damageType, gameObject);
-            other.gameObject.GetComponent<Hurt>()?.TakeDamage(damageInfomation);
 
+            damageTarget.TakeDamage(damageInfomation);
+            
             currentCrossTimes++;
         }
 
@@ -39,7 +42,10 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        else
+        {
+            Destroy(gameObject);
+        }
 
     }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StopingController : MonoBehaviour
+public class ResourceTowerController : MonoBehaviour
 {
 
     [Header("²É¿ó×´Ì¬")]

@@ -31,16 +31,18 @@ public class Health : MonoBehaviour
 
 
     //ÉúÃüÖµ¼õÉÙ
-    public void HealthDecrease(GameObject attacker)
+    public void HealthDecrease(DamageInfomation damage)
     {
         if (health + deltaHealth > 0)
         {
-            OnTakeDamage?.Invoke(attacker.gameObject.transform);
+            health += deltaHealth;
+            OnTakeDamage?.Invoke(damage.source.gameObject.transform);
 
         }
         else if(health + deltaHealth < 0)
         {
-            IsDead?.Invoke(attacker.gameObject.transform);
+            health = 0;
+            IsDead?.Invoke(damage.source.gameObject.transform);
 
         }
 

@@ -16,7 +16,7 @@ public class MouseRelativePosition : MonoBehaviour
 
 
 
-    // 计算鼠标相对于目标物体的相对位置
+    //计算鼠标相对于目标物体的相对位置
     public static Vector2 GetRelativeToObject(Transform targetObject)
     {
         return GetMouseWorldPosition() - new Vector2(targetObject.position.x, targetObject.position.y);
