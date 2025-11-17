@@ -11,11 +11,6 @@ public class MouseClickManager : MonoBehaviour
 
     public MouseStateDetection mouseStateDetection;
 
-
-
-
-
-
     private void Awake()
     {
         inputControl = new InputController();
@@ -27,7 +22,6 @@ public class MouseClickManager : MonoBehaviour
 
     }
 
-
     private void OnEnable()
     {
         inputControl.Enable();
@@ -38,8 +32,6 @@ public class MouseClickManager : MonoBehaviour
         inputControl.Disable();
     }
 
-
-
     public void LeftClick(InputAction.CallbackContext leftClick)
     {
         //mouseRelativePosition.enabled = true;
@@ -48,10 +40,6 @@ public class MouseClickManager : MonoBehaviour
         {
             Debug.Log("²ð³ý");
         }
-
-
-
-
 
 
 
@@ -69,13 +57,6 @@ public class MouseClickManager : MonoBehaviour
         {
             Debug.Log("²é¿´");
         }
-
-
-
-
-
-
-
 
 
 

@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Air
   - Water
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -15,15 +16,15 @@ TagManager:
   - 
   - Water
   - UI
+  - Ground
   - 
+  - Enemy
   - 
+  - DefenseTower
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - CameraBounds
+  - Mouse
+  - Entity
   - 
   - 
   - 
@@ -42,6 +43,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: LowestBackground
+    uniqueID: 1005311903
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

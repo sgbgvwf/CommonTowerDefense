@@ -107,10 +107,6 @@ public class MouseStateDetection : MonoBehaviour
     {
 
     }
-    
-    
-    
-
 
     
 }

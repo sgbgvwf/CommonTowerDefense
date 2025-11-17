@@ -24,28 +24,31 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.name);
+        //Debug.Log(other.name);
         //Hurt enemy = other.GetComponent<Hurt>();
         IDamageable damageTarget = other.GetComponent<IDamageable>();
 
-        if (other != null /*&& other.tag == "Enemy"*/)
+        if (other != null && other.tag == "Enemy")
         {
 
             DamageInfomation damageInfomation = new DamageInfomation(attack, damageType, gameObject);
-
-            damageTarget.TakeDamage(damageInfomation);
             
+            damageTarget.TakeDamage(damageInfomation);
+
+            
+
             currentCrossTimes++;
+            if (currentCrossTimes == maxCrossTimes && bulletCross)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
 
-        if(currentCrossTimes == maxCrossTimes && bulletCross)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+       
 
     }
 
