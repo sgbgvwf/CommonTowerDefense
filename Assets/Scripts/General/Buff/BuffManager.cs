@@ -28,7 +28,7 @@ public class BuffManager : MonoBehaviour
     public float coldDuration;
 
 
-    [Header("水行")]
+    [Header("水中")]
     public bool inWater;
 
 

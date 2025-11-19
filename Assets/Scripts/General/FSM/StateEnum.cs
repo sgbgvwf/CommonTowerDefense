@@ -8,3 +8,14 @@ public enum MousePointState
     DefenseTower//·ÀÓùËş
 
 }
+
+public enum BuffState
+{
+    Burn,//È¼ÉÕ
+
+    Cold,//º®Àä
+
+    Slow,//»ºÂı
+
+    InWater//Ë®ÖĞ
+}

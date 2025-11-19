@@ -4,13 +4,8 @@ using UnityEngine;
 using UnityEngine.InputSystem.LowLevel;
 using System;
 
-
-
-
-
 public class FSM
 {
-
     private IState _currentState; // 当前激活的状态
  
     public Dictionary<Enum, IState> StateDictionary;
@@ -31,7 +26,6 @@ public class FSM
             return;
         }
         StateDictionary.Add(State, state);
-
 
     }
 

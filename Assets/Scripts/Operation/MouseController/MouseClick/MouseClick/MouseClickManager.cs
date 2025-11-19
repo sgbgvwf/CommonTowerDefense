@@ -10,7 +10,7 @@ public class MouseClickManager : MonoBehaviour
 
     public MouseRelativePosition mouseRelativePosition;
 
-    [SerializeField]private MousePoint mousePoint;
+    [SerializeField]private MousePointStateManager mousePoint;
 
     private FSM _fsm;
 

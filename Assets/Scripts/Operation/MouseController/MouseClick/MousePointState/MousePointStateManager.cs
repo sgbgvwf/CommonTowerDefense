@@ -17,7 +17,7 @@ public class MouseBlackboard : Blackboard
     
 }
 
-public class MousePoint : MonoBehaviour
+public class MousePointStateManager : MonoBehaviour
 {
     private FSM _fsm;
     
