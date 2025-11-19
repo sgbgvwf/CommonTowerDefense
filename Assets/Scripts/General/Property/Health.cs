@@ -17,9 +17,9 @@ public class Health : MonoBehaviour
     public float deltaHealth;
 
     //ÉùÃ÷ÊÂ¼þ
-    public UnityEvent<Transform> OnTakeDamage;
+    public UnityEvent<GameObject> OnTakeDamage;
 
-    public UnityEvent<Transform> IsDead;
+    public UnityEvent<GameObject> IsDead;
 
 
 
@@ -36,13 +36,13 @@ public class Health : MonoBehaviour
         if (health + deltaHealth > 0)
         {
             health += deltaHealth;
-            OnTakeDamage?.Invoke(damage.source.gameObject.transform);
+            OnTakeDamage?.Invoke(this.gameObject);
 
         }
         else if(health + deltaHealth < 0)
         {
             health = 0;
-            IsDead?.Invoke(damage.source.gameObject.transform);
+            IsDead?.Invoke(this.gameObject);
 
         }
 

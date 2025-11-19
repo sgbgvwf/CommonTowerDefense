@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class MagicBullet : MonoBehaviour
 {
     [Header("ÉËº¦")]
     public float attack;
@@ -14,12 +14,7 @@ public class Bullet : MonoBehaviour
     public EffectType effectType;
 
 
-    [Header("×Óµ¯´©Í¸")]
-    public bool bulletCross;
 
-    public float maxCrossTimes;
-
-    public float currentCrossTimes;
 
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -37,15 +32,9 @@ public class Bullet : MonoBehaviour
 
             
 
-            currentCrossTimes++;
-            if (currentCrossTimes == maxCrossTimes && bulletCross)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
+             Destroy(gameObject);
+            
+
         }
 
        
