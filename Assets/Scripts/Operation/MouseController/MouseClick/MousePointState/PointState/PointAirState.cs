@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PointAirState : IMousePointState
+public class PointAirState : IState
 {
-    void IMousePointState.OnEnter()
+    void IState.OnEnter()
     {
-        throw new System.NotImplementedException();
+
     }
 
-    void IMousePointState.OnExit()
+    void IState.OnExit()
     {
-        throw new System.NotImplementedException();
+
     }
 
-    void IMousePointState.OnUpdate()
+    void IState.OnUpdate()
     {
-        throw new System.NotImplementedException();
+
     }
 }

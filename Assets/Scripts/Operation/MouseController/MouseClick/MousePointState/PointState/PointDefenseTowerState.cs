@@ -2,20 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PointDefenseTowerState : IMousePointState
+public class PointDefenseTowerState : IState
 {
-    void IMousePointState.OnEnter()
+    private readonly GameObject _tower; // 当前指向的防御塔
+
+    //构造函数
+    public PointDefenseTowerState()
     {
-        throw new System.NotImplementedException();
+
+
     }
 
-    void IMousePointState.OnExit()
+    public void OnEnter()
     {
-        throw new System.NotImplementedException();
+
     }
 
-    void IMousePointState.OnUpdate()
+    public void OnUpdate()
     {
-        throw new System.NotImplementedException();
+
+    }
+
+    public void OnExit()
+    {
+
     }
 }
