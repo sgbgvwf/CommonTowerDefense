@@ -60,11 +60,10 @@ public class Hurt : MonoBehaviour, IDamageable
         //持续类型
         if(damage.effectType == EffectType.Instant)//单次伤害
         {
-            health.deltaHealth = -finalDamage;//负号最后处理
-            //health.health -= finalDamage;
-            health.HealthDecrease(damage);
-            Debug.Log(health.deltaHealth);
-            health.deltaHealth = 0;//确保伤害只有一次
+
+            health.ChangeHealth(-finalDamage);
+            //Debug.Log(health.deltaHealth);
+
         }
         else if(damage.effectType == EffectType.Continuous)
         {

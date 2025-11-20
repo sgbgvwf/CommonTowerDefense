@@ -5,19 +5,33 @@ using UnityEngine.Events;
 
 public class CoreHealth : MonoBehaviour
 {
+    private static CoreHealth instance;
+    public static CoreHealth Instance;
+
+
+    //当前生命
     public int coreHealth;
 
-
+    //初始生命
+    public int initialHealth;
+   
 
     public UnityEvent<GameObject> HealthReduction;
 
     public UnityEvent<GameObject> Death;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Awake()
     {
-       
-        CoreHealthReduce(collision.tag);
+        if(instance == null)
+        {
+            Instance = this;
 
+        }
+    }
+
+    public void InitializeHealthData()
+    {
+        coreHealth = initialHealth;
     }
 
 
@@ -25,6 +39,7 @@ public class CoreHealth : MonoBehaviour
     {
         if(coreHealth > 1 && name == "Enemy")
         {
+
             coreHealth--;
             HealthReduction?.Invoke(this.gameObject);
         }
@@ -34,12 +49,6 @@ public class CoreHealth : MonoBehaviour
             Death?.Invoke(this.gameObject);
         }
     }
-
-
-
-
-
-
 
 
 }

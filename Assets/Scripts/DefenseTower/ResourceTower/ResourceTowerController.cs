@@ -21,10 +21,8 @@ public class ResourceTowerController : MonoBehaviour
 
 
 
-    [Header("金钱获取")]
-    public MoneyManager moneyManager;
-
-    public float moneyCount;
+    [Header("金钱获取量")]
+    public float getMoneyValue;
 
 
 
@@ -64,8 +62,12 @@ public class ResourceTowerController : MonoBehaviour
 
     public void GetMoney()
     {
-        moneyManager.deltaMoney = moneyCount;
-        moneyManager.GetMoney();
+
+        if (Money.Instance.ChangeMoney(getMoneyValue))
+        {
+            Money.Instance.MoneyUpdate();
+        }
+        
     }
 
 

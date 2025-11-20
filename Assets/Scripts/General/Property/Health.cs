@@ -14,7 +14,7 @@ public class Health : MonoBehaviour
     [Header("血量")]
     public float health;
 
-    public float deltaHealth;
+    public float healthChange;
 
     //声明事件
     public UnityEvent<GameObject> OnTakeDamage;
@@ -31,20 +31,36 @@ public class Health : MonoBehaviour
 
 
     //生命值减少
-    public void HealthDecrease(DamageInfomation damage)
+    public void ChangeHealth(float changeValue)
     {
-        if (health + deltaHealth > 0)
+        healthChange = changeValue;
+        if(changeValue < 0)
         {
-            health += deltaHealth;
-            OnTakeDamage?.Invoke(this.gameObject);
+            if (health + healthChange > 0)
+            {
+                health += healthChange;
+                OnTakeDamage?.Invoke(this.gameObject);
 
+            }
+            else if (health + healthChange < 0)
+            {
+                health = 0;
+                IsDead?.Invoke(this.gameObject);
+
+            }
         }
-        else if(health + deltaHealth < 0)
+        else
         {
-            health = 0;
-            IsDead?.Invoke(this.gameObject);
-
+            if (health + healthChange >= maxHealth)
+            {
+                health = maxHealth;
+            }
+            else
+            {
+                health += healthChange;
+            }
         }
+
 
     }
 
@@ -52,14 +68,7 @@ public class Health : MonoBehaviour
 
     public void HealthIncrease(GameObject Restorer)
     {
-        if(health + deltaHealth >= maxHealth)
-        {
-            health = maxHealth;
-        }
-        else
-        {
-            health += deltaHealth;
-        }
+
 
 
     }
