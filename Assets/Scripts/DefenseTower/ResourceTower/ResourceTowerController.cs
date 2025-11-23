@@ -15,12 +15,6 @@ public class ResourceTowerController : MonoBehaviour
     public float stopingCounter;
 
 
-
-    [Header("放置花费")]
-    public float placeMoney;
-
-
-
     [Header("金钱获取量")]
     public float getMoneyValue;
 

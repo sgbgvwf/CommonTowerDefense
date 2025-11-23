@@ -9,6 +9,7 @@ TagManager:
   - Air
   - Water
   - Enemy
+  - SpecialPoint
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - CameraBounds
   - Mouse
   - Entity
-  - 
+  - SpecialPoint
   - 
   - 
   - 

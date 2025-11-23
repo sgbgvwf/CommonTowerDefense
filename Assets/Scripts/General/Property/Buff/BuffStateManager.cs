@@ -51,7 +51,7 @@ public class BuffStateManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.CompareTag("BurnDamage") && blackboard.InWater != true)
+        if (collision.tag =="BurnDamage" && blackboard.InWater != true)
         {
 
             _fsm.EnterState(BuffState.Burn);
@@ -59,7 +59,7 @@ public class BuffStateManager : MonoBehaviour
             Debug.Log("»º…’…À∫¶");
         }
 
-        if (collision.CompareTag("ColdDamage"))
+        if (collision.tag == "ColdDamage")
         {
 
             _fsm.EnterState(BuffState.Cold);
@@ -67,7 +67,7 @@ public class BuffStateManager : MonoBehaviour
             Debug.Log("∫Æ¿‰…À∫¶");
         }
 
-        if (collision.CompareTag("Water"))
+        if (collision.tag == "Water")
         {
 
             _fsm.EnterState(BuffState.InWater);
