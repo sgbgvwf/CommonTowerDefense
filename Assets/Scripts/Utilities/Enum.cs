@@ -13,6 +13,13 @@ public enum BuffState
     InWater//ЫЎжа
 }
 
+public enum DefenseTowerType
+{
+    None,
+    ResourceTower,
+
+
+}
 
 
 public enum SceneType

@@ -8,14 +8,18 @@ public class Money : MonoBehaviour
     private static Money instance;
     public static Money Instance;
 
-
-
-    //当前金钱
+    [Header("当前金钱")]
     public float money;
 
-
-    //初始金钱
+    [Header("初始金钱")]
     public float initialMoney;
+
+    [Header("金钱上限")]
+    public bool usingMaxMoney;
+
+    public float maxMoney;
+
+
 
     private float moneyChange;
 
@@ -36,7 +40,7 @@ public class Money : MonoBehaviour
 
 
     public bool ChangeMoney(float changeValue)
-    { 
+    {
 
         if (changeValue < 0)
         {
@@ -46,11 +50,23 @@ public class Money : MonoBehaviour
                 return true;
 
             }
-            else 
-            { 
+            else
+            {
 
                 return false;
-
+            }
+        }
+        else if (usingMaxMoney)//启用金钱最大值限制
+        {
+            if(money + changeValue < maxMoney)
+            {
+                money += changeValue;
+                return true;
+            }
+            else
+            {
+                money = maxMoney;
+                return true;
             }
         }
         else

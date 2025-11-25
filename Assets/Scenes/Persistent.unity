@@ -171,9 +171,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mousePoint: {fileID: 1101851255}
+  mouseRelativePosition: {fileID: 27057914}
+  mousePositionDisplay: {fileID: 27057913}
+  mouseDisplay: {fileID: 1101851251}
   mouseLeftClick: {fileID: 18619171}
   mouseRightClick: {fileID: 18619170}
-  prefab: {fileID: 4335507091346470020, guid: 5950e27e7e9a06047affaf8d39e73cea, type: 3}
+  destroyDefenseTower: {fileID: 603039721}
+  buildDefenseTower: {fileID: 880967148}
+  checkDefenseTower: {fileID: 880967147}
 --- !u!114 &18619170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +192,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mousePoint: {fileID: 1101851255}
-  mousePointStateManager: {fileID: 1101851255}
+  mouseClick: {fileID: 18619169}
+  positionDisplay: {fileID: 27057913}
+  mouseDisplay: {fileID: 1101851251}
+  mousePositionDisplay: {fileID: 27057913}
+  buildManager: {fileID: 880967149}
+  towerPrefabEntries:
+  - towerType: 0
+    towerPrefab: {fileID: 0}
+  - towerType: 1
+    towerPrefab: {fileID: 4335507091346470020, guid: 5950e27e7e9a06047affaf8d39e73cea, type: 3}
+  buildDefenseTower: {fileID: 880967148}
+  checkDefenseTower: {fileID: 880967147}
+  destroyDefenseTower: {fileID: 603039721}
 --- !u!114 &18619171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,9 +218,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mousePoint: {fileID: 1101851255}
-  mouseClickManager: {fileID: 18619169}
-  mousePositionDisplay: {fileID: 1101851251}
+  mouseClick: {fileID: 18619169}
+  positionDisplay: {fileID: 27057913}
+  mouseDisplay: {fileID: 1101851251}
   destroyDefenseTower: {fileID: 603039721}
+  buildDefenseTower: {fileID: 880967148}
 --- !u!1 &27057911
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,6 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fdf7f5ddf95d9a479ceb4ab1e21c0ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  positionStatic: 0
 --- !u!114 &27057914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -733,6 +753,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   money: 0
   initialMoney: 500
+  usingMaxMoney: 0
+  maxMoney: 0
 --- !u!114 &561188101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -798,7 +820,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mousePoint: {fileID: 1101851255}
-  mousePositionDisplay: {fileID: 1101851251}
+  positionDisplay: {fileID: 27057913}
+  mouseDisplay: {fileID: 1101851251}
   destroyOperation: 0
 --- !u!1 &615809092
 GameObject:
@@ -1256,6 +1279,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 880967146}
+  - component: {fileID: 880967148}
+  - component: {fileID: 880967147}
+  - component: {fileID: 880967149}
   m_Layer: 0
   m_Name: RightClick
   m_TagString: Untagged
@@ -1278,6 +1304,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 18619168}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &880967147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880967145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cbedb34a19d1e841a5d1b1c6e9b89dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mousePoint: {fileID: 1101851255}
+  mouseClickManager: {fileID: 18619169}
+  mouseDisplay: {fileID: 1101851251}
+--- !u!114 &880967148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880967145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2efcace1635fd34f8f46b91ef0823d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mousePoint: {fileID: 1101851255}
+  positionDisplay: {fileID: 27057913}
+  MouseClickManager: {fileID: 18619169}
+  mouseDisplay: {fileID: 1101851251}
+  buildOperation: 0
+--- !u!114 &880967149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880967145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2123417a9c951646873b21c819e8188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HasTowerSelected: 0
 --- !u!1 &977807108
 GameObject:
   m_ObjectHideFlags: 0

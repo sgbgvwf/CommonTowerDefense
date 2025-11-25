@@ -6,7 +6,10 @@ public class DestroyDefenseTower : MonoBehaviour
 {
     [SerializeField]public MousePointStateManager mousePoint;
 
-    public SpriteRenderer mousePositionDisplay;
+    public MousePositionDisplay positionDisplay;
+
+
+    public SpriteRenderer mouseDisplay;
 
 
     //摧毁防御塔
@@ -18,16 +21,20 @@ public class DestroyDefenseTower : MonoBehaviour
         {
             destroyOperation = true;
 
-            mousePositionDisplay.color = new Color(255 / 255f, 0, 0, 100 / 255f);
+            mouseDisplay.color = new Color(255 / 255f, 0, 0, 100 / 255f);
+
+            positionDisplay.positionStatic = true;
         }
-        else
+        else if(destroyOperation && positionDisplay.SamePosition())
         {
             //切实执行销毁
             float moneyBack = 0.8f * destroyDefenseTower.gameObject.GetComponent<TowerMoney>().placementCost;
 
-            Money.Instance.ChangeMoney(moneyBack);
+            Money.Instance.ChangeMoney(moneyBack);//加钱必定成功，所以直接使用
 
-            mousePositionDisplay.color = mousePoint.blackboard.originalColor;
+            mouseDisplay.color = mousePoint.blackboard.originalColor;
+
+            positionDisplay.positionStatic = false;
 
             GameObject.Destroy(destroyDefenseTower);
 
@@ -37,7 +44,10 @@ public class DestroyDefenseTower : MonoBehaviour
             mousePoint.TriggerReCheck();
 
         }
-
+        else
+        {
+            Debug.Log("销毁取消");
+        }
 
 
 

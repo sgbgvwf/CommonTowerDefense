@@ -5,26 +5,44 @@ using UnityEngine.InputSystem;
 using System;
 using Unity.VisualScripting;
 
+
+
 public class MouseClickManager : MonoBehaviour
 {
+    private FSM _fsm;
+
     public InputController inputControl;
 
     //public MouseRelativePosition mouseRelativePosition;
 
     [SerializeField]private MousePointStateManager mousePoint;
 
-    private FSM _fsm;
-
 
     //public Color originalColor;
+    [Header("鼠标位置与显示")]
+    public MouseRelativePosition mouseRelativePosition;
 
+    public MousePositionDisplay mousePositionDisplay;
 
+    public SpriteRenderer mouseDisplay;
+
+    [Header("左右键脚本")]
     public MouseLeftClick mouseLeftClick;
 
     public MouseRightClick mouseRightClick;
 
+    [Header("左键关联脚本")]
+    public DestroyDefenseTower destroyDefenseTower;
 
-    public GameObject prefab;
+    [Header("右键关联脚本")]
+    public BuildDefenseTower buildDefenseTower;
+
+    public CheckDefenseTower checkDefenseTower;
+
+
+
+
+    //public GameObject prefab;
 
 
 
@@ -44,9 +62,9 @@ public class MouseClickManager : MonoBehaviour
 
     }
 
-    private void Start()
+    void Start()
     {
-        //originalColor = new Color(255/255f, 255/255f, 132/255f, 100/255f);
+
     }
 
     private void OnEnable()
@@ -59,10 +77,6 @@ public class MouseClickManager : MonoBehaviour
         inputControl.Disable();
     }
 
-    private void Update()
-    {
-
-    }
 
     public void LeftClick(InputAction.CallbackContext leftClick)
     {
@@ -73,24 +87,22 @@ public class MouseClickManager : MonoBehaviour
 
     public void RightClick(InputAction.CallbackContext rightClick)
     {
-
-
+        mouseRightClick.RightClick();
         //Debug.Log("rightClick.performed");
-        if (mousePoint.blackboard.currentState == MousePointState.Place)
-        {
-
-
-            mouseRightClick.Build(prefab,new Vector3 (MouseRelativePosition.GetMouseGridPosition().x, MouseRelativePosition.GetMouseGridPosition().y, 0));
-        }
-        else if (mousePoint.blackboard.currentState == MousePointState.DefenseTower)
-        {
-            Debug.Log("查看");
-        }
-        
-
     }
 
 
+    public void ClickAirUpdate()
+    {
+        destroyDefenseTower.destroyOperation = false;//摧毁重置
 
+        buildDefenseTower.buildOperation = false;//建造重置
+
+        mousePositionDisplay.positionStatic = false;
+
+        mouseDisplay.color = mousePoint.blackboard.originalColor;
+
+        Debug.Log("重置");
+    }
 
 }
