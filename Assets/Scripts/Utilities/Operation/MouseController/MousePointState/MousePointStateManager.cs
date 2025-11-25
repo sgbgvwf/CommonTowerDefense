@@ -14,7 +14,10 @@ public class MouseBlackboard : Blackboard
 
     public GameObject currentTower;
 
-    
+    public Color originalColor;
+
+
+
 }
 
 public class MousePointStateManager : MonoBehaviour
@@ -25,10 +28,21 @@ public class MousePointStateManager : MonoBehaviour
 
     private GameObject _currentTower;//µ±Ç°·ÀÓùËþ
 
-    
+    private SpriteRenderer _mousePositionDisplay;
+
+    private Collider2D _collider;
+
 
 
     //public MousePointState currentState;
+
+    private void Awake()
+    {
+        _collider = GetComponent<Collider2D>();
+
+        _mousePositionDisplay = GetComponent<SpriteRenderer>();
+    }
+
 
     void Start()
     {
@@ -52,27 +66,32 @@ public class MousePointStateManager : MonoBehaviour
         _fsm.UpdateState();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
 
 
         if (collision.CompareTag("DefenseTower"))
         {
             //ÇÐ»»µ½·ÀÓùËþ²Ù×÷×´Ì¬
-            blackboard.currentTower = collision.gameObject;
             _fsm.SwitchState(MousePointState.DefenseTower);
             blackboard.currentState = MousePointState.DefenseTower;
+            blackboard.currentTower = collision.gameObject;
+
+            //_mousePositionDisplay.color = blackboard.originalColor;
 
             Debug.Log(blackboard.currentState);
 
         }
 
-        else if (collision.CompareTag("Ground") && _currentTower == null)
+        else if (collision.CompareTag("Ground") && blackboard.currentTower == null)
         {
+
             //ÇÐ»»µ½¿É·ÅÖÃ×´Ì¬
             _fsm.SwitchState(MousePointState.Place);
             blackboard.currentState = MousePointState.Place;
 
+            //_mousePositionDisplay.color = blackboard.originalColor;
+
             Debug.Log(blackboard.currentState);
 
         }
@@ -81,19 +100,33 @@ public class MousePointStateManager : MonoBehaviour
 
 
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("DefenseTower") || collision.CompareTag("Ground"))
         {
             //ÇÐ»»µ½¿ÕÆø£¨²»¿É²Ù×÷£©×´Ì¬
+
             _fsm.SwitchState(MousePointState.Air);
             blackboard.currentState = MousePointState.Air;
+            blackboard.currentTower = null;
 
             Debug.Log(blackboard.currentState);
-
         }
+
+
     }
 
+    public void TriggerReCheck()
+    {
+        _collider.enabled = false;
+        _collider.enabled = true;
+    }
+
+    public void ColorReSet()
+    {
+        _mousePositionDisplay.color = blackboard.originalColor;
+
+    }
 
 
 }

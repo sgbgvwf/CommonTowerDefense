@@ -11,6 +11,16 @@ public class SceneTeleport : MonoBehaviour
 
     public Vector2 positionToGo;
 
+    public bool isTeleporting;
+
+    private void Update()
+    {
+        if (isTeleporting)
+        {
+            TeleportAction();
+            isTeleporting = false;
+        }
+    }
 
     public void TeleportAction()
     {

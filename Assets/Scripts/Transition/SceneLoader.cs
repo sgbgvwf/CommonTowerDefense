@@ -22,8 +22,6 @@ public class SceneLoader : MonoBehaviour
     [Header("广播")]
     public VoidEventSO afterSceneLoadedEvent;
 
-
-
     private GameSceneSO currentLoadScene;
 
 
@@ -34,11 +32,18 @@ public class SceneLoader : MonoBehaviour
 
     private bool fadeScreen;
 
-    //渐入渐出的等候时间
-    public float fadeDuration;
 
+    //渐入渐出的等候时间
+    public FadeCanvas fadeCanvas;
+
+    private float fadeDuration;
 
     public bool isLoading;
+
+    private bool newGame;
+
+
+
 
     private void Awake()
     {
@@ -50,6 +55,8 @@ public class SceneLoader : MonoBehaviour
     //TODO:做完MainMenu回来改
     private void Start()
     {
+        fadeDuration = fadeCanvas.fadeTransitionDuration;
+
         NewGame();
     }
 
@@ -68,8 +75,13 @@ public class SceneLoader : MonoBehaviour
 
     private void NewGame()
     {
+        newGame = true;
+
         locationToLoad = firstLoadScene;
-        OnLoadRequestEvent(locationToLoad, cameraFirstPosition, true);
+
+        fadeCanvas.newGame();
+        OnLoadRequestEvent(locationToLoad, cameraFirstPosition, false);
+
     }
 
 
@@ -97,7 +109,7 @@ public class SceneLoader : MonoBehaviour
         StartCoroutine(UnLoadPreviousScene());
 
 
-        Debug.Log("场景转换");
+        //Debug.Log("场景转换");
     }
 
 
@@ -105,14 +117,14 @@ public class SceneLoader : MonoBehaviour
     {
         if (fadeScreen)
         {
-            //渐入渐出
+            fadeCanvas.EnterFade();
         }
 
         yield return new WaitForSeconds(fadeDuration);
 
         if(currentLoadScene != null)
         {
-           yield return currentLoadScene.sceneReference.UnLoadScene();
+            yield return currentLoadScene.sceneReference.UnLoadScene();
             LoadNewScene();
         }
         else
@@ -120,7 +132,7 @@ public class SceneLoader : MonoBehaviour
             LoadNewScene();
         }
 
-
+        
 
     }
 
@@ -143,16 +155,14 @@ public class SceneLoader : MonoBehaviour
 
         cameraPosition.position = positionToGo;
 
-        if (fadeScreen)
-        {
-            //TODO
-        }
+
+        //Debug.Log("COMPLETED");
+
+        StartCoroutine(NewScenePrepare());
 
 
 
 
-
-        isLoading = false;
 
 
         //场景加载完成后事件
@@ -161,7 +171,22 @@ public class SceneLoader : MonoBehaviour
 
     }
 
+    private IEnumerator NewScenePrepare()
+    {
+        yield return new WaitForSeconds(1f);
+        //Debug.Log("exit");
+        if (fadeScreen)
+        {
+            fadeCanvas.ExitFade();
+        }
+        else if (newGame)
+        {
+            fadeCanvas.ExitFade();
+            newGame = false;
+        }
 
+        isLoading = false;
+    }
 
 
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
+using Unity.VisualScripting;
 
 public class MouseClickManager : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class MouseClickManager : MonoBehaviour
     [SerializeField]private MousePointStateManager mousePoint;
 
     private FSM _fsm;
+
+
+    //public Color originalColor;
 
 
     public MouseLeftClick mouseLeftClick;
@@ -42,7 +46,7 @@ public class MouseClickManager : MonoBehaviour
 
     private void Start()
     {
-        
+        //originalColor = new Color(255/255f, 255/255f, 132/255f, 100/255f);
     }
 
     private void OnEnable()
@@ -62,36 +66,31 @@ public class MouseClickManager : MonoBehaviour
 
     public void LeftClick(InputAction.CallbackContext leftClick)
     {
+        mouseLeftClick.LeftClick();
         //mouseRelativePosition.enabled = true;
         //Debug.Log("leftClick.performed");
-        if(mousePoint.blackboard.currentState == MousePointState.DefenseTower)
-        {
-            Debug.Log("²ð³ý");
-        }
-
-
-
     }
 
     public void RightClick(InputAction.CallbackContext rightClick)
     {
+
+
         //Debug.Log("rightClick.performed");
-        if(mousePoint.blackboard.currentState == MousePointState.Place)
+        if (mousePoint.blackboard.currentState == MousePointState.Place)
         {
 
 
             mouseRightClick.Build(prefab,new Vector3 (MouseRelativePosition.GetMouseGridPosition().x, MouseRelativePosition.GetMouseGridPosition().y, 0));
         }
-
-        if (mousePoint.blackboard.currentState == MousePointState.DefenseTower)
+        else if (mousePoint.blackboard.currentState == MousePointState.DefenseTower)
         {
             Debug.Log("²é¿´");
         }
-
-
-
+        
 
     }
+
+
 
 
 }

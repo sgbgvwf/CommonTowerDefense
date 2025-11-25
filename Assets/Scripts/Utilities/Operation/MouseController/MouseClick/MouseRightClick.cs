@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class MouseRightClick : MonoBehaviour
 {
+    [SerializeField] private MousePointStateManager mousePoint;
 
-
-
+    public MousePointStateManager mousePointStateManager;
 
 
 
@@ -22,7 +22,8 @@ public class MouseRightClick : MonoBehaviour
         {
             Instantiate(prefab, place, quaternion.identity);
             Debug.Log("建造成功");
-
+            mousePoint.blackboard.currentState = MousePointState.DefenseTower;//强制更新当前状态
+            mousePointStateManager.TriggerReCheck();//更新检测实体
         }
         else
         {
