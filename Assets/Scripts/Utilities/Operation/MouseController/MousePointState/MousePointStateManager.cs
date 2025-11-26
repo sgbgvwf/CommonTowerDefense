@@ -22,6 +22,9 @@ public class MouseBlackboard : Blackboard
 
 public class MousePointStateManager : MonoBehaviour
 {
+    private static MousePointStateManager instance;
+    public static MousePointStateManager Instance;
+
     private FSM _fsm;
     
     public MouseBlackboard blackboard;
@@ -38,6 +41,11 @@ public class MousePointStateManager : MonoBehaviour
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            Instance = this;
+        }
+
         _collider = GetComponent<Collider2D>();
 
         _mousePositionDisplay = GetComponent<SpriteRenderer>();
@@ -83,7 +91,7 @@ public class MousePointStateManager : MonoBehaviour
 
         }
 
-        else if (collision.CompareTag("Ground") && blackboard.currentTower == null)
+        else if (collision.CompareTag("Place") && blackboard.currentTower == null)
         {
 
             //ÇÐ»»µ½¿É·ÅÖÃ×´Ì¬

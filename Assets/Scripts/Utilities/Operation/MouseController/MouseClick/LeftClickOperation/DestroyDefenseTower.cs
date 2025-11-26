@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class DestroyDefenseTower : MonoBehaviour
 {
-    [SerializeField]public MousePointStateManager mousePoint;
-
-    public MousePositionDisplay positionDisplay;
-
 
     public SpriteRenderer mouseDisplay;
 
@@ -23,25 +19,25 @@ public class DestroyDefenseTower : MonoBehaviour
 
             mouseDisplay.color = new Color(255 / 255f, 0, 0, 100 / 255f);
 
-            positionDisplay.positionStatic = true;
+            MousePositionDisplay.Instance.positionStatic = true;
         }
-        else if(destroyOperation && positionDisplay.SamePosition())
+        else if(destroyOperation && MousePositionDisplay.Instance.SamePosition())
         {
             //切实执行销毁
             float moneyBack = 0.8f * destroyDefenseTower.gameObject.GetComponent<TowerMoney>().placementCost;
 
             Money.Instance.ChangeMoney(moneyBack);//加钱必定成功，所以直接使用
 
-            mouseDisplay.color = mousePoint.blackboard.originalColor;
+            mouseDisplay.color = MousePointStateManager.Instance.blackboard.originalColor;
 
-            positionDisplay.positionStatic = false;
+            MousePositionDisplay.Instance.positionStatic = false;
 
             GameObject.Destroy(destroyDefenseTower);
 
             destroyOperation = false;
 
             //重新检测当前位置
-            mousePoint.TriggerReCheck();
+            MousePointStateManager.Instance.TriggerReCheck();
 
         }
         else

@@ -10,6 +10,7 @@ public class FadeCanvas : MonoBehaviour
 
     private TimerManager timerManager;
 
+
     public float fadeTransitionDuration;
 
     private bool faded;
@@ -18,7 +19,8 @@ public class FadeCanvas : MonoBehaviour
 
 
     private void Awake()
-    { 
+    {
+        fadeImage.raycastTarget = true;
         timerManager = new TimerManager();
         //timerManager.Start(fadeTimer, fadeTransitionDuration);
     }
@@ -59,6 +61,7 @@ public class FadeCanvas : MonoBehaviour
     {
 
         faded = true;
+        MouseClickManager.Instance.enabled = false;
         timerManager.Start(fadeTimer, fadeTransitionDuration);
     }
 
@@ -66,7 +69,7 @@ public class FadeCanvas : MonoBehaviour
     {
 
         faded = false;
-
+        MouseClickManager.Instance.enabled = true;
         timerManager.Start(fadeTimer, fadeTransitionDuration);
     }
 

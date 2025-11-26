@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class MouseLeftClick : MonoBehaviour
 {
-    [SerializeField]private MousePointStateManager mousePoint;
+    private static MouseLeftClick instance;
+    public static MouseLeftClick Instance;
 
-    public MouseClickManager mouseClick;
+    //[SerializeField]private MousePointStateManager mousePoint;
 
-    public MousePositionDisplay positionDisplay;
-
+    [Header("鼠标位置显示")]
     public SpriteRenderer mouseDisplay;
 
     [Header("关联脚本")]
@@ -17,7 +17,13 @@ public class MouseLeftClick : MonoBehaviour
 
     public BuildDefenseTower buildDefenseTower;
 
-
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            Instance = this;
+        }
+    }
 
 
 
@@ -25,17 +31,17 @@ public class MouseLeftClick : MonoBehaviour
     //点击左键
     public void LeftClick()
     {
-        if (mousePoint.blackboard.currentState == MousePointState.DefenseTower && positionDisplay.SamePosition())//检测物体是防御塔
+        if (MousePointStateManager.Instance.blackboard.currentState == MousePointState.DefenseTower && MousePositionDisplay.Instance.SamePosition())//检测物体是防御塔
         {
 
-            destroyDefenseTower.Destroy(mousePoint.blackboard.currentTower);
+            destroyDefenseTower.Destroy(MousePointStateManager.Instance.blackboard.currentTower);
 
         }
 
         //点空气
         else//检测位置与鼠标位置不符
         {
-            mouseClick.ClickAirUpdate();
+            MouseClickManager.Instance.ClickAirUpdate();
 
         }
 

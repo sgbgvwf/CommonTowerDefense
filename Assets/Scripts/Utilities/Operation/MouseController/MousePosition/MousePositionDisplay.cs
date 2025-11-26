@@ -4,7 +4,21 @@ using UnityEngine;
 
 public class MousePositionDisplay : MonoBehaviour
 {
+    private static MousePositionDisplay instance;
+    public static MousePositionDisplay Instance;
+
+
     public bool positionStatic;
+
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            Instance = this;
+        }
+    }
+
 
     private void Update()
     {

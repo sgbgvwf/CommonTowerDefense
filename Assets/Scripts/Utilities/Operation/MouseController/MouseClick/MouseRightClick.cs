@@ -5,16 +5,11 @@ using UnityEngine;
 
 public class MouseRightClick : MonoBehaviour
 {
-    [SerializeField] private MousePointStateManager mousePoint;
-
-    public MouseClickManager mouseClick;
+    private static MouseRightClick instance;
+    public static MouseRightClick Instance;
 
     [Header("可视化处理")]
-    public MousePositionDisplay positionDisplay;
-
     public SpriteRenderer mouseDisplay;
-
-    public MousePositionDisplay mousePositionDisplay;
 
     [Header("防御塔管理器")]
     [SerializeField] private BuildManager buildManager;
@@ -43,6 +38,15 @@ public class MouseRightClick : MonoBehaviour
 
 
     private void Awake()
+    {
+        if (instance == null)
+        {
+            Instance = this;
+        }
+
+    }
+
+    private void Start()
     {
         towerPrefabDictionary = new Dictionary<DefenseTowerType, GameObject>();
 
@@ -75,7 +79,7 @@ public class MouseRightClick : MonoBehaviour
     public void RightClick()
     {
 
-        if (mousePoint.blackboard.currentState == MousePointState.Place && positionDisplay.SamePosition())//检测的是空地
+        if (MousePointStateManager.Instance.blackboard.currentState == MousePointState.Place && MousePositionDisplay.Instance.SamePosition())//检测的是空地
         {
             DefenseTowerType towerSelectedType = buildManager.GetSelectedTowerType();
 
@@ -106,15 +110,15 @@ public class MouseRightClick : MonoBehaviour
 
 
 
-        else if (mousePoint.blackboard.currentState == MousePointState.DefenseTower && positionDisplay.SamePosition())//检测的是防御塔
+        else if (MousePointStateManager.Instance.blackboard.currentState == MousePointState.DefenseTower && MousePositionDisplay.Instance.SamePosition())//检测的是防御塔
         {
-            checkDefenseTower.Check(mousePoint.blackboard.currentTower);
+            checkDefenseTower.Check(MousePointStateManager.Instance.blackboard.currentTower);
         }
 
         //点空气
         else//检测位置与鼠标位置不符
         {
-            mouseClick.ClickAirUpdate();
+            MouseClickManager.Instance.ClickAirUpdate();
 
         }
     }

@@ -170,12 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de0b0d1cbc141834fac0e38a0e7839fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mousePoint: {fileID: 1101851255}
-  mouseRelativePosition: {fileID: 27057914}
-  mousePositionDisplay: {fileID: 27057913}
   mouseDisplay: {fileID: 1101851251}
-  mouseLeftClick: {fileID: 18619171}
-  mouseRightClick: {fileID: 18619170}
   destroyDefenseTower: {fileID: 603039721}
   buildDefenseTower: {fileID: 880967148}
   checkDefenseTower: {fileID: 880967147}
@@ -191,11 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5d0b487c858d946965d29cbeab1f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mousePoint: {fileID: 1101851255}
-  mouseClick: {fileID: 18619169}
-  positionDisplay: {fileID: 27057913}
   mouseDisplay: {fileID: 1101851251}
-  mousePositionDisplay: {fileID: 27057913}
   buildManager: {fileID: 880967149}
   towerPrefabEntries:
   - towerType: 0
@@ -217,9 +208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05b7bd837b7566344b84b4c9da91f837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mousePoint: {fileID: 1101851255}
-  mouseClick: {fileID: 18619169}
-  positionDisplay: {fileID: 27057913}
   mouseDisplay: {fileID: 1101851251}
   destroyDefenseTower: {fileID: 603039721}
   buildDefenseTower: {fileID: 880967148}
@@ -250,7 +238,7 @@ Transform:
   m_GameObject: {fileID: 27057911}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8, y: -1, z: 0}
+  m_LocalPosition: {x: -22, y: -13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -339,7 +327,7 @@ GameObject:
   - component: {fileID: 265516646}
   - component: {fileID: 265516648}
   m_Layer: 5
-  m_Name: Fade Image
+  m_Name: FadeImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -819,8 +807,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb8a8072b03ce4a4aba87a39ee647bf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mousePoint: {fileID: 1101851255}
-  positionDisplay: {fileID: 27057913}
   mouseDisplay: {fileID: 1101851251}
   destroyOperation: 0
 --- !u!1 &615809092
@@ -896,11 +882,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1239811677
-  m_SortingLayer: 1
+  m_SortingLayerID: -1619257657
+  m_SortingLayer: 16
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0, g: 0, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1037,6 +1023,7 @@ MonoBehaviour:
   afterSceneLoadedEvent: {fileID: 11400000, guid: 2d96ba8842ad3274e9189dc73f6aae17, type: 2}
   fadeCanvas: {fileID: 265516648}
   isLoading: 0
+  cameraController: {fileID: 615809098}
 --- !u!1 &731509516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1316,8 +1303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cbedb34a19d1e841a5d1b1c6e9b89dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mousePoint: {fileID: 1101851255}
-  mouseClickManager: {fileID: 18619169}
   mouseDisplay: {fileID: 1101851251}
 --- !u!114 &880967148
 MonoBehaviour:
@@ -1331,9 +1316,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2efcace1635fd34f8f46b91ef0823d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mousePoint: {fileID: 1101851255}
-  positionDisplay: {fileID: 27057913}
-  MouseClickManager: {fileID: 18619169}
   mouseDisplay: {fileID: 1101851251}
   buildOperation: 0
 --- !u!114 &880967149

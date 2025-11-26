@@ -8,10 +8,6 @@ public class BuildManager : MonoBehaviour
 
     public bool HasTowerSelected;
 
-
-
-
-
     private void Start()
     {
         HasTowerSelected = false;

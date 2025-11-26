@@ -95,8 +95,8 @@ GameObject:
   - component: {fileID: 3688298130911575287}
   - component: {fileID: 3612792284300572332}
   m_Layer: 6
-  m_Name: Place_Pile1
-  m_TagString: Ground
+  m_Name: Place_Pile
+  m_TagString: Place
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,7 +147,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.1, y: 0.1}

@@ -27,6 +27,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 80b3e46daf7e3e44699d8184ff316b2f
+    m_Address: MapMake
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 875cf78817d6e7440ac2d7025cbafd29
     m_Address: MainMenu
     m_ReadOnly: 0

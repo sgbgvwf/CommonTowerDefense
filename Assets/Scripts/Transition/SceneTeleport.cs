@@ -10,8 +10,12 @@ public class SceneTeleport : MonoBehaviour
     public GameSceneSO sceneToGo;
 
     public Vector2 positionToGo;
-
+    
+    [Header("转换场景")]
     public bool isTeleporting;
+
+    [Header("场景渐入渐出")]
+    public bool fadeTransition;
 
     private void Update()
     {
@@ -24,7 +28,7 @@ public class SceneTeleport : MonoBehaviour
 
     public void TeleportAction()
     {
-        loadEventSO.RaiseLoadRequestEvent(sceneToGo, positionToGo, true);
+        loadEventSO.RaiseLoadRequestEvent(sceneToGo, positionToGo, fadeTransition);
     }
 
 

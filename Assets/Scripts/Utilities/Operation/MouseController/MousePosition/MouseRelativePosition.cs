@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class MouseRelativePosition : MonoBehaviour
 {
+    private static MouseRelativePosition instance;
+    public static MouseRelativePosition Instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            Instance = this;
+        }
+    }
+
+
     //获取鼠标的实时位置
     public static Vector2 GetMouseWorldPosition()
     {

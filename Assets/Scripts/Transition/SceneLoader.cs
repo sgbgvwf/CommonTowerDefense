@@ -42,7 +42,7 @@ public class SceneLoader : MonoBehaviour
 
     private bool newGame;
 
-
+    public CameraController cameraController;
 
 
     private void Awake()
@@ -156,9 +156,19 @@ public class SceneLoader : MonoBehaviour
         cameraPosition.position = positionToGo;
 
 
-        //Debug.Log("COMPLETED");
+        if(currentLoadScene.name == "MainMenu")
+        {
+            cameraController.enabled = false;
+        }
+        else
+        {
+            cameraController.enabled = true;
+        }
 
-        StartCoroutine(NewScenePrepare());
+
+            //Debug.Log("COMPLETED");
+
+            StartCoroutine(NewScenePrepare());
 
 
 
