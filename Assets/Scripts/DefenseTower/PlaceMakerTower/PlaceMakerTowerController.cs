@@ -10,8 +10,14 @@ public class PlaceMakerTowerController : MonoBehaviour
     public GroundSearch search;
 
     public GameObject placePrefab;
-    private GameObject pointGround;
+    //private GameObject pointGround;
+    public SpriteRenderer display;
 
+    public PlaceMakerTowerProcessDisplay processDisplay;
+
+    public Vector3 way;
+
+    [Header("时长设置")]
     public float changeDuration;
 
     public float destroyDuration;
@@ -29,7 +35,7 @@ public class PlaceMakerTowerController : MonoBehaviour
         List<Vector2Int> position = new List<Vector2Int>();
         foreach (Vector2Int pos in search.findResultDict.Keys)
         {
-            Debug.Log("Key:" + pos);
+            //Debug.Log("Key:" + pos);
             position.Add(pos);
         }
 
@@ -45,13 +51,18 @@ public class PlaceMakerTowerController : MonoBehaviour
 
             search.findResultDict.TryGetValue(choicePos, out GameObject ground);
 
+            way = new Vector3(choicePos.x, choicePos.y, 0);
+
+            processDisplay.ArrowToward(count, way);
 
             StartCoroutine(WorkDuration(choicePos, ground));
         }
 
         //无ground，采取3秒后自动销毁和补偿机制
         else
+
         {
+            display.color = Color.red;
             StartCoroutine(DestroyTime());
 
         }
@@ -68,7 +79,7 @@ public class PlaceMakerTowerController : MonoBehaviour
 
     public IEnumerator WorkDuration(Vector2Int choicePos, GameObject ground)
     {
-        Vector3 choiceTowerPos = new Vector3(choicePos.x, choicePos.y, 0);
+        
 
         yield return new WaitForSeconds(changeDuration);
 
@@ -76,7 +87,7 @@ public class PlaceMakerTowerController : MonoBehaviour
 
         if (search.findResultDict[choicePos].tag != "DefenseTower")
         {
-            MakePlace(choiceTowerPos, ground);
+            MakePlace(way, ground);
         }
 
         yield return new WaitForSeconds(1f);

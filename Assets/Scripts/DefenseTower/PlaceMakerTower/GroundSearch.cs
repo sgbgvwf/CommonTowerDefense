@@ -21,19 +21,19 @@ public class GroundSearch : MonoBehaviour
 
     public void FindGround()
     {
-        Debug.Log("查找");
+        //Debug.Log("查找");
         //查找周围所有带有 Collider2D 的对象
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(detectionPosition, detectionRadius);
 
         //遍历检测到的所有碰撞体
         foreach (var hitCollider in hitColliders)
         {
-            Debug.Log("遍历");
+            //Debug.Log("遍历");
             Vector2Int GridPos = Vector2Int.FloorToInt(hitCollider.transform.position);
 
             if (!findResultDict.ContainsKey(GridPos) && hitCollider.transform.position != transform.position)//不能把自己加进去
             {
-                Debug.Log(GridPos);
+                //Debug.Log(GridPos);
                 findResultDict.Add(GridPos, hitCollider.gameObject);
             }
             else
@@ -48,7 +48,7 @@ public class GroundSearch : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Nothing");
+                    //Debug.Log("Nothing");
                     continue;
                 }
 
@@ -60,7 +60,6 @@ public class GroundSearch : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        
         Gizmos.DrawWireSphere(detectionPosition, detectionRadius);
     }
 

@@ -34,20 +34,39 @@ public class CoreHealth : MonoBehaviour
         coreHealth = initialHealth;
     }
 
-
-    public void CoreHealthReduce(string name)
+    private void OnEnable()
     {
-        if(coreHealth > 1 && name == "Enemy")
-        {
+        
+    }
 
-            coreHealth--;
-            HealthReduction?.Invoke(this.gameObject);
-        }
-        else
+    private void OnDisable()
+    {
+        
+    }
+
+
+    public void CoreHealthReduce(GameObject DetectedGameObject)
+    {
+        if(DetectedGameObject.tag == "Enemy")
         {
-            coreHealth = 0;
-            Death?.Invoke(this.gameObject);
+            if(DetectedGameObject.GetComponent<EnemyProperty>() == null)
+            {
+                return;
+            }
+
+            if (coreHealth - DetectedGameObject.GetComponent<EnemyProperty>().coreDamage > 0)
+            {
+                coreHealth--;
+                HealthReduction?.Invoke(this.gameObject);
+            }
+
+            else
+            {
+                coreHealth = 0;
+                Death?.Invoke(this.gameObject);
+            }
         }
+
     }
 
 

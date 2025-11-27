@@ -6,14 +6,10 @@ public class TargetPoint : MonoBehaviour
 {
     
 
-
-
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log(collision.tag);
-        CoreHealth.Instance.CoreHealthReduce(collision.tag);
+        CoreHealth.Instance.CoreHealthReduce(collision.gameObject);
 
     }
 }
