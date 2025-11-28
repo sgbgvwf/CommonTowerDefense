@@ -23,6 +23,10 @@ public class MouseLeftClick : MonoBehaviour
         {
             Instance = this;
         }
+        else
+        {
+            Debug.LogError("单例不单一！");
+        }
     }
 
 

@@ -45,6 +45,10 @@ public class MousePointStateManager : MonoBehaviour
         {
             Instance = this;
         }
+        else
+        {
+            Debug.LogError("单例不单一！");
+        }
 
         _collider = GetComponent<Collider2D>();
 
@@ -110,7 +114,7 @@ public class MousePointStateManager : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("DefenseTower") || collision.CompareTag("Ground"))
+        if (collision.CompareTag("DefenseTower") || collision.CompareTag("Place"))
         {
             //切换到空气（不可操作）状态
 

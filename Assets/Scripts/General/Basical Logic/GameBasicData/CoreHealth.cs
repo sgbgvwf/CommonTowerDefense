@@ -22,10 +22,13 @@ public class CoreHealth : MonoBehaviour
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             Instance = this;
-
+        }
+        else
+        {
+            Debug.LogError("单例不单一！");
         }
     }
 

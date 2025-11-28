@@ -12,6 +12,8 @@ TagManager:
   - SpecialPoint
   - Place
   - Path
+  - PathPoint
+  - Display
   layers:
   - Default
   - TransparentFX

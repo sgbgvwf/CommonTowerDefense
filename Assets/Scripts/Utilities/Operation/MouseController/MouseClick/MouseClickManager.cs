@@ -49,6 +49,10 @@ public class MouseClickManager : MonoBehaviour
         {
             Instance = this;
         }
+        else
+        {
+            Debug.LogError("单例不单一！");
+        }
 
         //blackboard = GetComponent<MouseBlackboard>();
         inputControl = new InputController();
