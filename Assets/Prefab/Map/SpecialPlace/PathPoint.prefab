@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7692537854167362695}
   - component: {fileID: 4124800817848134419}
   - component: {fileID: 652012455474768864}
-  m_Layer: 14
+  m_Layer: 15
   m_Name: PathPoint
   m_TagString: PathPoint
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.15, y: 0.15}
+  m_Size: {x: 0.01, y: 0.01}
   m_EdgeRadius: 0
 --- !u!114 &652012455474768864
 MonoBehaviour:
@@ -104,7 +104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4737146170855798268}
   - component: {fileID: 6511129328781624806}
-  m_Layer: 14
+  m_Layer: 15
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}

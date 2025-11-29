@@ -24,7 +24,7 @@ public class DestroyDefenseTower : MonoBehaviour
         else if(destroyOperation && MousePositionDisplay.Instance.SamePosition())
         {
             //切实执行销毁
-            float moneyBack = 0.8f * destroyDefenseTower.gameObject.GetComponent<TowerMoney>().placementCost;
+            float moneyBack = 0.8f * destroyDefenseTower.gameObject.GetComponent<TowerPlaceMoney>().placementCost;
 
             Money.Instance.ChangeMoney(moneyBack);//加钱必定成功，所以直接使用
 

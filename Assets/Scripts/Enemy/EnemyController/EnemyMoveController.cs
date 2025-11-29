@@ -40,7 +40,7 @@ public class EnemyMoveController : MonoBehaviour
     //移动和朝向
     public void Move()
     {
-        transform.position += Dirrection * moveSpeed;
+        transform.position += Dirrection * moveSpeed * 0.01f;
 
         //方向
         Dirrection = (enemyPath.currentTargetPathPoint.transform.position - transform.position + new Vector3(0.5f, 0.5f, 0)).normalized;

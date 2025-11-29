@@ -16,10 +16,8 @@ public class PathPoint : MonoBehaviour
 
     public float waitDuration;
 
+    //Color currentColor = new Color(240 / 255f, 50 / 255f, 50 / 255f, 0);
 
-
-
-    Color currentColor = new Color(240 / 255f, 50 / 255f, 50 / 255f, 0);
 
     private bool display;
 
@@ -34,14 +32,10 @@ public class PathPoint : MonoBehaviour
         timerManager = new TimerManager();
     }
 
-
-
     private void Start()
     {
         point.color = new Color(240/255f, 50/255f, 50/255f, 0);
     }
-
-
 
     private void Update()
     {
@@ -55,8 +49,6 @@ public class PathPoint : MonoBehaviour
         if (display)
         {
             currentColor.a = timerManager.GetElapsed(displayTimer) / displayDuration;
-
-
         }
         else
         {
@@ -69,38 +61,32 @@ public class PathPoint : MonoBehaviour
         {
             timerManager.Remove(displayTimer);
         }
-
-
-
     }
 
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-        if(collision.tag != "PathPoint")
+        if(collision.tag == "PathPoint")
         {
-            return;
+            StartCoroutine(Display());
         }
-        Debug.Log(collision);
-        StartCoroutine(Display());
-
+        //Debug.Log(collision);
+        else if (collision.tag == "Enemy" && wait)
+        {
+            StartCoroutine(Wait(collision.gameObject));
+        }
     }
-
-
 
     private void EnterDisplay()
     {
         display = true;
         timerManager.Start(displayTimer, displayDuration);
-
     }
 
     private void ExitDisplay()
     {
         display = false;
         timerManager.Start(displayTimer, displayDuration);
-
-
     }
 
     private IEnumerator Display()
@@ -113,5 +99,17 @@ public class PathPoint : MonoBehaviour
     }
 
 
+    private IEnumerator Wait(GameObject collision)
+    {
+        if(collision.GetComponent<EnemyMoveController>() == null)
+        {
+            yield break;
+        }
+        collision.GetComponent<EnemyMoveController>().move = false;
+
+        yield return new WaitForSeconds(waitDuration);
+
+        collision.GetComponent<EnemyMoveController>().move = true;
+    }
 
 }

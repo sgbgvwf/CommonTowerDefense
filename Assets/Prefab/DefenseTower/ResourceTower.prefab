@@ -359,10 +359,10 @@ GameObject:
   - component: {fileID: 2404427925377495470}
   - component: {fileID: 7353903623170687684}
   - component: {fileID: 2589894512681306183}
-  - component: {fileID: 8503800214279829275}
-  - component: {fileID: 5722781531622299297}
-  - component: {fileID: 1577291304388650333}
   - component: {fileID: 7305415518009081578}
+  - component: {fileID: 7399958423920437832}
+  - component: {fileID: 7093712553723871513}
+  - component: {fileID: 6832517627236497215}
   m_Layer: 10
   m_Name: ResourceTower
   m_TagString: DefenseTower
@@ -522,54 +522,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.2}
   m_EdgeRadius: 0
---- !u!114 &8503800214279829275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4335507091346470020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 951fd6d82800dd943a2597afc04e0ba0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialHealth: 500
-  maxHealth: 500
-  health: 0
-  healthChange: 0
-  OnTakeDamage:
-    m_PersistentCalls:
-      m_Calls: []
-  IsDead:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &5722781531622299297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4335507091346470020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bf9d765d973e4841846a1f32823ef10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1577291304388650333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4335507091346470020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 454db4bb08d7fee45b991cf7f9acf2ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  physicalDefense: 20
-  magicalDefense: 10
 --- !u!114 &7305415518009081578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,6 +535,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placementCost: 300
+--- !u!114 &7399958423920437832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4335507091346470020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d84d762193fe994a8ac60f817e21896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialHealth: 300
+  maxHealth: 300
+  health: 0
+  OnTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  IsDead:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &7093712553723871513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4335507091346470020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4449d9bb57595a04989fa3fad0cf0803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6832517627236497215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4335507091346470020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382d09b5712c87d4ea3b5a52ea0ac908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  physicalDefense: 20
+  magicalDefense: 10
 --- !u!1 &6746147734504869856
 GameObject:
   m_ObjectHideFlags: 0

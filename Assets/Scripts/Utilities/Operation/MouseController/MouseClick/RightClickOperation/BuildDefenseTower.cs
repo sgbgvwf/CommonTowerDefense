@@ -22,7 +22,7 @@ public class BuildDefenseTower : MonoBehaviour
         }
         else
         {
-            if (Money.Instance.ChangeMoney(-1 * prefab.GetComponent<TowerMoney>().placementCost) && MousePositionDisplay.Instance.SamePosition())//-1减少
+            if (Money.Instance.ChangeMoney(-1 * prefab.GetComponent<TowerPlaceMoney>().placementCost) && MousePositionDisplay.Instance.SamePosition())//-1减少
             {
                 //建造防御塔
                 Instantiate(prefab, place, quaternion.identity);
