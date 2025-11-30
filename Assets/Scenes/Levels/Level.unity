@@ -607,8 +607,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23b648ec5c91fcc4cb35aab196eaa1b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coreHealth: 0
-  initialHealth: 3
+  coreHealth: 3
+  initialHealth: 0
   HealthReduction:
     m_PersistentCalls:
       m_Calls: []

@@ -60,7 +60,7 @@ public class GroundSearch : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(detectionPosition, detectionRadius);
+        Gizmos.DrawWireSphere((Vector2)transform.position + new Vector2(0.1f, 0.1f), detectionRadius);
     }
 
 }

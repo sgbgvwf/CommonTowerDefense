@@ -99,7 +99,7 @@ public class PlaceMakerTowerController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public IEnumerator DestroyTime()
+    private IEnumerator DestroyTime()
     {
         yield return new WaitForSeconds(destroyDuration);
 

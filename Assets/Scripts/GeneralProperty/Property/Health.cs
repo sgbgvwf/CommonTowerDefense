@@ -14,6 +14,13 @@ public class Health : MonoBehaviour
     [Header("血量")]
     public float health;
 
+
+    public SpriteRenderer WhiteImage;
+
+    public SpriteRenderer RedImage;
+
+
+
     //声明事件
     public UnityEvent<GameObject> OnTakeDamage;
 
@@ -37,6 +44,7 @@ public class Health : MonoBehaviour
             {
                 health += changeValue;
                 OnTakeDamage?.Invoke(this.gameObject);
+                HurtDisplay();
 
             }
             else if (health + changeValue < 0)
@@ -70,4 +78,22 @@ public class Health : MonoBehaviour
 
     }
 
+
+    public void HurtDisplay()
+    {
+
+
+        StartCoroutine(HurtDisplayTime());
+
+    }
+
+
+    private IEnumerator HurtDisplayTime()
+    {
+        RedImage.enabled = true;
+
+        yield return new WaitForSeconds(0.1f);
+
+        RedImage.enabled = false;
+    }
 }
