@@ -13,6 +13,12 @@ public enum BuffState
     InWater//ЫЎжа
 }
 
+public enum TowerState
+{
+    Idle,
+    Attack
+}
+
 public enum DefenseTowerType
 {
     None,
@@ -21,10 +27,19 @@ public enum DefenseTowerType
 
 }
 
+public enum EnemyState
+{
+    Idle,
+    Move,
+    Attack,
+
+
+}
 
 public enum SceneType
 {
-    Location, Menu
+    Location, 
+    Menu
 
 }
 

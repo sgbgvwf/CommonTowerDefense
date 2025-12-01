@@ -9,10 +9,7 @@ public class GroundSearch : MonoBehaviour
 
     private float detectionRadius = 1;
 
-
-
     public Dictionary<Vector2Int, GameObject> findResultDict = new Dictionary<Vector2Int, GameObject>();
-
 
     private void Awake()
     {
@@ -51,10 +48,7 @@ public class GroundSearch : MonoBehaviour
                     //Debug.Log("Nothing");
                     continue;
                 }
-
             }
-            
-
         }
     }
 

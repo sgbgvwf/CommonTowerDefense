@@ -10,6 +10,6 @@ public class TargetPoint : MonoBehaviour
     {
         //Debug.Log(collision.tag);
         CoreHealth.Instance.CoreHealthReduce(collision.gameObject);
-
+        Destroy(collision.gameObject);
     }
 }

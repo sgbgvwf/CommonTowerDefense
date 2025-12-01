@@ -9,15 +9,11 @@ using System;
 [Serializable]
 public class MouseBlackboard : Blackboard
 {
-
     public MousePointState currentState;
 
     public GameObject currentTower;
 
     public Color originalColor;
-
-
-
 }
 
 public class MousePointStateManager : MonoBehaviour
@@ -35,10 +31,6 @@ public class MousePointStateManager : MonoBehaviour
 
     private Collider2D _collider;
 
-
-
-    //public MousePointState currentState;
-
     private void Awake()
     {
         if (instance == null)
@@ -55,7 +47,6 @@ public class MousePointStateManager : MonoBehaviour
         _mousePositionDisplay = GetComponent<SpriteRenderer>();
     }
 
-
     void Start()
     {
         _fsm = new FSM(blackboard);
@@ -70,18 +61,13 @@ public class MousePointStateManager : MonoBehaviour
         _fsm.SwitchState(MousePointState.Place);
     }
 
-
-
     private void Update()
     {
-
         _fsm.UpdateState();
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-
-
         if (collision.CompareTag("DefenseTower"))
         {
             //ÇÐ»»µ½·ÀÓùËþ²Ù×÷×´Ì¬
@@ -91,26 +77,20 @@ public class MousePointStateManager : MonoBehaviour
 
             //_mousePositionDisplay.color = blackboard.originalColor;
 
-            Debug.Log(blackboard.currentState);
-
+            //Debug.Log(blackboard.currentState);
         }
 
         else if (collision.CompareTag("Place") && blackboard.currentTower == null)
         {
-
             //ÇÐ»»µ½¿É·ÅÖÃ×´Ì¬
             _fsm.SwitchState(MousePointState.Place);
             blackboard.currentState = MousePointState.Place;
 
             //_mousePositionDisplay.color = blackboard.originalColor;
 
-            Debug.Log(blackboard.currentState);
-
+            //Debug.Log(blackboard.currentState);
         }
-
     }
-
-
 
     public void OnTriggerExit2D(Collider2D collision)
     {
@@ -122,10 +102,8 @@ public class MousePointStateManager : MonoBehaviour
             blackboard.currentState = MousePointState.Air;
             blackboard.currentTower = null;
 
-            Debug.Log(blackboard.currentState);
+            //Debug.Log(blackboard.currentState);
         }
-
-
     }
 
     public void TriggerReCheck()
@@ -137,8 +115,5 @@ public class MousePointStateManager : MonoBehaviour
     public void ColorReSet()
     {
         _mousePositionDisplay.color = blackboard.originalColor;
-
     }
-
-
 }

@@ -15,7 +15,7 @@ public class Health : MonoBehaviour
     public float health;
 
 
-    public SpriteRenderer WhiteImage;
+    //public SpriteRenderer WhiteImage;
 
     public SpriteRenderer RedImage;
 
@@ -90,10 +90,14 @@ public class Health : MonoBehaviour
 
     private IEnumerator HurtDisplayTime()
     {
-        RedImage.enabled = true;
+        if(RedImage != null)
+        {
+            RedImage.enabled = true;
 
-        yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.1f);
 
-        RedImage.enabled = false;
+            RedImage.enabled = false;
+        }
+
     }
 }

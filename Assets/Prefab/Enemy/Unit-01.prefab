@@ -486,10 +486,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialHealth: 500
-  maxHealth: 0
+  maxHealth: 500
   health: 0
   WhiteImage: {fileID: 0}
-  RedImage: {fileID: 0}
+  RedImage: {fileID: 418832155645708227}
   OnTakeDamage:
     m_PersistentCalls:
       m_Calls: []
