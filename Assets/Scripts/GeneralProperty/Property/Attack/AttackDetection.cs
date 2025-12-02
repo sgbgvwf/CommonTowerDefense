@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 
-public class EnemyDetection : MonoBehaviour
+public class AttackDetection : MonoBehaviour
 {
-    [SerializeField]private TowerStateManager _stateManager;
+        [SerializeField]private TowerStateManager _stateManager;
 
     [HideInInspector]public Vector3 detectionPosition;
 
@@ -155,5 +155,11 @@ public class EnemyDetection : MonoBehaviour
     {
         Gizmos.DrawWireSphere(transform.position + new Vector3(0.5f, 0.5f, 0), detectionRadius);
     }
+
+
+
+
+
+
 
 }

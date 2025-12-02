@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7069936415613093736
 Transform:
   m_ObjectHideFlags: 0
@@ -49,7 +49,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5993849282413545129
 Transform:
   m_ObjectHideFlags: 0
@@ -427,7 +427,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.01
+  m_Radius: 0.3
 --- !u!114 &7110251763939164253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,7 +488,6 @@ MonoBehaviour:
   initialHealth: 500
   maxHealth: 500
   health: 0
-  WhiteImage: {fileID: 0}
   RedImage: {fileID: 418832155645708227}
   OnTakeDamage:
     m_PersistentCalls:

@@ -10,18 +10,21 @@ public class TowerAttack : IState
 
     private EnemyDetection _enemyDetection;
 
-    private ITowerAttackStrategy _attackStrategy;
+    private IAttackStrategy _attackStrategy;
 
-    public void Init(TowerStateBlackboard blackboard, EnemyDetection enemyDetection, ITowerAttackStrategy attackStrategy)
+    public void Init(TowerStateBlackboard blackboard, EnemyDetection enemyDetection, IAttackStrategy attackStrategy)
     {
         _blackboard = blackboard;
         _enemyDetection = enemyDetection;
         _attackStrategy = attackStrategy;
+        //Debug.Log(_attackStrategy);
+
     }
 
     public void OnEnter()
     {
         _attackStrategy?.OnAttackEnter(_blackboard, _enemyDetection);
+        //Debug.Log(_attackStrategy);
     }
 
     public void OnExit()

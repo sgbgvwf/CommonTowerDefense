@@ -10,7 +10,7 @@ public class TowerStateBlackboard : Blackboard
 
     public Vector3 firePosition;
 
-    
+    public AttackTimeType attackTimeType;
 
 }
 
@@ -23,8 +23,9 @@ public class TowerStateManager : MonoBehaviour
 
     public EnemyDetection enemyDetection;
     
-    private ITowerAttackStrategy _attackStrategy;
+    private IAttackStrategy _attackStrategy;
 
+    private TowerState _currentState;
 
 
     void Start()
@@ -33,18 +34,22 @@ public class TowerStateManager : MonoBehaviour
 
         TowerAttack attackState = new TowerAttack();
 
-        attackState.Init(blackboard, enemyDetection, _attackStrategy);
+        _fsm.AddState(TowerState.Idle, new TowerIdle());
 
-        _attackStrategy = GetComponent<MagicalTurretAttackStrategy>();
+        _fsm.AddState(TowerState.Attack, attackState);
+
+        _attackStrategy = GetComponent<SingleAttackStrategy>();
+
+        //Debug.Log(_attackStrategy);
 
         blackboard.currentState = TowerState.Idle;
 
         blackboard.firePosition = transform.position + new Vector3(0.5f, 0.5f, 0);
 
+        attackState.Init(blackboard, enemyDetection, _attackStrategy);
 
-        _fsm.AddState(TowerState.Idle, new TowerIdle());
 
-        _fsm.AddState(TowerState.Attack, new TowerAttack());
+
 
 
         _fsm.SwitchState(TowerState.Idle);
@@ -55,13 +60,15 @@ public class TowerStateManager : MonoBehaviour
     {
         _fsm.UpdateState();
 
-        if(blackboard.currentState == TowerState.Attack)
+        if(blackboard.currentState == TowerState.Attack && _currentState != TowerState.Attack)
         {
             _fsm.SwitchState(TowerState.Attack);
+            _currentState = TowerState.Attack;
         }
-        else if(blackboard.currentState == TowerState.Idle)
+        else if(blackboard.currentState == TowerState.Idle && _currentState != TowerState.Idle)
         {
             _fsm.SwitchState(TowerState.Idle);
+            _currentState = TowerState.Idle;
         }
     }
 

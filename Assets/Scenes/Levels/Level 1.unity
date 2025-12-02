@@ -1327,8 +1327,8 @@ MonoBehaviour:
   - {fileID: 1900013566}
   - {fileID: 987794009}
   planAmount: 10
-  spwanInitialTime: 10
-  spawnFrequency: 2
+  spwanInitialTime: 5
+  spawnFrequency: 5
 --- !u!1001 &247614589
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8417,7 +8417,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 652012455474768864, guid: 34f812cf617b4f24a9625f381c43329b, type: 3}
       propertyPath: wait
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 652012455474768864, guid: 34f812cf617b4f24a9625f381c43329b, type: 3}
       propertyPath: waitDuration
@@ -10854,6 +10854,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 676068317}
     m_Modifications:
+    - target: {fileID: 652012455474768864, guid: 34f812cf617b4f24a9625f381c43329b, type: 3}
+      propertyPath: wait
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 652012455474768864, guid: 34f812cf617b4f24a9625f381c43329b, type: 3}
+      propertyPath: waitDuration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4081860175841629640, guid: 34f812cf617b4f24a9625f381c43329b, type: 3}
       propertyPath: m_Name
       value: PathPoint 3

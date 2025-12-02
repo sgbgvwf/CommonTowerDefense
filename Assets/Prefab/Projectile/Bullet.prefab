@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2906454463417693267}
   - component: {fileID: 8292640167629490846}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1481911719
-  m_SortingLayer: 10
+  m_SortingLayerID: 1497311497
+  m_SortingLayer: 13
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -93,9 +93,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1013401431875441421}
-  m_Layer: 0
+  - component: {fileID: 8534090980419841074}
+  - component: {fileID: 6466338056114299114}
+  m_Layer: 16
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Attacker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,3 +118,36 @@ Transform:
   - {fileID: 2906454463417693267}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8534090980419841074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8884754432598066259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 866449ac68592e64c9fb706e7a311fd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack: 40
+  damageType: 0
+  buffType: 0
+  effectType: 0
+  bulletCross: 0
+  maxCrossTimes: 0
+  currentCrossTimes: 0
+--- !u!114 &6466338056114299114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8884754432598066259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e63335f85f6252742a55c744104c27ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: {x: 0, y: 0, z: 0}
+  speed: 7

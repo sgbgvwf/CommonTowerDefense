@@ -26,6 +26,8 @@ public class DamageInfomation
 
     public DamageType damageType;//伤害类型
 
+    public BuffState buffType;//元素类型
+
     public EffectType effectType;//效果类型
 
     public GameObject source;//伤害来源
@@ -38,7 +40,7 @@ public class DamageInfomation
     /// <param name="value">伤害值</param>
     /// <param name="type">伤害类型</param>
     /// <param name="src">伤害来源</param>
-    public DamageInfomation(float value, DamageType type, GameObject src)
+    public DamageInfomation(float value, DamageType type, BuffState buff, GameObject src)
     {
         damageValue = value;
         damageType = type;
@@ -54,7 +56,7 @@ public class DamageInfomation
     /// <param name="type">伤害类型</param>
     /// <param name="time">持续时间</param>
     /// <param name="src">伤害来源</param>
-    public DamageInfomation(float valuePerSecond, DamageType type, float time, GameObject src)
+    public DamageInfomation(float valuePerSecond, DamageType type, BuffState buff, float time, GameObject src)
     {
         damageValue = valuePerSecond;
         damageType = type;

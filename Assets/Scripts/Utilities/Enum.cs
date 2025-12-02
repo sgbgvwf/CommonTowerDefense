@@ -7,16 +7,29 @@ public enum MousePointState
 
 public enum BuffState
 {
+    None,
     Burn,//È¼ÉÕ
     Cold,//º®Àä
     Slow,//»ºÂý
     InWater//Ë®ÖÐ
 }
 
+public enum AttackDetectionTarget
+{
+    Enemy,
+    DefenseTower
+}
+
 public enum TowerState
 {
     Idle,
     Attack
+}
+
+public enum AttackTimeType
+{
+    Immediately,
+    Delay
 }
 
 public enum DefenseTowerType

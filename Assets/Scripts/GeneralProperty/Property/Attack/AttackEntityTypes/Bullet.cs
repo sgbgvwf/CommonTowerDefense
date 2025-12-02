@@ -10,9 +10,11 @@ public class Bullet : MonoBehaviour
     [Header("攻击类型")]
     public DamageType damageType;
 
+    [Header("buff效果")]
+    public BuffState buffType;
+
     [Header("持续类型")]
     public EffectType effectType;
-
 
     [Header("子弹穿透")]
     public bool bulletCross;
@@ -31,7 +33,7 @@ public class Bullet : MonoBehaviour
         if (other != null && other.tag == "Enemy")
         {
 
-            DamageInfomation damageInfomation = new DamageInfomation(attack, damageType, gameObject);
+            DamageInfomation damageInfomation = new DamageInfomation(attack, damageType, buffType, gameObject);
 
             damageTarget.TakeDamage(damageInfomation);
 

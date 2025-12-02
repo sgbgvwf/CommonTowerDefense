@@ -63,7 +63,7 @@ public class PathPoint : MonoBehaviour
         }
     }
 
-    
+    /*
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "PathPoint")
@@ -76,20 +76,20 @@ public class PathPoint : MonoBehaviour
             StartCoroutine(Wait(collision.gameObject));
         }
     }
-
-    private void EnterDisplay()
+    */
+    public void EnterDisplay()
     {
         display = true;
         timerManager.Start(displayTimer, displayDuration);
     }
 
-    private void ExitDisplay()
+    public void ExitDisplay()
     {
         display = false;
         timerManager.Start(displayTimer, displayDuration);
     }
 
-    private IEnumerator Display()
+    public IEnumerator Display()
     {
         EnterDisplay();
 
@@ -99,9 +99,10 @@ public class PathPoint : MonoBehaviour
     }
 
 
-    private IEnumerator Wait(GameObject collision)
+    public IEnumerator Wait(GameObject collision)
     {
-        if(collision.GetComponent<EnemyMoveController>() == null)
+
+        if (collision.GetComponent<EnemyMoveController>() == null && !wait)
         {
             yield break;
         }

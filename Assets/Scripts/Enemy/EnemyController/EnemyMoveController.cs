@@ -49,9 +49,6 @@ public class EnemyMoveController : MonoBehaviour
         {
             TurnBack();
         }
-
-
-
     }
 
     //ÈËÎï·­×ª
@@ -66,12 +63,32 @@ public class EnemyMoveController : MonoBehaviour
             faceLeft = false;
         }
         transform.localScale = new Vector3(-1 * transform.localScale.x, 1 * transform.localScale.y, 1 * transform.localScale.z);
+    
     }
 
+    /*
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<PathPoint>())
+        {
+            PathPoint _pathPoint = collision.GetComponent<PathPoint>();
 
+            if (this.tag == "PathPoint" && collision.tag == "PathPoint")
+            {
+                _pathPoint.StartCoroutine(_pathPoint.Display());
+            }
+            else if (this.tag == "Enemy" && collision.tag == "PathPoint")
+            {
+                _pathPoint.StartCoroutine(_pathPoint.Wait(this.gameObject));
 
+            }
+        }
+    
+        
 
+    }
 
+    */
 
 
 
