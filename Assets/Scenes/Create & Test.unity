@@ -929,6 +929,37 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &1020993218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1020993219}
+  m_Layer: 10
+  m_Name: MagicBullet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1020993219
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020993218}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1384391644}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1037129225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1106,13 +1137,13 @@ GameObject:
   - component: {fileID: 1384391652}
   - component: {fileID: 1384391651}
   - component: {fileID: 1384391650}
-  - component: {fileID: 1384391649}
   - component: {fileID: 1384391648}
   - component: {fileID: 1384391647}
   - component: {fileID: 1384391646}
-  - component: {fileID: 1384391654}
   - component: {fileID: 1384391645}
+  - component: {fileID: 1384391654}
   - component: {fileID: 1384391653}
+  - component: {fileID: 1384391655}
   m_Layer: 10
   m_Name: MagicalTurret
   m_TagString: DefenseTower
@@ -1129,12 +1160,13 @@ Transform:
   m_GameObject: {fileID: 1384391643}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 2, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1037129226}
   - {fileID: 1290843521}
+  - {fileID: 1020993219}
   m_Father: {fileID: 2104023349}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1384391645
@@ -1198,19 +1230,6 @@ MonoBehaviour:
   IsDead:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1384391649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1384391643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b175d06dab15f94cba6eb1a0caab61d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  placementCost: 0
 --- !u!61 &1384391650
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1341,6 +1360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stateManager: {fileID: 1384391654}
+  detectionPosition: {x: 0, y: 0, z: 0}
   detectionRadius: 2.5
   direction: {x: 0, y: 0, z: 0}
 --- !u!114 &1384391654
@@ -1357,8 +1377,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blackboard:
     currentState: 0
-    currentAttackDirection: {x: 0, y: 0, z: 0}
+    firePosition: {x: 0, y: 0, z: 0}
   enemyDetection: {fileID: 1384391653}
+--- !u!114 &1384391655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384391643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f1c5a7446ed08c4da526d5315cd8501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magicBullet: {fileID: 1847172537090209266, guid: a97e091a0c2227c4ab2c4dae9a07705a, type: 3}
+  magicBulletEntity: {fileID: 1020993219}
+  fireFrequency: 2
 --- !u!1 &1460655196
 GameObject:
   m_ObjectHideFlags: 0

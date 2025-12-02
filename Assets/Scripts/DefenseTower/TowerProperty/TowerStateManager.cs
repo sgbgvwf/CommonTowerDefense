@@ -8,7 +8,10 @@ public class TowerStateBlackboard : Blackboard
 {
     public TowerState currentState;
 
-    public Vector3 currentAttackDirection;
+    public Vector3 firePosition;
+
+    
+
 }
 
 public class TowerStateManager : MonoBehaviour
@@ -20,13 +23,24 @@ public class TowerStateManager : MonoBehaviour
 
     public EnemyDetection enemyDetection;
     
-
+    private ITowerAttackStrategy _attackStrategy;
 
 
 
     void Start()
     {
         _fsm = new FSM(blackboard);
+
+        TowerAttack attackState = new TowerAttack();
+
+        attackState.Init(blackboard, enemyDetection, _attackStrategy);
+
+        _attackStrategy = GetComponent<MagicalTurretAttackStrategy>();
+
+        blackboard.currentState = TowerState.Idle;
+
+        blackboard.firePosition = transform.position + new Vector3(0.5f, 0.5f, 0);
+
 
         _fsm.AddState(TowerState.Idle, new TowerIdle());
 

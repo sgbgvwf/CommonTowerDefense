@@ -7,7 +7,7 @@ public class EnemyDetection : MonoBehaviour
 {
     [SerializeField]private TowerStateManager _stateManager;
 
-    private Vector3 detectionPosition;
+    [HideInInspector]public Vector3 detectionPosition;
 
     [Header("检测半径")]
     public float detectionRadius;
@@ -36,11 +36,6 @@ public class EnemyDetection : MonoBehaviour
     {
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(detectionPosition, detectionRadius);
 
-        if(hitColliders.Length > 0)
-        {
-            _stateManager.blackboard.currentState = TowerState.Attack;
-        }
-
         //遍历检测到的所有碰撞体
         foreach (var hitCollider in hitColliders)
         {
@@ -54,20 +49,28 @@ public class EnemyDetection : MonoBehaviour
                 enemyPosition.Add(hitCollider.gameObject, hitCollider.transform.position);
             }
         }
+
+        if (enemyPosition.Count > 0)
+        {
+            _stateManager.blackboard.currentState = TowerState.Attack;
+        }
+
     }
 
     private void ExitScope()
     {
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(detectionPosition, detectionRadius);
 
+        List<GameObject> momentPosition = new List<GameObject>();
+
         //遍历所有曾在范围内的碰撞体
-        foreach (var enemy in enemyPosition.Keys)
+        foreach  (var enemy in enemyPosition.Keys)
         {
             bool exist = false;
 
-            foreach(var hitCollider in hitColliders)
+            foreach (var hitCollider in hitColliders)
             {
-                if(hitCollider == enemy)
+                if(hitCollider.gameObject == enemy)
                 {
                     exist = true;
                 }
@@ -75,9 +78,21 @@ public class EnemyDetection : MonoBehaviour
 
             if (!exist)
             {
-                enemyPosition.Remove(enemy);
-                enemyDistance.Remove(enemy);
+                momentPosition.Add(enemy);
             }
+        }
+
+        foreach(var enemy in momentPosition)
+        {
+            enemyPosition.Remove(enemy);
+            enemyDistance.Remove(enemy);
+        }
+
+        momentPosition.Clear();
+
+        if (enemyPosition.Count == 0)
+        {
+            _stateManager.blackboard.currentState = TowerState.Idle;
         }
     }
 
@@ -121,11 +136,11 @@ public class EnemyDetection : MonoBehaviour
         float distance = 
             Mathf.Abs(gameObject.transform.position.x - 
             gameObject.GetComponent<EnemyPath>().planPathPointsList
-            [gameObject.GetComponent<EnemyPath>().planPathPointsList.Count]
+            [gameObject.GetComponent<EnemyPath>().planPathPointsList.Count-1]
             .transform.position.x)+
             Mathf.Abs(gameObject.transform.position.y -
             gameObject.GetComponent<EnemyPath>().planPathPointsList
-            [gameObject.GetComponent<EnemyPath>().planPathPointsList.Count]
+            [gameObject.GetComponent<EnemyPath>().planPathPointsList.Count-1]
             .transform.position.y);
 
         return distance;
