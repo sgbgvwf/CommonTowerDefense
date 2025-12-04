@@ -507,6 +507,7 @@ MonoBehaviour:
   Dirrection: {x: 0, y: 0, z: 0}
   enemyPath: {fileID: 5268914307346907629}
   moveSpeed: 2
+  SlowScale: 1
 --- !u!114 &602478558747168229
 MonoBehaviour:
   m_ObjectHideFlags: 0

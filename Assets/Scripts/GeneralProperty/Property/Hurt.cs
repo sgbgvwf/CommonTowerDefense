@@ -84,7 +84,7 @@ public class Hurt : MonoBehaviour, IDamageable
             }
             else if (damage.buffType == BuffState.Cold)
             {
-
+                BuffStateManager.blackboard.buffFSM.EnterState(BuffState.Cold);
             }
 
 

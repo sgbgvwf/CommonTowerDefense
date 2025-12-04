@@ -14,6 +14,8 @@ public class FlyerStraightController : MonoBehaviour
     [Header("飞行速度")]
     public float speed;
 
+    //public float SlowScale;
+
     [Header("发射状态")]
     public bool fly;
 

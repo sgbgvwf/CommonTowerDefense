@@ -4,7 +4,6 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Concorde.Timer;
 
-
 public class Buff_InWater : IState
 {
     private GameObject gameObject;
@@ -24,15 +23,27 @@ public class Buff_InWater : IState
     }
     public void OnEnter()
     {
-        _blackboard.InWater = true;
+
         if (_blackboard.Burn == true)
         {
             _fsm.ExitState(BuffState.Burn);
         }
+
+        if (gameObject.tag == "Enemy")
+        {
+            gameObject.GetComponent<EnemyMoveController>().moveSpeed = 0.9f * gameObject.GetComponent<EnemyMoveController>().moveSpeed;
+        }
+        _blackboard.InWater = true;
     }
 
     public void OnExit()
     {
+
+
+        if (gameObject.tag == "Enemy")
+        {
+            gameObject.GetComponent<EnemyMoveController>().moveSpeed = 1f / 0.9f * gameObject.GetComponent<EnemyMoveController>().moveSpeed;
+        }
         _blackboard.InWater = false;
     }
 

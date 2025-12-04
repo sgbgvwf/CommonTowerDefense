@@ -16,13 +16,16 @@ public class Buff_Burn : IState
 
     private DamageInfomation buffDamageInfomation;
 
+    public float burnDamage;
+
     public void Init(GameObject itself, BuffBlackboard buffBlackboard, BuffFSM buffFSM)
     {
         gameObject = itself;
         _blackboard = buffBlackboard;
         _fsm = buffFSM;
         timerManager = new TimerManager();
-        buffDamageInfomation = new DamageInfomation(5f, DamageType.Magical, BuffState.None, gameObject);
+        burnDamage = 5f;
+        buffDamageInfomation = new DamageInfomation(burnDamage, DamageType.Magical, BuffState.None, gameObject);
     }
 
     public void OnEnter()
@@ -32,14 +35,17 @@ public class Buff_Burn : IState
         {
             _fsm.ExitState(BuffState.Cold);
         }
-        _blackboard.Burn = true;
+
 
         timerManager.Start("BurnTimer", 5f);
         timerManager.Start("BurnDamage", 0f);
+        _blackboard.Burn = true;
     }
 
     public void OnExit()
     {
+        timerManager.Remove("BurnTimer");
+        timerManager.Remove("BurnDamage");
         _blackboard.Burn = false;
     }
 
@@ -62,9 +68,6 @@ public class Buff_Burn : IState
         
 
     }
-
-
-
 
 
 }

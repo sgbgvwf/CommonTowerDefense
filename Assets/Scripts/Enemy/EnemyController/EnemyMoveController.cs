@@ -19,6 +19,8 @@ public class EnemyMoveController : MonoBehaviour
     [Header("移动速度")]
     public float moveSpeed;
 
+    public float SlowScale;
+
 
     //游戏开始前的初始化
     private void Awake()
@@ -40,7 +42,7 @@ public class EnemyMoveController : MonoBehaviour
     //移动和朝向
     public void Move()
     {
-        transform.position += Dirrection * moveSpeed * 0.01f;
+        transform.position += Dirrection * moveSpeed * SlowScale * 0.01f;
 
         //方向
         Dirrection = (enemyPath.currentTargetPathPoint.transform.position - transform.position + new Vector3(0.5f, 0.5f, 0)).normalized;

@@ -20,6 +20,8 @@ public class AttackLaunch : MonoBehaviour, ITowerAttackStrategy
     [Header("¹¥»÷¼ä¸ô")]
     public float attackFrequency;
 
+    public float attackSpeedScale;
+
     [Header("ÑÓ³ÙÊ±¼ä")]
     public float delayTime;
 
@@ -47,7 +49,7 @@ public class AttackLaunch : MonoBehaviour, ITowerAttackStrategy
                     StartCoroutine(DelayTime(entity));
 
                     timerManager.Remove("AttackFrequency");
-                    timerManager.Start("AttackFrequency", attackFrequency + delayTime);
+                    timerManager.Start("AttackFrequency", attackFrequency * attackSpeedScale + delayTime);
                 }
                 break;
 
@@ -60,7 +62,7 @@ public class AttackLaunch : MonoBehaviour, ITowerAttackStrategy
                     LaunchObject(entity);
 
                     timerManager.Remove("AttackFrequency");
-                    timerManager.Start("AttackFrequency", attackFrequency);
+                    timerManager.Start("AttackFrequency", attackFrequency * attackSpeedScale);
                 }
                 break;
         }
