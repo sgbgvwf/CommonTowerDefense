@@ -1,19 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BuffFSM : FSM
 {
     private IState _currentState; // 当前激活的状态
 
-    public Dictionary<Enum, bool> NowState;//用字典记录buff的存在状态
+    public List<Enum> NowState;//用字典记录buff的存在状态
 
     private BuffStateManager _buffStateManager;
 
     public BuffFSM(Blackboard blackboard) : base(blackboard)
     {
-        this.NowState = new Dictionary<Enum, bool>();
+        this.NowState = new List<Enum>();
 
         this.StateDictionary = new Dictionary<Enum, IState>();
         this.blackboard = blackboard;
@@ -29,29 +30,35 @@ public class BuffFSM : FSM
         }
         StateDictionary.Add(State, state);
 
-        NowState.Add(State, false);
+        //NowState.Add(State);
 
     }
 
     //进入状态
     public void EnterState(Enum state)
     {
-        
-        _currentState?.OnEnter();
-        NowState[state] = true;
-        
-
+        StateDictionary[state]?.OnEnter();
+        NowState.Add(state);
     }
 
     //退出状态
     public void ExitState(Enum state)
     {
-
-        _currentState?.OnExit();
-        NowState[state] = false;
+        StateDictionary[state]?.OnExit();
+        NowState.Remove(state);
     }
 
+    //对每一个激活的状态进行更新
+    public void UpdateStates()
+    {
+        List<Enum> NowStateCopy = NowState.ToList();
+        foreach(var state in NowStateCopy)
+        {
+            
+            StateDictionary[state].OnUpdate();
 
+        }
+    }
 
 
 

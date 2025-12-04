@@ -18,7 +18,7 @@ public class FlyerStraightController : MonoBehaviour
     public bool fly;
 
     [Header("Ïú»Ù¼ÆÊ±")]
-    [SerializeField]private bool destroyTimer;
+    private bool destroyTimer;
 
     private void Awake()
     {

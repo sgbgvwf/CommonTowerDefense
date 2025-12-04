@@ -43,6 +43,7 @@ public class AttackLaunch : MonoBehaviour, ITowerAttackStrategy
                     GameObject entity;
                     entity = Instantiate(prefab, _blackboard.SpawnPosition, Quaternion.identity, parent);
                     entity.name = "entity";
+                    
                     StartCoroutine(DelayTime(entity));
 
                     timerManager.Remove("AttackFrequency");

@@ -13,7 +13,7 @@ public class Hurt : MonoBehaviour, IDamageable
 
     private DefenseProperty defense;
 
-
+    private BuffStateManager BuffStateManager;
 
 
     private void Awake()
@@ -21,6 +21,8 @@ public class Hurt : MonoBehaviour, IDamageable
         health = GetComponent<Health>();
 
         defense = GetComponent<DefenseProperty>();
+
+        BuffStateManager = GetComponent<BuffStateManager>();
     }
 
 
@@ -56,7 +58,6 @@ public class Hurt : MonoBehaviour, IDamageable
             }
         }
 
-
         //持续类型
         if(damage.effectType == EffectType.Instant)//单次伤害
         {
@@ -73,7 +74,33 @@ public class Hurt : MonoBehaviour, IDamageable
 
         }
 
+        //Buff效果
+        if(damage.buffType != BuffState.None)
+        {
+            if (damage.buffType == BuffState.Burn)
+            {
+                BuffStateManager.blackboard.buffFSM.EnterState(BuffState.Burn);
 
+            }
+            else if (damage.buffType == BuffState.Cold)
+            {
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+        
 
 
 

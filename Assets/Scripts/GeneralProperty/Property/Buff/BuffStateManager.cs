@@ -7,6 +7,7 @@ using UnityEngine;
 public class BuffBlackboard : Blackboard
 {
     //public BuffState currentState;
+    public BuffFSM buffFSM;
 
     public bool Burn;
 
@@ -24,19 +25,32 @@ public class BuffStateManager : MonoBehaviour
 
     public BuffBlackboard blackboard;
 
-
-
-    private void Start()
+    private void Awake()
     {
         _fsm = new BuffFSM(blackboard);
 
-        _fsm.AddState(BuffState.Burn, new Burn());
+        Buff_Burn buff_Burn = new Buff_Burn();
+        _fsm.AddState(BuffState.Burn, buff_Burn);
+        buff_Burn.Init(gameObject, blackboard, _fsm);
 
-        _fsm.AddState(BuffState.Cold, new Cold());
+        Buff_Cold buff_Cold = new Buff_Cold();
+        _fsm.AddState(BuffState.Cold, buff_Cold);
+        buff_Cold.Init(gameObject, blackboard, _fsm);
 
-        _fsm.AddState(BuffState.InWater, new InWater());
+        Buff_InWater buff_InWater = new Buff_InWater();
+        _fsm.AddState(BuffState.InWater, buff_InWater);
+        buff_InWater.Init(gameObject, blackboard, _fsm);
 
-        _fsm.AddState(BuffState.Slow, new Slow());
+        Buff_Slow buff_Slow = new Buff_Slow();
+        _fsm.AddState(BuffState.Slow, buff_Slow);
+        buff_Slow.Init(gameObject, blackboard, _fsm);
+
+        blackboard.buffFSM = _fsm;
+    }
+
+    private void Start()
+    {
+
 
     }
 
@@ -44,13 +58,13 @@ public class BuffStateManager : MonoBehaviour
     private void Update()
     {
 
-        _fsm.UpdateState();
+        _fsm.UpdateStates();
     }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
+        /*
         if (collision.tag =="BurnDamage" && blackboard.InWater != true)
         {
 
@@ -66,7 +80,7 @@ public class BuffStateManager : MonoBehaviour
 
             Debug.Log("∫Æ¿‰…À∫¶");
         }
-
+        */
         if (collision.tag == "Water")
         {
 
@@ -74,11 +88,6 @@ public class BuffStateManager : MonoBehaviour
 
             Debug.Log("‘⁄ÀÆ÷–");
         }
-
-
-
-
-
 
 
     }

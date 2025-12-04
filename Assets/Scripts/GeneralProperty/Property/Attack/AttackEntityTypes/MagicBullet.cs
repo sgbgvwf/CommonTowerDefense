@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MagicBullet : MonoBehaviour
 {
+    //[Header("攻击者")]
+    private GameObject attacker;
+
     [Header("伤害")]
     public float attack;
 
@@ -16,7 +19,10 @@ public class MagicBullet : MonoBehaviour
     [Header("持续类型")]
     public EffectType effectType;
 
-
+    private void Awake()
+    {
+        attacker = gameObject.transform.parent.parent.gameObject;
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -26,13 +32,13 @@ public class MagicBullet : MonoBehaviour
 
         if (other != null && other.tag == "Enemy")
         {
-            DamageInfomation damageInfomation = new DamageInfomation(attack, damageType, buffType, gameObject);
+            DamageInfomation damageInfomation = new DamageInfomation(attack, damageType, buffType, attacker);
             
             damageTarget.TakeDamage(damageInfomation);
 
-            
+            //Debug.Log(damageInfomation.buffType);
 
-             Destroy(gameObject);
+            Destroy(gameObject);
             
 
         }

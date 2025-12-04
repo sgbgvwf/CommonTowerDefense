@@ -44,6 +44,7 @@ public class DamageInfomation
     {
         damageValue = value;
         damageType = type;
+        buffType = buff;
         effectType = EffectType.Instant;
         source = src;
         duration = 0;
@@ -60,6 +61,7 @@ public class DamageInfomation
     {
         damageValue = valuePerSecond;
         damageType = type;
+        buffType = buff;
         effectType = EffectType.Continuous;
         source = src;
         duration = time;
