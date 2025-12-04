@@ -5,19 +5,24 @@ using UnityEngine;
 
 public class AttackDetection : MonoBehaviour
 {
-        [SerializeField]private TowerStateManager _stateManager;
-
     [HideInInspector]public Vector3 detectionPosition;
+
+    public AttackLockStrategyManager _StrategyManager;
+
+    private EntityType _targetType;
 
     [Header("检测半径")]
     public float detectionRadius;
 
-    private Dictionary<GameObject, Vector3> enemyPosition = new Dictionary<GameObject, Vector3>();
+    public Dictionary<GameObject, Vector3> objectPosition = new Dictionary<GameObject, Vector3>();
 
-    private Dictionary<GameObject, float> enemyDistance = new Dictionary<GameObject, float>();
 
-    [Header("当前检测敌人")]
-    [HideInInspector]public Vector3 direction;
+    
+
+    private void Awake()
+    {
+        _targetType = _StrategyManager.blackboard.targetType;
+    }
 
     private void Start()
     {
@@ -26,37 +31,31 @@ public class AttackDetection : MonoBehaviour
 
     private void Update()
     {
-        EnterScope();
+        
+        EnterScope(_targetType.ToString());
         ExitScope();
-
-        LockEnemy();
     }
 
-    private void EnterScope()
+    private void EnterScope(string detectionTarget)
     {
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(detectionPosition, detectionRadius);
 
         //遍历检测到的所有碰撞体
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.tag != "Enemy")
+            if (hitCollider.gameObject.tag != detectionTarget)
             {
                 continue;
             }
 
-            if (!enemyPosition.ContainsKey(hitCollider.gameObject))
+            if (!objectPosition.ContainsKey(hitCollider.gameObject))
             {
-                enemyPosition.Add(hitCollider.gameObject, hitCollider.transform.position);
+                objectPosition.Add(hitCollider.gameObject, hitCollider.transform.position);
             }
             else
             {
-                enemyPosition[hitCollider.gameObject] = hitCollider.transform.position;
+                objectPosition[hitCollider.gameObject] = hitCollider.transform.position;
             }
-        }
-
-        if (enemyPosition.Count > 0)
-        {
-            _stateManager.blackboard.currentState = TowerState.Attack;
         }
 
     }
@@ -68,13 +67,13 @@ public class AttackDetection : MonoBehaviour
         List<GameObject> momentPosition = new List<GameObject>();
 
         //遍历所有曾在范围内的碰撞体
-        foreach  (var enemy in enemyPosition.Keys)
+        foreach  (var _object in objectPosition.Keys)
         {
             bool exist = false;
 
             foreach (var hitCollider in hitColliders)
             {
-                if(hitCollider.gameObject == enemy)
+                if(hitCollider.gameObject == _object)
                 {
                     exist = true;
                 }
@@ -82,83 +81,27 @@ public class AttackDetection : MonoBehaviour
 
             if (!exist)
             {
-                momentPosition.Add(enemy);
+                momentPosition.Add(_object);
             }
         }
 
-        foreach(var enemy in momentPosition)
+        foreach(var _object in momentPosition)
         {
-            enemyPosition.Remove(enemy);
-            enemyDistance.Remove(enemy);
+            objectPosition.Remove(_object);
         }
 
         momentPosition.Clear();
 
-        if (enemyPosition.Count == 0)
-        {
-            _stateManager.blackboard.currentState = TowerState.Idle;
-        }
     }
 
-    public void LockEnemy()
-    {
-        if(enemyPosition.Count == 0)
-        {
-            return;
-        }
 
-        foreach(var enemy in enemyPosition.Keys)
-        {
-            if (!enemyDistance.ContainsKey(enemy))
-            {
-                enemyDistance.Add(enemy, DistanceCalculation(enemy));
-            }
-            else
-            {
-                enemyDistance[enemy] = DistanceCalculation(enemy);
-            }
-        }
 
-        float minDistance = enemyDistance.Values.Min();
 
-        GameObject nearestEnemy = enemyDistance
-            .Where(pair => pair.Value == minDistance)
-            .Select(pair => pair.Key)
-            .FirstOrDefault();
-
-        direction = (enemyPosition[nearestEnemy] - detectionPosition).normalized;
-
-    }
-
-    private float DistanceCalculation(GameObject gameObject)
-    {
-        if (!gameObject.GetComponent<EnemyPath>())
-        {
-            return 0; 
-        }
-
-        float distance = 
-            Mathf.Abs(gameObject.transform.position.x - 
-            gameObject.GetComponent<EnemyPath>().planPathPointsList
-            [gameObject.GetComponent<EnemyPath>().planPathPointsList.Count-1]
-            .transform.position.x)+
-            Mathf.Abs(gameObject.transform.position.y -
-            gameObject.GetComponent<EnemyPath>().planPathPointsList
-            [gameObject.GetComponent<EnemyPath>().planPathPointsList.Count-1]
-            .transform.position.y);
-
-        return distance;
-
-    }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(transform.position + new Vector3(0.5f, 0.5f, 0), detectionRadius);
     }
-
-
-
-
 
 
 

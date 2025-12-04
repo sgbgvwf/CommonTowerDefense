@@ -10,8 +10,6 @@ public class TowerStateBlackboard : Blackboard
 
     public Vector3 firePosition;
 
-    public AttackTimeType attackTimeType;
-
 }
 
 public class TowerStateManager : MonoBehaviour
@@ -21,9 +19,11 @@ public class TowerStateManager : MonoBehaviour
 
     public TowerStateBlackboard blackboard;
 
-    public EnemyDetection enemyDetection;
+    //public EnemyDetection enemyDetection;
     
-    private IAttackStrategy _attackStrategy;
+    private ITowerAttackStrategy _attackStrategy;
+
+    private AttackDetection attackDetection;
 
     private TowerState _currentState;
 
@@ -38,18 +38,18 @@ public class TowerStateManager : MonoBehaviour
 
         _fsm.AddState(TowerState.Attack, attackState);
 
-        _attackStrategy = GetComponent<SingleAttackStrategy>();
-
         //Debug.Log(_attackStrategy);
 
+        //黑板数据初始化
         blackboard.currentState = TowerState.Idle;
 
         blackboard.firePosition = transform.position + new Vector3(0.5f, 0.5f, 0);
 
-        attackState.Init(blackboard, enemyDetection, _attackStrategy);
+        attackDetection = GetComponent<AttackDetection>();
 
+        _attackStrategy = GetComponent<AttackLaunch>();
 
-
+        attackState.Init(blackboard, attackDetection, _attackStrategy);
 
 
         _fsm.SwitchState(TowerState.Idle);
@@ -58,6 +58,7 @@ public class TowerStateManager : MonoBehaviour
 
     private void Update()
     {
+        //Debug.Log(blackboard.currentState);
         _fsm.UpdateState();
 
         if(blackboard.currentState == TowerState.Attack && _currentState != TowerState.Attack)
@@ -70,10 +71,23 @@ public class TowerStateManager : MonoBehaviour
             _fsm.SwitchState(TowerState.Idle);
             _currentState = TowerState.Idle;
         }
+
+        GetCurrentState();
     }
 
 
-
+    public void GetCurrentState()
+    {
+        //Debug.Log(attackDetection);
+        if (attackDetection.objectPosition.Count > 0)
+        {
+            blackboard.currentState = TowerState.Attack;
+        }
+        else if (attackDetection.objectPosition.Count == 0)
+        {
+            blackboard.currentState = TowerState.Idle;
+        }
+    }
 
 
 

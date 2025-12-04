@@ -8,14 +8,14 @@ public class TowerAttack : IState
 {
     private TowerStateBlackboard _blackboard;
 
-    private EnemyDetection _enemyDetection;
+    private AttackDetection _attackDetection;
 
-    private IAttackStrategy _attackStrategy;
+    private ITowerAttackStrategy _attackStrategy;
 
-    public void Init(TowerStateBlackboard blackboard, EnemyDetection enemyDetection, IAttackStrategy attackStrategy)
+    public void Init(TowerStateBlackboard blackboard, AttackDetection attackDetection, ITowerAttackStrategy attackStrategy)
     {
         _blackboard = blackboard;
-        _enemyDetection = enemyDetection;
+        _attackDetection = attackDetection;
         _attackStrategy = attackStrategy;
         //Debug.Log(_attackStrategy);
 
@@ -23,8 +23,8 @@ public class TowerAttack : IState
 
     public void OnEnter()
     {
-        _attackStrategy?.OnAttackEnter(_blackboard, _enemyDetection);
-        //Debug.Log(_attackStrategy);
+        _attackStrategy?.OnAttackEnter(_blackboard, _attackDetection);
+       
     }
 
     public void OnExit()
@@ -34,8 +34,8 @@ public class TowerAttack : IState
 
     public void OnUpdate()
     {
-        _attackStrategy?.OnAttackUpdate(_blackboard, _enemyDetection);
+        _attackStrategy?.OnAttackUpdate(_blackboard, _attackDetection);
+        
     }
-
 
 }

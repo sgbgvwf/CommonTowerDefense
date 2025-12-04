@@ -14,7 +14,7 @@ public class EnemyDetection : MonoBehaviour
 
     private Dictionary<GameObject, Vector3> enemyPosition = new Dictionary<GameObject, Vector3>();
 
-    private Dictionary<GameObject, float> enemyDistance = new Dictionary<GameObject, float>();
+    //private Dictionary<GameObject, float> enemyDistance = new Dictionary<GameObject, float>();
 
     [Header("µ±«∞ºÏ≤‚µ–»À")]
     [HideInInspector]public Vector3 direction;
@@ -29,7 +29,7 @@ public class EnemyDetection : MonoBehaviour
         EnterScope();
         ExitScope();
 
-        LockEnemy();
+        //LockEnemy();
     }
 
     private void EnterScope()
@@ -89,7 +89,7 @@ public class EnemyDetection : MonoBehaviour
         foreach(var enemy in momentPosition)
         {
             enemyPosition.Remove(enemy);
-            enemyDistance.Remove(enemy);
+            //enemyDistance.Remove(enemy);
         }
 
         momentPosition.Clear();
@@ -99,7 +99,7 @@ public class EnemyDetection : MonoBehaviour
             _stateManager.blackboard.currentState = TowerState.Idle;
         }
     }
-
+    /*
     public void LockEnemy()
     {
         if(enemyPosition.Count == 0)
@@ -155,5 +155,5 @@ public class EnemyDetection : MonoBehaviour
     {
         Gizmos.DrawWireSphere(transform.position + new Vector3(0.5f, 0.5f, 0), detectionRadius);
     }
-
+    */
 }

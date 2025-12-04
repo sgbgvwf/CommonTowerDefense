@@ -3,49 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Concorde.Timer;
 
-public class SingleAttackStrategy : MonoBehaviour, IAttackStrategy
+public class SingleAttackStrategy : MonoBehaviour, ITowerAttackStrategy
 {
-    public void OnAttackEnter(TowerStateBlackboard blackboard, EnemyDetection enemyDetection)
-    {
-        timerManager.Start("FireFrequency", 0f);
-        //Debug.Log("at");
-    }
-
-    public void OnAttackUpdate(TowerStateBlackboard blackboard, EnemyDetection enemyDetection)
-    {
-        if (timerManager.IsFinished("FireFrequency"))
-        {
-            if(blackboard.attackTimeType == AttackTimeType.Immediately)
-            {
-                attackTimeTypes.ImmediatelyAttack(bullet, blackboard.firePosition, enemyDetection, bulletEntity);
-
-                timerManager.Remove("FireFrequency");
-                timerManager.Start("FireFrequency", fireFrequency);
-            }
-            else if(blackboard.attackTimeType == AttackTimeType.Delay)
-            {
-                attackTimeTypes.DelayAttack(bullet, blackboard.firePosition, enemyDetection, bulletEntity, delayTime);
-
-                timerManager.Remove("FireFrequency");
-                timerManager.Start("FireFrequency", fireFrequency + delayTime);
-            }
-
-            
-        }
-
-    }
-
-    public void OnAttackExit(TowerStateBlackboard blackboard)
-    {
-        Destroy(bulletEntity.transform?.Find("Bullet"));
-    }
-
+    private AttackLockBlackboard _blackboard;
 
 
     [Header("预制体与其父物体")]
-    public GameObject bullet;
+    public GameObject prefab;
 
-    public Transform bulletEntity;
+    public Transform parentObject;
     /*
     [Header("检测与索敌")]
     public EnemyDetection enemyDetection;
@@ -53,20 +19,72 @@ public class SingleAttackStrategy : MonoBehaviour, IAttackStrategy
     [Header("攻击间隔")]
     public float fireFrequency;
 
+
     private TimerManager timerManager;
 
-    [Header("攻击时序")]
-    public AttackTimeTypes attackTimeTypes;
+
 
     //public AttackTimeType attackTimeType;
 
     public float delayTime;
 
 
-    private void Awake()
+    public void OnAttackEnter(TowerStateBlackboard blackboard, AttackDetection attackDetection)
     {
+        _blackboard = GetComponent<AttackLockStrategyManager>().blackboard;
+
         timerManager = new TimerManager();
+        timerManager.Start("AttackFrequency", 0f);
+        //Debug.Log("at");
     }
+
+    public void OnAttackUpdate(TowerStateBlackboard blackboard, AttackDetection attackDetection)
+    {
+        if (timerManager.IsFinished("AttackFrequency"))
+        {
+            GameObject entity = Instantiate(prefab, _blackboard.attackDetection.detectionPosition, Quaternion.identity, parentObject);
+
+
+        }
+
+
+
+
+        /*
+        if (timerManager.IsFinished("FireFrequency"))
+        {
+            if(blackboard.attackTimeType == AttackTimeType.Immediately)
+            {
+                attackTimeTypes.ImmediatelyAttack(bullet, blackboard.firePosition, attackDetection, bulletEntity);
+
+                timerManager.Remove("FireFrequency");
+                timerManager.Start("FireFrequency", fireFrequency);
+            }
+            else if(blackboard.attackTimeType == AttackTimeType.Delay)
+            {
+                attackTimeTypes.DelayAttack(bullet, blackboard.firePosition, attackDetection, bulletEntity, delayTime);
+
+                timerManager.Remove("FireFrequency");
+                timerManager.Start("FireFrequency", fireFrequency + delayTime);
+            }
+
+            
+        }
+        */
+    }
+
+
+    public void OnAttackExit(TowerStateBlackboard blackboard)
+    {
+        /*
+        GameObject bullet = bulletEntity.transform?.Find("Bullet").gameObject;
+        Destroy(bullet);
+        */
+    }
+
+
+
+
 
 
 

@@ -14,7 +14,7 @@ public enum BuffState
     InWater//ЫЎжа
 }
 
-public enum AttackDetectionTarget
+public enum EntityType
 {
     Enemy,
     DefenseTower
@@ -25,13 +25,13 @@ public enum TowerState
     Idle,
     Attack
 }
-
+/*
 public enum AttackTimeType
 {
     Immediately,
     Delay
 }
-
+*/
 public enum DefenseTowerType
 {
     None,

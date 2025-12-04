@@ -1328,7 +1328,7 @@ MonoBehaviour:
   - {fileID: 987794009}
   planAmount: 10
   spwanInitialTime: 5
-  spawnFrequency: 5
+  spawnFrequency: 2
 --- !u!1001 &247614589
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10856,7 +10856,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 652012455474768864, guid: 34f812cf617b4f24a9625f381c43329b, type: 3}
       propertyPath: wait
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 652012455474768864, guid: 34f812cf617b4f24a9625f381c43329b, type: 3}
       propertyPath: waitDuration

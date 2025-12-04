@@ -102,7 +102,7 @@ public class PathPoint : MonoBehaviour
     public IEnumerator Wait(GameObject collision)
     {
 
-        if (collision.GetComponent<EnemyMoveController>() == null && !wait)
+        if (collision.GetComponent<EnemyMoveController>() == null || !wait)
         {
             yield break;
         }

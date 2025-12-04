@@ -248,11 +248,11 @@ GameObject:
   - component: {fileID: 2152080264470585446}
   - component: {fileID: 648999656341989718}
   - component: {fileID: 248690114326845804}
+  - component: {fileID: 8837155474607265688}
+  - component: {fileID: 6906293613631559783}
   - component: {fileID: 7110251763939164253}
   - component: {fileID: 5268914307346907629}
   - component: {fileID: 9088432265012860185}
-  - component: {fileID: 8837155474607265688}
-  - component: {fileID: 6906293613631559783}
   - component: {fileID: 602478558747168229}
   - component: {fileID: 7553778362347180767}
   m_Layer: 8
@@ -428,6 +428,40 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.3
+--- !u!114 &8837155474607265688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846287447054962179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d84d762193fe994a8ac60f817e21896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialHealth: 100
+  maxHealth: 100
+  health: 0
+  RedImage: {fileID: 418832155645708227}
+  OnTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  IsDead:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &6906293613631559783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846287447054962179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4449d9bb57595a04989fa3fad0cf0803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7110251763939164253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,41 +506,7 @@ MonoBehaviour:
   move: 0
   Dirrection: {x: 0, y: 0, z: 0}
   enemyPath: {fileID: 5268914307346907629}
-  moveSpeed: 3
---- !u!114 &8837155474607265688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1846287447054962179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d84d762193fe994a8ac60f817e21896, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialHealth: 500
-  maxHealth: 500
-  health: 0
-  RedImage: {fileID: 418832155645708227}
-  OnTakeDamage:
-    m_PersistentCalls:
-      m_Calls: []
-  IsDead:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &6906293613631559783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1846287447054962179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4449d9bb57595a04989fa3fad0cf0803, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  moveSpeed: 2
 --- !u!114 &602478558747168229
 MonoBehaviour:
   m_ObjectHideFlags: 0
