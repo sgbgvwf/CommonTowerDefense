@@ -17,7 +17,7 @@ public class Health : MonoBehaviour
 
     //public SpriteRenderer WhiteImage;
 
-    public SpriteRenderer RedImage;
+    //public SpriteRenderer RedImage;
 
 
 
@@ -44,7 +44,7 @@ public class Health : MonoBehaviour
             {
                 health += changeValue;
                 OnTakeDamage?.Invoke(this.gameObject);
-                HurtDisplay();
+                //HurtDisplay();
 
             }
             else if (health + changeValue < 0)
@@ -71,14 +71,7 @@ public class Health : MonoBehaviour
 
 
 
-    public void HealthIncrease(GameObject Restorer)
-    {
-
-
-
-    }
-
-
+    /*
     public void HurtDisplay()
     {
 
@@ -100,4 +93,5 @@ public class Health : MonoBehaviour
         }
 
     }
+    */
 }

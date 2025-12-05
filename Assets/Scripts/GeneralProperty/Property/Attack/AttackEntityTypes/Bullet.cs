@@ -32,22 +32,24 @@ public class Bullet : MonoBehaviour
 
         if (other != null && other.tag == "Enemy")
         {
-
             DamageInfomation damageInfomation = new DamageInfomation(attack, damageType, buffType, gameObject);
 
             damageTarget.TakeDamage(damageInfomation);
 
 
-
-            currentCrossTimes++;
-            if (currentCrossTimes == maxCrossTimes && bulletCross)
+            if (bulletCross)
             {
-                Destroy(gameObject);
+                currentCrossTimes++;
+                if (currentCrossTimes == maxCrossTimes)
+                {
+                    Destroy(gameObject);
+                }
             }
             else
             {
                 Destroy(gameObject);
             }
+
         }
 
 

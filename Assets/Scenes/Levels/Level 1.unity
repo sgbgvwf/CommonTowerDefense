@@ -1327,7 +1327,7 @@ MonoBehaviour:
   - {fileID: 1900013566}
   - {fileID: 987794009}
   planAmount: 10
-  spwanInitialTime: 5
+  spwanInitialTime: 6
   spawnFrequency: 2
 --- !u!1001 &247614589
 PrefabInstance:
@@ -11460,38 +11460,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 400409270}
     m_Modifications:
-    - target: {fileID: 1210693002057433351, guid: b2e54c8fa7ccad140ad07a24a0665aa2, type: 3}
-      propertyPath: m_Layer
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 3612978926544677817, guid: b2e54c8fa7ccad140ad07a24a0665aa2, type: 3}
       propertyPath: m_Name
       value: PathDisplay
-      objectReference: {fileID: 0}
-    - target: {fileID: 3612978926544677817, guid: b2e54c8fa7ccad140ad07a24a0665aa2, type: 3}
-      propertyPath: m_Layer
-      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3612978926544677817, guid: b2e54c8fa7ccad140ad07a24a0665aa2, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6368009463137099808, guid: b2e54c8fa7ccad140ad07a24a0665aa2, type: 3}
-      propertyPath: planPathPointsList.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6368009463137099808, guid: b2e54c8fa7ccad140ad07a24a0665aa2, type: 3}
       propertyPath: planPathPointsList.Array.data[0]
       value: 
       objectReference: {fileID: 1958672336}
-    - target: {fileID: 6368009463137099808, guid: b2e54c8fa7ccad140ad07a24a0665aa2, type: 3}
-      propertyPath: planPathPointsList.Array.data[1]
-      value: 
-      objectReference: {fileID: 432643981}
-    - target: {fileID: 6368009463137099808, guid: b2e54c8fa7ccad140ad07a24a0665aa2, type: 3}
-      propertyPath: planPathPointsList.Array.data[9]
-      value: 
-      objectReference: {fileID: 676068316}
     - target: {fileID: 8506138198200281939, guid: b2e54c8fa7ccad140ad07a24a0665aa2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6

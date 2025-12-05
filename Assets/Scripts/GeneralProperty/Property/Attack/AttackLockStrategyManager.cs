@@ -23,11 +23,11 @@ public class AttackLockBlackboard : Blackboard
 
     public bool delayAttack;//延迟攻击
 
-    public Vector3 SpawnPosition;//攻击生成位置
+    [HideInInspector]public bool lockEnemy;
 
-    public Vector3 attackDirection;//攻击方向
+    [HideInInspector]public Vector3 SpawnPosition;//攻击生成位置
 
-
+    [HideInInspector]public Vector3 attackDirection;//攻击方向
 
     [HideInInspector]public AttackDetection attackDetection;
 }
@@ -86,7 +86,7 @@ public class AttackLockStrategyManager : MonoBehaviour
 
     //不应该用update转换，应该是接收事件转换
     //暂时先用着吧
-    
+    //黑板数值决定目前状态
     private void Update()
     {
         //Debug.Log(blackboard.strategy);
@@ -94,7 +94,6 @@ public class AttackLockStrategyManager : MonoBehaviour
 
         if(blackboard.strategy == AttackLockStrategy.PathNearest && _currentStrategy != AttackLockStrategy.PathNearest)
         {
-            Debug.Log("!");
             _fsm.SwitchState(AttackLockStrategy.PathNearest);
             _currentStrategy = AttackLockStrategy.PathNearest;
         }

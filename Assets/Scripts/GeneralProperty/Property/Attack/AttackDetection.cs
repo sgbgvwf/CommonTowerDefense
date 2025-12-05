@@ -34,6 +34,15 @@ public class AttackDetection : MonoBehaviour
         
         EnterScope(_targetType.ToString());
         ExitScope();
+
+        if(objectPosition.Count > 0)
+        {
+            _StrategyManager.blackboard.lockEnemy = true;
+        }
+        else
+        {
+            _StrategyManager.blackboard.lockEnemy = false;
+        }
     }
 
     private void EnterScope(string detectionTarget)

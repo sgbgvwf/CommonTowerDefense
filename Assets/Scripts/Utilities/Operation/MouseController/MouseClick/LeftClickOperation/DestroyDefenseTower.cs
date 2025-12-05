@@ -7,7 +7,6 @@ public class DestroyDefenseTower : MonoBehaviour
 
     public SpriteRenderer mouseDisplay;
 
-
     //´İ»Ù·ÀÓùËş
     public bool destroyOperation;
 
