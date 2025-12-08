@@ -47,7 +47,7 @@ public class AttackLockStrategy_PathNearest : IState
         //Debug.Log(_attackDetection.objectPosition.Count);
         foreach (var _object in _attackDetection.objectPosition.Keys)
         {
-            if (!objectDistanceDict.ContainsKey(_object))
+            if (!objectDistanceDict.ContainsKey(_object) && _object != null)
             {
                 objectDistanceDict.Add(_object, PathNearestDistanceCalculation(_object));
             }
@@ -75,9 +75,13 @@ public class AttackLockStrategy_PathNearest : IState
     /// <returns></returns>
     private float PathNearestDistanceCalculation(GameObject gameObject)
     {
+        if (gameObject == null)
+        {
+            return float.MaxValue;
+        }
         if (!gameObject.GetComponent<EnemyPath>())
         {
-            return 0;
+            return float.MaxValue;
         }
 
         EnemyPath enemyPath = gameObject.GetComponent<EnemyPath>();

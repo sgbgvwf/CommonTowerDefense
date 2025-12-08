@@ -7,43 +7,28 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 
-
 public class SceneLoader : MonoBehaviour
 {
     public Transform cameraPosition;
-
     public Vector2 cameraFirstPosition;
 
     [Header("事件监听")]
     public SceneLoadEventSO loadEventSo;
-
     public GameSceneSO firstLoadScene;
 
     [Header("广播")]
     public VoidEventSO afterSceneLoadedEvent;
-
     private GameSceneSO currentLoadScene;
 
-
-    //暂时存储变量
-    private GameSceneSO locationToLoad;
-
     private Vector2 positionToGo;
-
     private bool fadeScreen;
-
-
-    //渐入渐出的等候时间
     public FadeCanvas fadeCanvas;
-
     private float fadeDuration;
 
     public bool isLoading;
-
     private bool newGame;
 
     public CameraController cameraController;
-
 
     private void Awake()
     {
@@ -52,111 +37,192 @@ public class SceneLoader : MonoBehaviour
         //currentLoadScene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive);
     }
 
-    //TODO:做完MainMenu回来改
     private void Start()
     {
-        fadeDuration = fadeCanvas.fadeTransitionDuration;
-
+        if (fadeCanvas != null)
+        {
+            fadeDuration = fadeCanvas.fadeTransitionDuration;
+            Color black = Color.black;
+            fadeCanvas.fadeImage.color = black;
+        }
+        else
+        {
+            fadeDuration = 0;
+        }
         NewGame();
     }
 
-
     private void OnEnable()
     {
-        loadEventSo.LoadRequestEvent += OnLoadRequestEvent;
+        loadEventSo.UnLoadAllThenLoadEvent += OnUnLoadAllThenLoadEvent;
+        loadEventSo.CustomSceneOperationEvent += OnCustomSceneOperationEvent;
     }
-
 
     private void OnDisable()
     {
-        loadEventSo.LoadRequestEvent -= OnLoadRequestEvent;
+        loadEventSo.UnLoadAllThenLoadEvent -= OnUnLoadAllThenLoadEvent;
+        loadEventSo.CustomSceneOperationEvent -= OnCustomSceneOperationEvent;
     }
-
 
     private void NewGame()
     {
         newGame = true;
-
-        locationToLoad = firstLoadScene;
-
-        fadeCanvas.newGame();
-        OnLoadRequestEvent(locationToLoad, cameraFirstPosition, false);
-
+        List<GameSceneSO> initScene = new List<GameSceneSO>() { firstLoadScene };
+        OnUnLoadAllThenLoadEvent(initScene, cameraFirstPosition, true);
+        if (fadeCanvas != null)
+        {
+            fadeCanvas.newGame();
+        }
     }
 
-
-
-
     /// <summary>
-    /// 事件加载请求
+    /// 卸载所有并加载场景
     /// </summary>
-    /// <param name="locationToLoad"></param>
-    /// <param name="positionToGo"></param>
-    /// <param name="fadeScreen"></param>
-    private void OnLoadRequestEvent(GameSceneSO locationToLoad, Vector2 positionToGo, bool fadeScreen)
+    private void OnUnLoadAllThenLoadEvent(List<GameSceneSO> scenesToLoad, Vector2 positionToGo, bool fadeScreen)
     {
-        if (isLoading)
-        {
-            return;
-        }
-
+        if (isLoading) return;
         isLoading = true;
-
-        this.locationToLoad = locationToLoad;
         this.positionToGo = positionToGo;
         this.fadeScreen = fadeScreen;
-
-        StartCoroutine(UnLoadPreviousScene());
-
-
-        //Debug.Log("场景转换");
+        StartCoroutine(UnLoadAllThenLoadCoroutine(scenesToLoad));
     }
 
-
-    private IEnumerator UnLoadPreviousScene()
+    private IEnumerator UnLoadAllThenLoadCoroutine(List<GameSceneSO> scenesToLoad)
     {
-        if (fadeScreen)
+        bool needFade = fadeScreen || newGame;
+        // 修复2：newGame状态下跳过EnterFade（因为Start已设为全黑，只需渐出）
+        if (needFade && fadeCanvas != null && !newGame)
         {
             fadeCanvas.EnterFade();
+            yield return new WaitForSeconds(fadeDuration);
+        }
+        // newGame状态下直接等待时长（模拟渐入完成，实际已全黑）
+        else if (needFade && newGame)
+        {
+            yield return new WaitForSeconds(fadeDuration);
         }
 
-        yield return new WaitForSeconds(fadeDuration);
-
-        if(currentLoadScene != null)
+        if (currentLoadScene != null)
         {
             yield return currentLoadScene.sceneReference.UnLoadScene();
-            LoadNewScene();
+            allLoadedScenes.Remove(currentLoadScene);
+            currentLoadScene = null;
         }
-        else
+        foreach (var scene in allLoadedScenes)
         {
-            LoadNewScene();
+            if (scene != null) yield return scene.sceneReference.UnLoadScene();
+        }
+        allLoadedScenes.Clear();
+
+        if (scenesToLoad != null && scenesToLoad.Count > 0)
+        {
+            yield return Coroutine_LoadScenes(scenesToLoad, positionToGo, false, true);
         }
 
-        
-
-    }
-
-
-
-
-    private void LoadNewScene()
-    {
-        var loadingOption = locationToLoad.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
-        loadingOption.Completed += OnLoadCompleted;
+        yield return new WaitForSeconds(1f);
+        if (needFade && fadeCanvas != null)
+        {
+            fadeCanvas.ExitFade();
+            if (newGame)
+            {
+                newGame = false;
+            }
+        }
+        isLoading = false;
+        afterSceneLoadedEvent.RaiseEvent();
     }
 
     /// <summary>
-    /// 场景加载完成后
+    /// 自定义加载与卸载
     /// </summary>
-    /// <param name="obj"></param>
-    private void OnLoadCompleted(AsyncOperationHandle<SceneInstance> obj)
+    /// <param name="scenesToUnLoad">卸载的场景</param>
+    /// <param name="scenesToLoad">加载的场景</param>
+    /// <param name="pos">相机位置</param>
+    /// <param name="fade">是否渐隐渐出</param>
+    private void OnCustomSceneOperationEvent(List<GameSceneSO> scenesToUnLoad, List<GameSceneSO> scenesToLoad, Vector2 pos, bool fade)
     {
-        currentLoadScene = locationToLoad;
+        if (isLoading) return;
+        isLoading = true;
+        StartCoroutine(Coroutine_CustomSceneOperation(scenesToUnLoad, scenesToLoad, pos, fade));
+    }
 
-        cameraPosition.position = positionToGo;
+    private IEnumerator Coroutine_CustomSceneOperation(List<GameSceneSO> scenesToUnLoad, List<GameSceneSO> scenesToLoad, Vector2 pos, bool fade)
+    {
+        if (fade && fadeCanvas != null)
+        {
+            fadeCanvas.EnterFade();
+            yield return new WaitForSeconds(fadeDuration);
+        }
+
+        if (scenesToUnLoad != null && scenesToUnLoad.Count > 0)
+        {
+            foreach (var scene in scenesToUnLoad)
+            {
+                if (scene == null || !allLoadedScenes.Contains(scene))
+                {
+                    continue;
+                }
+                yield return scene.sceneReference.UnLoadScene();
+                allLoadedScenes.Remove(scene);
+            }
+        }
+
+        if (scenesToLoad != null && scenesToLoad.Count > 0)
+        {
+            foreach (var scene in scenesToLoad)
+            {
+                if (scene == null) continue;
+                if (allLoadedScenes.Contains(scene))
+                {
+                    continue;
+                }
+                var op = scene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
+                yield return op;
+                allLoadedScenes.Add(scene);
+            }
+        }
+
+        if (scenesToLoad != null && scenesToLoad.Count > 0)
+        {
+            cameraPosition.position = pos;
+            if (scenesToLoad[scenesToLoad.Count - 1].name == "MainMenu")
+            {
+                cameraController.enabled = false;
+            }
+            else
+            {
+                cameraController.enabled = true;
+            }
+        }
+
+        yield return new WaitForSeconds(1f);
+        if (fade && fadeCanvas != null) fadeCanvas.ExitFade();
+
+        isLoading = false;
+        afterSceneLoadedEvent.RaiseEvent();
+    }
 
 
-        if(currentLoadScene.name == "MainMenu")
+    private IEnumerator Coroutine_LoadScenes(List<GameSceneSO> scenesToLoad, Vector2 pos, bool fade, bool isUnLoadAll = false)
+    {
+        if (!isUnLoadAll && fade && fadeCanvas != null) fadeCanvas.EnterFade();
+        if (!isUnLoadAll) yield return new WaitForSeconds(fadeDuration);
+
+        foreach (var scene in scenesToLoad)
+        {
+            if (scene == null) continue;
+            if (allLoadedScenes.Contains(scene))
+            {
+
+                continue;
+            }
+            var op = scene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
+            yield return op;
+            allLoadedScenes.Add(scene);
+        }
+
+        cameraPosition.position = pos;
+        if (scenesToLoad.Count > 0 && scenesToLoad[scenesToLoad.Count - 1].name == "MainMenu")
         {
             cameraController.enabled = false;
         }
@@ -165,38 +231,14 @@ public class SceneLoader : MonoBehaviour
             cameraController.enabled = true;
         }
 
-
-            //Debug.Log("COMPLETED");
-
-            StartCoroutine(NewScenePrepare());
-
-
-
-
-
-
-        //场景加载完成后事件
-        afterSceneLoadedEvent.RaiseEvent();
-
-
+        if (!isUnLoadAll)
+        {
+            yield return new WaitForSeconds(1f);
+            if (fade && fadeCanvas != null) fadeCanvas.ExitFade();
+            isLoading = false;
+            afterSceneLoadedEvent.RaiseEvent();
+        }
     }
 
-    private IEnumerator NewScenePrepare()
-    {
-        yield return new WaitForSeconds(1f);
-        //Debug.Log("exit");
-        if (fadeScreen)
-        {
-            fadeCanvas.ExitFade();
-        }
-        else if (newGame)
-        {
-            fadeCanvas.ExitFade();
-            newGame = false;
-        }
-
-        isLoading = false;
-    }
-
-
+    private List<GameSceneSO> allLoadedScenes = new List<GameSceneSO>();
 }

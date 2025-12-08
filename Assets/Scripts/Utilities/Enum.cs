@@ -36,6 +36,11 @@ public enum DefenseTowerType
 {
     None,
     ResourceTower,
+    BulletTurret,
+    Barrier,
+    MagicalTurret,
+    PlaceMakerTower,
+
 
 
 }

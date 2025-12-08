@@ -76,9 +76,13 @@ public class AttackLockStrategy_DistanceNearest : IState
     /// <returns></returns>
     private float NearestDistanceCalculation(GameObject gameObject, Vector3 detector)
     {
+        if(gameObject == null)
+        {
+            return float.MaxValue;
+        }
         if (!gameObject.GetComponent<EnemyPath>())
         {
-            return 0;
+            return float.MaxValue;
         }
 
         EnemyPath enemyPath = gameObject.GetComponent<EnemyPath>();

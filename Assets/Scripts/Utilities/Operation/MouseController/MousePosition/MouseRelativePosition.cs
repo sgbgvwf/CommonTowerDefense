@@ -7,6 +7,12 @@ public class MouseRelativePosition : MonoBehaviour
     private static MouseRelativePosition instance;
     public static MouseRelativePosition Instance;
 
+    [HideInInspector] public Vector2 mouseScreenPosition;
+
+    [HideInInspector] public Vector2 mouseWorldPosition;
+
+    [HideInInspector] public Vector2Int mouseGridPosition;
+
     private void Awake()
     {
         if (instance == null)
@@ -54,15 +60,21 @@ public class MouseRelativePosition : MonoBehaviour
 
     private void Update()
     {
-        Vector2 mouseWorldPosition = GetMouseWorldPosition();
-        Vector2Int mouseGridPosition = GetMouseGridPosition();
+        mouseScreenPosition = Input.mousePosition;
+        mouseWorldPosition = GetMouseWorldPosition();
+        mouseGridPosition = GetMouseGridPosition();
         //实时打印鼠标坐标（调试用）
+        
+        //Debug.Log($"鼠标屏幕位置：{mouseScreenPosition}");
         //Debug.Log($"鼠标世界位置：{mouseWorldPosition}");
         //Debug.Log($"鼠标网格位置：{mouseGridPosition}");
+        
     }
 
-
-
-
+    //鼠标判定区域
+    private void OnDrawGizmosSelected()
+    {
+        
+    }
 
 }

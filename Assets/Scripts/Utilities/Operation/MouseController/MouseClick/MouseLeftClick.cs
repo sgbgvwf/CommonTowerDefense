@@ -35,6 +35,7 @@ public class MouseLeftClick : MonoBehaviour
     //点击左键
     public void LeftClick()
     {
+        //Debug.Log("0");
         if (MousePointStateManager.Instance.blackboard.currentState == MousePointState.DefenseTower && MousePositionDisplay.Instance.SamePosition())//检测物体是防御塔
         {
 

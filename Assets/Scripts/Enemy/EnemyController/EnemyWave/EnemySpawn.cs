@@ -20,7 +20,14 @@ public class EnemySpawn : MonoBehaviour
 
     private int currentAmount = 1;
 
-    [Header("敌人生成初始时间")]
+    private enum EnemySpawnTimeType
+    {
+        AbsoluteSpawnTime,
+        RelativeSpawnTime
+    }
+
+    [Header("初始敌人生成时间")]
+    [SerializeField] EnemySpawnTimeType enemySpawnTimeType;
     public float spwanInitialTime;
 
     [Header("敌人生成间隔时间")]

@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.InputSystem;
-using System;
 using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class MouseClickManager : MonoBehaviour
 {
@@ -33,14 +34,9 @@ public class MouseClickManager : MonoBehaviour
     public CheckDefenseTower checkDefenseTower;
 
 
-
+    public List<Collider2D> collider2Ds;
 
     //public GameObject prefab;
-
-
-
-
-
 
 
     private void Awake()
@@ -60,7 +56,7 @@ public class MouseClickManager : MonoBehaviour
         inputControl.ClickOperation.LeftClick.performed += LeftClick;
         inputControl.ClickOperation.RightClick.performed += RightClick;
 
-
+        //collider2Ds = new List<Collider2D>();
 
     }
 
@@ -82,15 +78,23 @@ public class MouseClickManager : MonoBehaviour
 
     public void LeftClick(InputAction.CallbackContext leftClick)
     {
-        MouseLeftClick.Instance.LeftClick();
+        if (ScreenPositionAllowClick())
+        {
+            MouseLeftClick.Instance.LeftClick();
+        }
+
         //mouseRelativePosition.enabled = true;
-        //Debug.Log("leftClick.performed");
+        Debug.Log("leftClick.performed");
     }
 
     public void RightClick(InputAction.CallbackContext rightClick)
     {
-        MouseRightClick.Instance.RightClick();
-        //Debug.Log("rightClick.performed");
+        if (!ScreenPositionAllowClick())
+        {
+            MouseRightClick.Instance.RightClick();
+
+        }
+        Debug.Log("rightClick.performed");
     }
 
 
@@ -106,5 +110,43 @@ public class MouseClickManager : MonoBehaviour
 
         //Debug.Log("重置");
     }
+
+
+    public bool ScreenPositionAllowClick()
+    {
+        bool click = true;
+
+        if(collider2Ds.Count > 0)
+        {
+            foreach (var collider in collider2Ds)
+            {
+                //Debug.Log("1");
+                if (collider.OverlapPoint(MouseRelativePosition.Instance.mouseScreenPosition))
+                {
+                    // 鼠标在边界内 → 执行你的点击逻辑
+                    Debug.Log("鼠标在边界内，触发点击");
+                    // 替换为你的代码：比如启用下层物体选择、执行level 1点击逻辑等
+                    click = false;
+                }
+                else
+                {
+                    // 鼠标在边界外 → 不执行任何点击逻辑
+                    Debug.Log("鼠标在边界外，不触发点击");
+                }
+
+            }
+        }
+        
+        if (click)
+        {
+            return true;
+
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 
 }

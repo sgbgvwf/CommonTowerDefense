@@ -4,9 +4,22 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class BuildManager : MonoBehaviour
 {
+    private static BuildManager instance;
+    public static BuildManager Instance;
+
     private DefenseTowerType selectedTowerType;
 
     public bool HasTowerSelected;
+
+    private DefenseTowerChoose_UI lastChoose;
+
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            Instance = this;
+        }
+    }
 
     private void Start()
     {
@@ -17,15 +30,16 @@ public class BuildManager : MonoBehaviour
 
 
     // 这个方法将被 UI 按钮调用，用于设置选中的塔类型
-    public void SelectTowerToBuild(DefenseTowerType type)
+    public void SelectTowerToBuild(DefenseTowerType type, DefenseTowerChoose_UI defenseTowerChoose_UI)
     {
+
+        LastFrameworkFade(defenseTowerChoose_UI);
+
+
         Debug.Log("选中了塔类型: " + type);
 
-        // 1. 更新当前选中的塔类型
         selectedTowerType = type;
 
-        // 2. 手动更新 HasTowerSelected 的值
-        // 如果选中的类型不是 "None"，则表示有塔被选中
         if (selectedTowerType != DefenseTowerType.None)
         {
             HasTowerSelected = true;
@@ -36,10 +50,21 @@ public class BuildManager : MonoBehaviour
         }
     }
 
-    //用于获取当前选中的塔类型
+    //用于建造时获取当前选中的塔类型
     public DefenseTowerType GetSelectedTowerType()
     {
         return selectedTowerType;
+    }
+
+
+    public void LastFrameworkFade(DefenseTowerChoose_UI defenseTowerChoose_UI)
+    {
+        if (lastChoose != null)
+        {
+            lastChoose.ExitChoose();
+        }
+
+        lastChoose = defenseTowerChoose_UI;
     }
 
 

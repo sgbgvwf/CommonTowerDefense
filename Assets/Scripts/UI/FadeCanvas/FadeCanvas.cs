@@ -39,11 +39,13 @@ public class FadeCanvas : MonoBehaviour
         
         if (faded )
         {
+            fadeImage.raycastTarget = true;
             currentColor.a =  timerManager.GetElapsed(fadeTimer) / fadeTransitionDuration;
         }
         else
         {
             currentColor.a =  (1 - timerManager.GetElapsed(fadeTimer) / fadeTransitionDuration);
+            fadeImage.raycastTarget = false;
         }
 
         //Debug.Log(this.fadeImage.color.a);
@@ -61,7 +63,10 @@ public class FadeCanvas : MonoBehaviour
     {
 
         faded = true;
-        MouseClickManager.Instance.enabled = false;
+        if (GetComponent<MouseClickManager>())
+        {
+            MouseClickManager.Instance.enabled = false;
+        }
         timerManager.Start(fadeTimer, fadeTransitionDuration);
     }
 
@@ -69,7 +74,10 @@ public class FadeCanvas : MonoBehaviour
     {
 
         faded = false;
-        MouseClickManager.Instance.enabled = true;
+        if (GetComponent<MouseClickManager>())
+        {
+            MouseClickManager.Instance.enabled = true;
+        }
         timerManager.Start(fadeTimer, fadeTransitionDuration);
     }
 
@@ -78,5 +86,6 @@ public class FadeCanvas : MonoBehaviour
         Color currentColor = this.fadeImage.color;
         currentColor.a = 1;
         this.fadeImage.color = currentColor;
+
     }
 }
