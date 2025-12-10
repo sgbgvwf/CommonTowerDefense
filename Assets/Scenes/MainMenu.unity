@@ -1177,7 +1177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadEventSO: {fileID: 11400000, guid: 863ffb8db2c9e62408b6925ff29983c5, type: 2}
   cameraTargetPosition: {x: 0, y: 0}
-  useFadeTransition: 1
+  useFadeTransition: 0
   triggerOnUpdate: 0
   operationType: 1
   scenesToLoadAfterUnloadAll: []

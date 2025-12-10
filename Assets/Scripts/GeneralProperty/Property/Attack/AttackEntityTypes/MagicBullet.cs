@@ -19,10 +19,6 @@ public class MagicBullet : MonoBehaviour
     [Header("持续类型")]
     public EffectType effectType;
 
-    private void Awake()
-    {
-        attacker = gameObject.transform.parent.parent.gameObject;
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -32,32 +28,27 @@ public class MagicBullet : MonoBehaviour
 
         if (other != null && other.tag == "Enemy")
         {
-            DamageInfomation damageInfomation = new DamageInfomation(attack, damageType, buffType, attacker);
+            DamageInfomation damageInfomation = new DamageInfomation(attack, damageType, buffType, GetComponent<GeneralProperty>().prefabReference);
             
             damageTarget.TakeDamage(damageInfomation);
 
             //Debug.Log(damageInfomation.buffType);
 
-            Destroy(gameObject);
+            finalDeal();
             
 
         }
 
-       
-
     }
 
-
-
-
-
-
-
-
-
-
-
-
+    private void finalDeal()
+    {
+        if (gameObject.GetComponent<FlyerStraightController>())
+        {
+            gameObject.GetComponent<FlyerStraightController>().direction = Vector3.zero;
+        }
+        ObjectPoolManager.Instance.ReturnObject(GetComponent<GeneralProperty>().prefabReference, gameObject);
+    }
 
 
 

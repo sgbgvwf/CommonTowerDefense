@@ -12,13 +12,6 @@ public class EnemyPath : MonoBehaviour
 
     //private bool arriveCurrentPathPoint = false;
 
-    private void Awake()
-    {
-        //planPathPointsList = new List<GameObject>();
-
-    }
-
-
     private void Start()
     {
         currentTargetPathPoint = planPathPointsList[1];
@@ -27,32 +20,8 @@ public class EnemyPath : MonoBehaviour
     private void Update()
     {
         PathPointPositionDetection();
-        
     }
-    /*
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "PathPoint" && collision.gameObject == currentTargetPathPoint)
-        {
-            arriveCurrentPathPoint = true;
-            
-            count++;
-            //Debug.Log(count);
-            if(count < planPathPointsList.Count)
-            {
-                currentTargetPathPoint = planPathPointsList[count];
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-            //Debug.Log(currentTargetPathPoint);
-            
-        }
-
     
-    }
-    */
 
     private void PathPointPositionDetection()
     {

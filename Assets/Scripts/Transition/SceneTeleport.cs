@@ -47,6 +47,7 @@ public class SceneTeleport : MonoBehaviour
     {
         switch (operationType)
         {
+           
             case SceneOperationType.UnLoadAllThenLoad:
                 loadEventSO.RaiseUnLoadAllThenLoadEvent(scenesToLoadAfterUnloadAll, cameraTargetPosition, useFadeTransition);
                 break;

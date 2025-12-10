@@ -84,17 +84,17 @@ public class MouseClickManager : MonoBehaviour
         }
 
         //mouseRelativePosition.enabled = true;
-        Debug.Log("leftClick.performed");
+        //Debug.Log("leftClick.performed");
     }
 
     public void RightClick(InputAction.CallbackContext rightClick)
     {
-        if (!ScreenPositionAllowClick())
+        if (ScreenPositionAllowClick())
         {
             MouseRightClick.Instance.RightClick();
 
         }
-        Debug.Log("rightClick.performed");
+        //Debug.Log("rightClick.performed");
     }
 
 
@@ -124,14 +124,14 @@ public class MouseClickManager : MonoBehaviour
                 if (collider.OverlapPoint(MouseRelativePosition.Instance.mouseScreenPosition))
                 {
                     // 鼠标在边界内 → 执行你的点击逻辑
-                    Debug.Log("鼠标在边界内，触发点击");
+                    //Debug.Log("鼠标在边界内，不触发点击");
                     // 替换为你的代码：比如启用下层物体选择、执行level 1点击逻辑等
                     click = false;
                 }
                 else
                 {
                     // 鼠标在边界外 → 不执行任何点击逻辑
-                    Debug.Log("鼠标在边界外，不触发点击");
+                    //Debug.Log("鼠标在边界外，触发点击");
                 }
 
             }
@@ -140,7 +140,6 @@ public class MouseClickManager : MonoBehaviour
         if (click)
         {
             return true;
-
         }
         else
         {

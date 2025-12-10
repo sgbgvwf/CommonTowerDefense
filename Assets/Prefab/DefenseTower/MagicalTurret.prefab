@@ -449,6 +449,7 @@ GameObject:
   - component: {fileID: 4373690433799919101}
   - component: {fileID: 7060490066975700102}
   - component: {fileID: 5488388756540247577}
+  - component: {fileID: 8812126737542428403}
   m_Layer: 10
   m_Name: MagicalTurret
   m_TagString: DefenseTower
@@ -733,6 +734,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRangeImage: {fileID: 8596159336290050216}
+--- !u!114 &8812126737542428403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8332606756664089033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2702fefd934fe724ea714a7608d80241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itselfPrefab: {fileID: 8332606756664089033}
 --- !u!1 &8466362466150038271
 GameObject:
   m_ObjectHideFlags: 0

@@ -363,6 +363,7 @@ GameObject:
   - component: {fileID: 7399958423920437832}
   - component: {fileID: 7093712553723871513}
   - component: {fileID: 6832517627236497215}
+  - component: {fileID: 4312429232273473123}
   m_Layer: 10
   m_Name: ResourceTower
   m_TagString: DefenseTower
@@ -582,6 +583,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   physicalDefense: 20
   magicalDefense: 10
+--- !u!114 &4312429232273473123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4335507091346470020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2702fefd934fe724ea714a7608d80241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itselfPrefab: {fileID: 4335507091346470020}
 --- !u!1 &6746147734504869856
 GameObject:
   m_ObjectHideFlags: 0

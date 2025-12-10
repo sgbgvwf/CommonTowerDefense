@@ -11,6 +11,7 @@ public class FlyerStraightController : MonoBehaviour
 
     private TimerManager timerManager;
 
+
     [Header("飞行速度")]
     public float speed;
 
@@ -19,7 +20,7 @@ public class FlyerStraightController : MonoBehaviour
     [Header("发射状态")]
     public bool fly;
 
-    [Header("销毁计时")]
+    [Header("销毁（回收）计时")]
     private bool destroyTimer;
 
     private void Awake()
@@ -39,7 +40,10 @@ public class FlyerStraightController : MonoBehaviour
         }
         if (timerManager.IsFinished("DestroyTimer"))
         {
-            Destroy(gameObject);
+            direction = Vector3.zero;
+            ObjectPoolManager.Instance.ReturnObject(GetComponent<GeneralProperty>().prefabReference, this.gameObject);
+            timerManager.Start("DestroyTimer", 1f / speed * 50f);
+
         }
     }
 

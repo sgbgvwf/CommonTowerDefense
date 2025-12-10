@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+   
+
     [Header("…À∫¶")]
     public float attack;
 
@@ -36,18 +38,17 @@ public class Bullet : MonoBehaviour
 
             damageTarget.TakeDamage(damageInfomation);
 
-
             if (bulletCross)
             {
                 currentCrossTimes++;
                 if (currentCrossTimes == maxCrossTimes)
                 {
-                    Destroy(gameObject);
+                    finalDeal();
                 }
             }
             else
             {
-                Destroy(gameObject);
+                finalDeal();
             }
 
         }
@@ -56,20 +57,14 @@ public class Bullet : MonoBehaviour
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    private void finalDeal()
+    {
+        if (gameObject.GetComponent<FlyerStraightController>())
+        {
+            gameObject.GetComponent<FlyerStraightController>().direction = Vector3.zero;
+        }
+        ObjectPoolManager.Instance.ReturnObject(GetComponent<GeneralProperty>().prefabReference, gameObject);
+        Debug.Log("return");
+    }
 
 }

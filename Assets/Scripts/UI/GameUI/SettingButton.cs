@@ -26,6 +26,7 @@ public class SettingButton : MonoBehaviour
         if (!settingWindowIsEnter)
         {
             Pause.Instance.PauseGame();
+            Pause.Instance.enabled = false;
 
             settingWindow.SetActive(true); 
             Buttons.SetActive(true);
@@ -40,6 +41,7 @@ public class SettingButton : MonoBehaviour
         if(settingWindowIsEnter)
         {
             Pause.Instance.ContinueGame();
+            Pause.Instance.enabled = true;
 
             settingWindow.SetActive(false);
             Buttons.SetActive(false);

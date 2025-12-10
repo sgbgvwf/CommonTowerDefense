@@ -7,14 +7,6 @@ public class BuildDefenseTower : MonoBehaviour
 {
     public SpriteRenderer mouseDisplay;
 
-    [Header("塔预制体映射")]
-    [SerializeField] private List<TowerPrefabEntry> towerPrefabEntries;
-
-    [Header("防御塔管理器")]
-    [SerializeField] private BuildManager buildManager;
-
-    private Dictionary<DefenseTowerType, GameObject> towerPrefabDictionary;//用字典映射
-
     [System.Serializable]
     public struct TowerPrefabEntry
     {
@@ -23,6 +15,13 @@ public class BuildDefenseTower : MonoBehaviour
         public GameObject towerPrefab;
     }
 
+    [Header("塔预制体映射")]
+    [SerializeField] private List<TowerPrefabEntry> towerPrefabEntries;
+
+    [Header("防御塔管理器")]
+    [SerializeField] private BuildManager buildManager;
+
+    private Dictionary<DefenseTowerType, GameObject> towerPrefabDictionary;//用字典映射
 
     public bool buildOperation;
 
@@ -93,7 +92,8 @@ public class BuildDefenseTower : MonoBehaviour
                 if (Money.Instance.ChangeMoney(-1 * GetTowerPrefab(towerSelectedType).GetComponent<TowerPlaceMoney>().placementCost) && MousePositionDisplay.Instance.SamePosition())//-1减少
                 {
                     //建造防御塔
-                    Instantiate(GetTowerPrefab(towerSelectedType), buildPosition, quaternion.identity);
+                    GameObject newTower = Instantiate(GetTowerPrefab(towerSelectedType), buildPosition, quaternion.identity, transform);
+                    newTower.name = GetTowerPrefab(towerSelectedType).name;
                     //Debug.Log("建造成功");
                     //mousePoint.blackboard.currentState = MousePointState.DefenseTower;//强制更新当前状态
                     MousePointStateManager.Instance.TriggerReCheck();//更新检测实体

@@ -309,10 +309,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadEventSO: {fileID: 11400000, guid: 863ffb8db2c9e62408b6925ff29983c5, type: 2}
-  sceneToGo: {fileID: 11400000, guid: 6755603fbf479314caaf4a2036d8d425, type: 2}
-  positionToGo: {x: 5, y: 3}
-  isTeleporting: 0
-  fadeTransition: 0
+  cameraTargetPosition: {x: 0, y: 0}
+  useFadeTransition: 1
+  triggerOnUpdate: 0
+  operationType: 0
+  scenesToLoadAfterUnloadAll: []
+  scenesToUnLoad: []
+  scenesToLoad: []
 --- !u!4 &463826948
 Transform:
   m_ObjectHideFlags: 0

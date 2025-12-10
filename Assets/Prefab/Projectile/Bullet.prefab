@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: -4191945911141874860}
   - component: {fileID: 8534090980419841074}
   - component: {fileID: 6466338056114299114}
+  - component: {fileID: 1762693053363473017}
   m_Layer: 16
   m_Name: Bullet
   m_TagString: Attacker
@@ -198,7 +199,7 @@ MonoBehaviour:
   damageType: 0
   buffType: 0
   effectType: 0
-  bulletCross: 1
+  bulletCross: 0
   maxCrossTimes: 2
   currentCrossTimes: 0
 --- !u!114 &6466338056114299114
@@ -216,3 +217,16 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   speed: 12
   fly: 0
+--- !u!114 &1762693053363473017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8884754432598066259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2702fefd934fe724ea714a7608d80241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itselfPrefab: {fileID: 8884754432598066259}

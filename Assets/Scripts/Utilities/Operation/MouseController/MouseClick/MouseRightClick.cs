@@ -39,23 +39,18 @@ public class MouseRightClick : MonoBehaviour
 
     }
 
-    private void Start()
-    {
-
-    }
-
 
     //点击右键
     public void RightClick()
     {
-
+        //MousePointStateManager.Instance.TriggerReCheck();
+        //Debug.Log(MousePointStateManager.Instance.blackboard.currentState);
         if (MousePointStateManager.Instance.blackboard.currentState == MousePointState.Place && MousePositionDisplay.Instance.SamePosition())//检测的是空地
         {
             //建造
             buildDefenseTower.Build();
             
         }
-
 
 
         else if (MousePointStateManager.Instance.blackboard.currentState == MousePointState.DefenseTower && MousePositionDisplay.Instance.SamePosition())//检测的是防御塔

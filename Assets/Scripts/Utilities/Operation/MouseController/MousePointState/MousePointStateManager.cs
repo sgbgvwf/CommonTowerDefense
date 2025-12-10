@@ -31,6 +31,9 @@ public class MousePointStateManager : MonoBehaviour
 
     private Collider2D _collider;
 
+    private Vector2Int _mouseGridPosition;
+
+
     private void Awake()
     {
         if (instance == null)
@@ -64,6 +67,12 @@ public class MousePointStateManager : MonoBehaviour
     private void Update()
     {
         _fsm.UpdateState();
+        //Debug.Log(MousePointStateManager.Instance.blackboard.currentState);
+
+        if (MouseChangeGrid())
+        {
+            TriggerReCheck();
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -110,10 +119,26 @@ public class MousePointStateManager : MonoBehaviour
     {
         _collider.enabled = false;
         _collider.enabled = true;
+        //Debug.Log(_collider.enabled);
     }
 
     public void ColorReSet()
     {
         _mousePositionDisplay.color = blackboard.originalColor;
+    }
+
+    private bool MouseChangeGrid()
+    {
+        if(_mouseGridPosition == MouseRelativePosition.Instance.mouseGridPosition)
+        {
+            _mouseGridPosition = MouseRelativePosition.Instance.mouseGridPosition;
+            return false;
+        }
+        else
+        {
+            _mouseGridPosition = MouseRelativePosition.Instance.mouseGridPosition;
+            return true;
+        }
+   
     }
 }

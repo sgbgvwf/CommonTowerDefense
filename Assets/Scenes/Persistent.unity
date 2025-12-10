@@ -630,6 +630,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85110383bc702384cb67c73430c1f960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraPositionSO: {fileID: 11400000, guid: 7e88a195d62d15f40bce12b4f960ad29, type: 2}
+  virtualCamera: {fileID: 509390623}
   cameraMoveSpeed: 500
   inputDirection: {x: 0, y: 0}
 --- !u!1 &728935502

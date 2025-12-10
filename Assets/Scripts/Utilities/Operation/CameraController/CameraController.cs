@@ -1,29 +1,44 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
+    public CameraPositionSO cameraPositionSO;
+
     public InputController inputController;
 
     private Rigidbody2D rb;
 
+    public GameObject virtualCamera;
 
     public float cameraMoveSpeed;
 
+    
 
     public Vector2 inputDirection;
+
+    //广播的事件：相机的坐标
+
+
+    
 
 
     private void Awake()
     {
+
+
+
         inputController = new InputController();
 
         rb = GetComponent<Rigidbody2D>();
 
 
-        //订阅输入的事件
+        
+
 
     }
 
@@ -48,11 +63,13 @@ public class CameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CameraMove();
+        CameraMoveUpdate();
+
+        CameraMove(virtualCamera.transform.position);
     }
 
 
-    public void CameraMove()
+    public void CameraMoveUpdate()
     {
         rb.velocity = new Vector2(
             inputDirection.x * cameraMoveSpeed * Time.deltaTime,
@@ -60,7 +77,10 @@ public class CameraController : MonoBehaviour
         );
     }
 
-
+    public void CameraMove(Vector3 position)
+    {
+        cameraPositionSO.cameraPosition = position;
+    }
 
 
 

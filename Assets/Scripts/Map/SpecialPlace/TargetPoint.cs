@@ -10,6 +10,13 @@ public class TargetPoint : MonoBehaviour
     {
         //Debug.Log(collision.tag);
         CoreHealth.Instance.CoreHealthReduce(collision.gameObject);
-        Destroy(collision.gameObject);
+
+        if (collision.GetComponent<EnemyPath>())
+        {
+            collision.GetComponent<EnemyPath>().planPathPointsList.Clear();
+            collision.GetComponent<EnemyPath>().currentTargetPathPoint = null;
+            ObjectPoolManager.Instance.ReturnObject(collision.GetComponent<GeneralProperty>().prefabReference, collision.gameObject);
+
+        }
     }
 }

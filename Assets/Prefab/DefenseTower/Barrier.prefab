@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: 214020862569530612}
   - component: {fileID: 4447877209324868502}
   - component: {fileID: 5346774310559624766}
+  - component: {fileID: 7155829785790683469}
   m_Layer: 10
   m_Name: Barrier
   m_TagString: DefenseTower
@@ -356,8 +357,6 @@ MonoBehaviour:
   initialHealth: 800
   maxHealth: 800
   health: 0
-  WhiteImage: {fileID: 0}
-  RedImage: {fileID: 0}
   OnTakeDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -403,6 +402,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placementCost: 200
+--- !u!114 &7155829785790683469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4359553330163496918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2702fefd934fe724ea714a7608d80241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itselfPrefab: {fileID: 4359553330163496918}
 --- !u!1 &6231834814127135220
 GameObject:
   m_ObjectHideFlags: 0

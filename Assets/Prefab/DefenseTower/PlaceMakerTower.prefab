@@ -467,6 +467,7 @@ GameObject:
   - component: {fileID: 632753447396910108}
   - component: {fileID: 6277014698507281696}
   - component: {fileID: 1230916990424900708}
+  - component: {fileID: 8405696049899547568}
   m_Layer: 10
   m_Name: PlaceMakerTower
   m_TagString: DefenseTower
@@ -713,6 +714,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   physicalDefense: 20
   magicalDefense: 10
+--- !u!114 &8405696049899547568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7317905059417382320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2702fefd934fe724ea714a7608d80241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itselfPrefab: {fileID: 7317905059417382320}
 --- !u!1 &8860918242718903738
 GameObject:
   m_ObjectHideFlags: 0

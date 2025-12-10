@@ -29,14 +29,14 @@ public class BuildManager : MonoBehaviour
     }
 
 
-    // 这个方法将被 UI 按钮调用，用于设置选中的塔类型
+    //这个方法将被UI按钮调用，用于设置选中的塔类型
     public void SelectTowerToBuild(DefenseTowerType type, DefenseTowerChoose_UI defenseTowerChoose_UI)
     {
 
         LastFrameworkFade(defenseTowerChoose_UI);
 
 
-        Debug.Log("选中了塔类型: " + type);
+        //Debug.Log("选中了塔类型: " + type);
 
         selectedTowerType = type;
 

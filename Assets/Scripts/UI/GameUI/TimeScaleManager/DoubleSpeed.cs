@@ -31,17 +31,35 @@ public class DoubleSpeed : MonoBehaviour
 
     public void ChangeSpeed()
     {
-        if (!doubleSpeed)
+        if (!Pause.Instance.isPause)
         {
-            doubleSpeedButton.sprite = exitDoubleSpeedImage;
-            Time.timeScale = 2f;
-            doubleSpeed = true;
+            if (!doubleSpeed)
+            {
+                doubleSpeedButton.sprite = exitDoubleSpeedImage;
+                Time.timeScale = 2f;
+                doubleSpeed = true;
+            }
+            else
+            {
+                doubleSpeedButton.sprite = enterDoubleSpeedImage;
+                Time.timeScale = 1f;
+                doubleSpeed = false;
+            }
         }
         else
         {
-            doubleSpeedButton.sprite = enterDoubleSpeedImage;
-            Time.timeScale = 1f;
-            doubleSpeed = false;
+            if (!doubleSpeed)
+            {
+                doubleSpeedButton.sprite = exitDoubleSpeedImage;
+
+                doubleSpeed = true;
+            }
+            else
+            {
+                doubleSpeedButton.sprite = enterDoubleSpeedImage;
+
+                doubleSpeed = false;
+            }
         }
 
     }

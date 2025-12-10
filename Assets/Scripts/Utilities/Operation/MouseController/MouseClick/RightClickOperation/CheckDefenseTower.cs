@@ -22,13 +22,18 @@ public class CheckDefenseTower : MonoBehaviour
 
             MousePositionDisplay.Instance.positionStatic = true;
 
-
-            currentTower?.GetComponent<TowerCheckDisplay>().EnterDisplay();
+            if(currentTower.GetComponent<TowerCheckDisplay>())
+            {
+                currentTower.GetComponent<TowerCheckDisplay>().EnterDisplay();
+            }
 
         }
         else
         {
-            currentTower?.GetComponent<TowerCheckDisplay>().ExitDisplay();
+            if (currentTower.GetComponent<TowerCheckDisplay>())
+            {
+                currentTower.GetComponent<TowerCheckDisplay>().ExitDisplay();
+            }
 
             mouseDisplay.color = MousePointStateManager.Instance.blackboard.originalColor;
 

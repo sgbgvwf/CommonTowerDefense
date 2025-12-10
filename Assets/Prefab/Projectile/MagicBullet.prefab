@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8274686152129881011}
   - component: {fileID: 3256852881529815371}
   - component: {fileID: 841243571659097542}
+  - component: {fileID: 369912372088507517}
   m_Layer: 16
   m_Name: MagicBullet
   m_TagString: Attacker
@@ -130,6 +131,19 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   speed: 7
   fly: 0
+--- !u!114 &369912372088507517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847172537090209266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2702fefd934fe724ea714a7608d80241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itselfPrefab: {fileID: 1847172537090209266}
 --- !u!1 &2945154771218819668
 GameObject:
   m_ObjectHideFlags: 0

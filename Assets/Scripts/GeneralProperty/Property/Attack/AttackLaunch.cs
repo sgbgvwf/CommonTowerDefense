@@ -42,10 +42,10 @@ public class AttackLaunch : MonoBehaviour, ITowerAttackStrategy
             case true:
                 if (timerManager.IsFinished("AttackFrequency"))
                 {
-                    GameObject entity;
-                    entity = Instantiate(prefab, _blackboard.SpawnPosition, Quaternion.identity, parent);
-                    entity.name = "entity";
-                    
+                    GameObject entity = ObjectPoolManager.Instance.GetObject(prefab, _blackboard.SpawnPosition, Quaternion.identity, parent);
+                    //entity.name = "entity";
+                    //entity.GetComponent<FlyerStraightController>().direction = Vector3.zero;
+
                     StartCoroutine(DelayTime(entity));
 
                     timerManager.Remove("AttackFrequency");
@@ -56,9 +56,8 @@ public class AttackLaunch : MonoBehaviour, ITowerAttackStrategy
             case false:
                 if (timerManager.IsFinished("AttackFrequency"))
                 {
-                    GameObject entity;
-                    entity = Instantiate(prefab, _blackboard.SpawnPosition, Quaternion.identity, parent);
-                    entity.name = "entity";
+                    GameObject entity = ObjectPoolManager.Instance.GetObject(prefab, _blackboard.SpawnPosition, Quaternion.identity, parent);
+                    entity.name = "Bullet(Clone)";
                     LaunchObject(entity);
 
                     timerManager.Remove("AttackFrequency");
@@ -68,13 +67,17 @@ public class AttackLaunch : MonoBehaviour, ITowerAttackStrategy
         }
 
     }
-
+    
     public void OnAttackExit(TowerStateBlackboard blackboard)
     {
         if (_blackboard.delayAttack)
         {
-            GameObject entity = parent.transform?.Find("entity").gameObject;
-            Destroy(entity);
+            if (parent.transform?.Find("entity"))
+            {
+                GameObject entity = parent.transform.Find("entity").gameObject;
+                ObjectPoolManager.Instance.ReturnObject(prefab, entity);
+            }
+            
         }
 
     }
@@ -86,7 +89,7 @@ public class AttackLaunch : MonoBehaviour, ITowerAttackStrategy
 
     
 
-
+    /*
     /// <summary>
     /// 生成攻击物
     /// </summary>
@@ -100,6 +103,7 @@ public class AttackLaunch : MonoBehaviour, ITowerAttackStrategy
         
         return entity;
     }
+    */
 
     /// <summary>
     /// 发射攻击
@@ -113,11 +117,6 @@ public class AttackLaunch : MonoBehaviour, ITowerAttackStrategy
 
     }
 
-
-    public void WaitTime()
-    {
-
-    }
 
     private IEnumerator DelayTime(GameObject entity)
     {

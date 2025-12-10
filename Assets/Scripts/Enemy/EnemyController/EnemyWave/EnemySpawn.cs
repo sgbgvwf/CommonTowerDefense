@@ -7,6 +7,8 @@ public class EnemySpawn : MonoBehaviour
 {
     private TimerManager timerManager;
 
+    private bool beginSpawn;
+
     [Header("敌人预制体")]
     public GameObject enemyPrefab;
 
@@ -30,6 +32,8 @@ public class EnemySpawn : MonoBehaviour
     [SerializeField] EnemySpawnTimeType enemySpawnTimeType;
     public float spwanInitialTime;
 
+    public Component lastSpawn;
+
     [Header("敌人生成间隔时间")]
     public float spawnFrequency;
 
@@ -43,13 +47,26 @@ public class EnemySpawn : MonoBehaviour
 
     private void Start()
     {
-        timerManager.Start("", spwanInitialTime);
+        if(enemySpawnTimeType == EnemySpawnTimeType.AbsoluteSpawnTime)
+        {
+            timerManager.Start("", spwanInitialTime);
+
+        }
+        
     }
 
     private void Update()
     {
+        if (enemySpawnTimeType == EnemySpawnTimeType.RelativeSpawnTime)
+        {
+            if (lastSpawn == null && !beginSpawn)
+            {
+                timerManager.Start("", spwanInitialTime);
+                beginSpawn = true;
+            }
+        }
         SpawnEnemy();
-
+        
     }
 
 
@@ -68,11 +85,11 @@ public class EnemySpawn : MonoBehaviour
         if (currentAmount <= planAmount)
         {
             timerManager.Remove("");
-            GameObject newEnemy = Instantiate(enemyPrefab, planPathPointsList[0].transform.position + new Vector3(0.5f, 0.5f, 0), Quaternion.identity, enemiesParent);
+            GameObject newEnemy = ObjectPoolManager.Instance.GetObject(enemyPrefab, planPathPointsList[0].transform.position + new Vector3(0.5f, 0.5f, 0), Quaternion.identity, enemiesParent);
             FillPathList(newEnemy);
             newEnemy.GetComponent<EnemyMoveController>().move = true;
 
-            newEnemy.name = enemyPrefab.name + currentAmount;
+            //newEnemy.name = enemyPrefab.name + currentAmount;
             currentAmount++;
             timerManager.Start("", spawnFrequency);
         }
