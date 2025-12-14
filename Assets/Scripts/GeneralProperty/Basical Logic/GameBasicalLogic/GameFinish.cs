@@ -47,9 +47,9 @@ public class GameFinish : MonoBehaviour
             //”Œœ∑Ω· ¯£°
             isFinish = true;
             thisLevel = gameDataSO.thisLevel;
-            levelAccomplishDataSO.levelsAccomplishDict[thisLevel] = true;
+            levelAccomplishDataSO.UpdateLevelAccomplishState(thisLevel, true);
             gameDataSO.LevelAccomplish();
-            Debug.Log("accpmplish");
+            //Debug.Log("accpmplish");
         }
     }
 

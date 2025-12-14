@@ -34,6 +34,7 @@ public class AttackLockStrategy_HealthMinimum : IState
     public void OnUpdate()
     {
         RemoveOverScope();
+        RemoveZeroHealth();
         HealthMinLock();
     }
 
@@ -81,7 +82,7 @@ public class AttackLockStrategy_HealthMinimum : IState
     {
         if (!gameObject.GetComponent<Health>())
         {
-            return 0f;
+            return float.MaxValue;
         }
 
         float health = gameObject.GetComponent<Health>().health;
@@ -120,10 +121,33 @@ public class AttackLockStrategy_HealthMinimum : IState
         momentPosition.Clear();
 
     }
+    
+    private void RemoveZeroHealth()
+    {
+        List<GameObject> momentObject = new List<GameObject>();
 
+        foreach (var _object in objectHealthDict.Keys)
+        {
+            if(_object == null)
+            {
+                continue;
+            }
 
+            if (_object.GetComponent<Health>().health <= 0)
+            {
+                momentObject.Add(_object);
+            }
+        }
 
+        foreach (var obj in momentObject)
+        {
+            objectHealthDict.Remove(obj);
+            objectDistanceDict.Remove(obj);
+        }
 
+        momentObject.Clear();
+    }
+    
 
 
     private Dictionary<GameObject, float> objectDistanceDict = new Dictionary<GameObject, float>();

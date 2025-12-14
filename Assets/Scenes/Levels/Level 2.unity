@@ -4532,6 +4532,9 @@ MonoBehaviour:
   - prefab: {fileID: 1847172537090209266, guid: a97e091a0c2227c4ab2c4dae9a07705a, type: 3}
     initCount: 20
     maxCount: 40
+  - prefab: {fileID: 1847172537090209266, guid: a97e091a0c2227c4ab2c4dae9a07705a, type: 3}
+    initCount: 10
+    maxCount: 15
 --- !u!4 &625688435
 Transform:
   m_ObjectHideFlags: 0

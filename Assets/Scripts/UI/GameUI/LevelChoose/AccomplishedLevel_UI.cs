@@ -12,9 +12,18 @@ public class AccomplishedLevel_UI : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("1");
         image.SetActive(false);
-    }
+        if (levelAccomplishDataSO == null)
+        {
+            return;
+        }
 
+        bool isAccomplished = levelAccomplishDataSO.GetLevelAccomplishState(thislevel);
+        image.SetActive(isAccomplished);
+        Debug.Log("2");
+    }
+    /*
     private void Start()
     {
         if (levelAccomplishDataSO.levelsAccomplishDict.ContainsKey(thislevel))
@@ -27,12 +36,12 @@ public class AccomplishedLevel_UI : MonoBehaviour
 
     public void StateUpdate()
     {
-        if (levelAccomplishDataSO.levelsAccomplishDict[thislevel])
+        if (levelAccomplishDataSO.GetLevelAccomplishState(thislevel))
         {
             image?.SetActive(true);
         }
     }
-
+    */
 
 
 

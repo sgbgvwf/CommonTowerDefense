@@ -107,7 +107,7 @@ public class ObjectPoolManager : MonoBehaviour
 
         if (_poolDict.ContainsKey(prefab) && _poolDict[prefab].Count > 0)
         {
-            Debug.Log("1");
+            //Debug.Log("1");
             targetObj = _poolDict[prefab].Dequeue();
             targetObj.transform.position = position;
             targetObj.transform.rotation = rotation;

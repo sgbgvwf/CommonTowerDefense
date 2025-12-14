@@ -33,6 +33,7 @@ public class AttackLockStrategy_DistanceNearest : IState
     public void OnUpdate()
     {
         RemoveOverScope();
+        RemoveZeroHealth();
         DistanceLock();
         //Debug.Log("_attackDetection");
     }
@@ -124,6 +125,29 @@ public class AttackLockStrategy_DistanceNearest : IState
     }
 
 
+    private void RemoveZeroHealth()
+    {
+        List<GameObject> momentObject = new List<GameObject>();
 
+        foreach (var _object in distanceDict.Keys)
+        {
+            if (_object == null)
+            {
+                continue;
+            }
+
+            if (_object.GetComponent<Health>().health <= 0)
+            {
+                momentObject.Add(_object);
+            }
+        }
+
+        foreach (var obj in momentObject)
+        {
+            distanceDict.Remove(obj);
+        }
+
+        momentObject.Clear();
+    }
 
 }

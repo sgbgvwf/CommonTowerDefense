@@ -22,9 +22,9 @@ public class Health : MonoBehaviour
 
 
     //ÉùÃ÷ÊÂ¼þ
-    public UnityEvent<GameObject> OnTakeDamage;
+    public UnityEvent OnTakeDamage;
 
-    public UnityEvent<GameObject> IsDead;
+    public UnityEvent IsDead;
 
 
 
@@ -43,14 +43,14 @@ public class Health : MonoBehaviour
             if (health + changeValue > 0)
             {
                 health += changeValue;
-                OnTakeDamage?.Invoke(this.gameObject);
+                OnTakeDamage?.Invoke();
                 //HurtDisplay();
 
             }
             else if (health + changeValue < 0)
             {
                 health = 0;
-                IsDead?.Invoke(this.gameObject);
+                IsDead?.Invoke();
                 Destroy(gameObject);
             }
         }
