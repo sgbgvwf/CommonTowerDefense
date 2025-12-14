@@ -8,6 +8,7 @@ public class CoreHealth : MonoBehaviour
     private static CoreHealth instance;
     public static CoreHealth Instance;
 
+    public GameDataSO gameDataSO;
 
     //µ±Ç°ÉúÃü
     public int coreHealth;
@@ -16,9 +17,7 @@ public class CoreHealth : MonoBehaviour
     public int initialHealth;
    
 
-    public UnityEvent<GameObject> HealthReduction;
-
-    public UnityEvent<GameObject> Death;
+    
 
     private void Awake()
     {
@@ -32,9 +31,11 @@ public class CoreHealth : MonoBehaviour
         }
     }
 
-    public void InitializeHealthData()
+    public void InitializeHealthData(int _initialHealth)
     {
-        coreHealth = initialHealth;
+        coreHealth = _initialHealth;
+        gameDataSO.coreHealth = coreHealth;
+        initialHealth = _initialHealth;
     }
 
     private void OnEnable()
@@ -60,16 +61,17 @@ public class CoreHealth : MonoBehaviour
             if (coreHealth - DetectedGameObject.GetComponent<EnemyProperty>().coreDamage > 0)
             {
                 coreHealth--;
-                HealthReduction?.Invoke(this.gameObject);
+                gameDataSO.CoreHealthReduceEvent();
             }
 
             else
             {
                 coreHealth = 0;
-                Death?.Invoke(this.gameObject);
+                gameDataSO.GameOverEvent();
             }
         }
 
+        gameDataSO.coreHealth = coreHealth;
     }
 
 

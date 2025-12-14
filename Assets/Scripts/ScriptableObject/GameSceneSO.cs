@@ -10,5 +10,4 @@ public class GameSceneSO : ScriptableObject
 
     public AssetReference sceneReference;
 
-
 }

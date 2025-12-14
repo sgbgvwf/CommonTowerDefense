@@ -26,8 +26,7 @@ public class FlyerStraightController : MonoBehaviour
     private void Awake()
     {
         timerManager = new TimerManager();
-        fly = false;
-        destroyTimer = false;
+        InitializeData();
     }
 
     private void Update()
@@ -43,10 +42,20 @@ public class FlyerStraightController : MonoBehaviour
             direction = Vector3.zero;
             ObjectPoolManager.Instance.ReturnObject(GetComponent<GeneralProperty>().prefabReference, this.gameObject);
             timerManager.Start("DestroyTimer", 1f / speed * 50f);
-
         }
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
-
+    public void InitializeData()
+    {
+        if (timerManager.Exists("DestroyTimer"))
+        {
+            timerManager.Remove("DestroyTimer");
+        }
+        fly = false;
+        destroyTimer = false;
+    }
 
 }

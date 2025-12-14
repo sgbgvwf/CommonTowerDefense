@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Money : MonoBehaviour 
 {
@@ -8,11 +9,13 @@ public class Money : MonoBehaviour
     private static Money instance;
     public static Money Instance;
 
+    public GameDataSO gameDataSO;
+
     [Header("当前金钱")]
     public float money;
 
-    [Header("初始金钱")]
-    public float initialMoney;
+    //[Header("初始金钱")]
+    //public float initialMoney;
 
     [Header("金钱上限")]
     public bool usingMaxMoney;
@@ -36,27 +39,33 @@ public class Money : MonoBehaviour
 
     }
 
-    public void InitializeMoneyData()
+    public void InitializeMoneyData(float initialMoney, bool _maxMoney, float _maxMoneyCount)
     {
         money = initialMoney;
+        usingMaxMoney = _maxMoney;
+        maxMoney = _maxMoneyCount;
+
+        gameDataSO.money = money;
+        gameDataSO.maxMoney = usingMaxMoney;
+        gameDataSO.maxMoneyCount = maxMoney;
     }
 
 
     public bool ChangeMoney(float changeValue)
     {
+        bool success;
 
         if (changeValue < 0)
         {
-            if (money + changeValue > 0)
+            if (money + changeValue >= 0)
             {
                 money += changeValue;
-                return true;
+                success = true;
 
             }
             else
             {
-
-                return false;
+                success = false;
             }
         }
         else if (usingMaxMoney)//启用金钱最大值限制
@@ -64,29 +73,29 @@ public class Money : MonoBehaviour
             if(money + changeValue < maxMoney)
             {
                 money += changeValue;
-                return true;
+                success = true;
             }
             else
             {
                 money = maxMoney;
-                return true;
+                success = true;
             }
         }
         else
         {
             money += changeValue;
-            return true;
+            success = true;
         }
 
+        MoneyUpdate();
+
+        return success;
     }
 
     public void MoneyUpdate()
     {
-
+        gameDataSO.money = money;
     }
-
-
-
 
 
 }

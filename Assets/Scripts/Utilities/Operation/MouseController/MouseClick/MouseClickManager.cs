@@ -104,6 +104,14 @@ public class MouseClickManager : MonoBehaviour
 
         buildDefenseTower.buildOperation = false;//建造重置
 
+        //检查重置
+        if (checkDefenseTower.checkOperation)
+        {
+            checkDefenseTower.Check(MousePointStateManager.Instance.blackboard.currentTower);
+            checkDefenseTower.checkOperation = false;
+        }
+
+
         MousePositionDisplay.Instance.positionStatic = false;
 
         mouseDisplay.color = MousePointStateManager.Instance.blackboard.originalColor;

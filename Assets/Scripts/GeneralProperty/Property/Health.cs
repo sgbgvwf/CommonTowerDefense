@@ -51,7 +51,7 @@ public class Health : MonoBehaviour
             {
                 health = 0;
                 IsDead?.Invoke(this.gameObject);
-
+                Destroy(gameObject);
             }
         }
         else

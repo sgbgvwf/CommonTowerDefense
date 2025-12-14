@@ -28,6 +28,7 @@ public class AttackLockStrategy_HealthMinimum : IState
     public void OnExit()
     {
         objectHealthDict.Clear();
+        objectDistanceDict.Clear();
     }
 
     public void OnUpdate()
@@ -57,12 +58,21 @@ public class AttackLockStrategy_HealthMinimum : IState
 
         float minHealth = objectHealthDict.Values.Min();
 
-        GameObject minHealthObject = objectHealthDict
+        List<GameObject> minHealthObjectList = objectHealthDict
             .Where(pair => pair.Value == minHealth)
             .Select(pair => pair.Key)
-            .First();
+            .ToList();
 
-        _blackboard.attackDirection = (_attackDetection.objectPosition[minHealthObject] - _attackDetection.detectionPosition).normalized;
+        if(minHealthObjectList.Count == 1)
+        {
+            _blackboard.attackDirection = (_attackDetection.objectPosition[minHealthObjectList[0]] - _attackDetection.detectionPosition).normalized;
+
+        }
+        else if(minHealthObjectList.Count > 1) 
+        {
+            PathNearestLock();
+        }
+
     }
 
 
@@ -101,12 +111,79 @@ public class AttackLockStrategy_HealthMinimum : IState
             }
         }
 
-        foreach (var enemy in momentPosition)
+        foreach (var obj in momentPosition)
         {
-            objectHealthDict.Remove(enemy);
+            objectHealthDict.Remove(obj);
+            objectDistanceDict.Remove(obj);
         }
 
         momentPosition.Clear();
+
+    }
+
+
+
+
+
+
+    private Dictionary<GameObject, float> objectDistanceDict = new Dictionary<GameObject, float>();
+
+
+    public void PathNearestLock()
+    {
+        if (objectHealthDict.Count == 0)
+        {
+            return;
+        }
+        //Debug.Log(_attackDetection.objectPosition.Count);
+        foreach (var _object in objectHealthDict.Keys)
+        {
+            if (!objectDistanceDict.ContainsKey(_object) && _object != null)
+            {
+                objectDistanceDict.Add(_object, PathNearestDistanceCalculation(_object));
+            }
+            else
+            {
+                objectDistanceDict[_object] = PathNearestDistanceCalculation(_object);
+            }
+        }
+
+        float minDistance = objectDistanceDict.Values.Min();
+
+        GameObject nearestObject = objectDistanceDict
+            .Where(pair => pair.Value == minDistance)
+            .Select(pair => pair.Key)
+            .FirstOrDefault();
+
+        _blackboard.attackDirection = (_attackDetection.objectPosition[nearestObject] - _attackDetection.detectionPosition).normalized;
+
+    }
+
+    /// <summary>
+    /// 计算对象与其最终路径点的曼哈顿距离
+    /// </summary>
+    /// <param name="gameObject">要计算的对象</param>
+    /// <returns></returns>
+    private float PathNearestDistanceCalculation(GameObject gameObject)
+    {
+        if (gameObject == null)
+        {
+            return float.MaxValue;
+        }
+        if (!gameObject.GetComponent<EnemyPath>())
+        {
+            return float.MaxValue;
+        }
+
+        EnemyPath enemyPath = gameObject.GetComponent<EnemyPath>();
+
+        float distance =
+            Mathf.Abs(gameObject.transform.position.x -
+            enemyPath.planPathPointsList[enemyPath.planPathPointsList.Count - 1].transform.position.x) +
+            Mathf.Abs(gameObject.transform.position.y -
+            enemyPath.planPathPointsList[enemyPath.planPathPointsList.Count - 1].transform.position.y);
+        //Debug.Log(enemyPath.planPathPointsList[enemyPath.planPathPointsList.Count - 1].transform.position);
+        return distance;
 
     }
 }

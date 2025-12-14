@@ -6,6 +6,12 @@ using Unity.VisualScripting;
 
 public class GameFinish : MonoBehaviour
 {
+    public GameDataSO gameDataSO;
+
+    public LevelAccomplishDataSO levelAccomplishDataSO;
+
+    private Levels thisLevel;
+
     TimerManager timerManager;
 
     public GameObject spawnEnemy;
@@ -40,7 +46,10 @@ public class GameFinish : MonoBehaviour
         {
             //”Œœ∑Ω· ¯£°
             isFinish = true;
-
+            thisLevel = gameDataSO.thisLevel;
+            levelAccomplishDataSO.levelsAccomplishDict[thisLevel] = true;
+            gameDataSO.LevelAccomplish();
+            Debug.Log("accpmplish");
         }
     }
 

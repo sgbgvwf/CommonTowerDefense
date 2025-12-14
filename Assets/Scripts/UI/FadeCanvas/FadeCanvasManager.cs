@@ -13,7 +13,7 @@ public class FadeCanvasManager : MonoBehaviour
         fadeDuration = fadeCanvas.fadeTransitionDuration;
         //fadeCanvas.enabled = false;
     }
-
+    /*
     public void BeginFade()
     {
         //fadeCanvas.enabled = true;
@@ -26,5 +26,5 @@ public class FadeCanvasManager : MonoBehaviour
         fadeCanvas.ExitFade();
         //fadeCanvas.enabled = false;
     }
-
+    */
 }

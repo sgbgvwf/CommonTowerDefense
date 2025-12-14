@@ -18,6 +18,10 @@ public class ObjectPoolManager : MonoBehaviour
         {
             Instance = this;
         }
+        else
+        {
+            Destroy(this);
+        }
     }
 
     /// <summary>
@@ -75,6 +79,7 @@ public class ObjectPoolManager : MonoBehaviour
         }
         else
         {
+
             targetObj = Instantiate(prefab, position, rotation);
             targetObj.transform.SetParent(transform);
 
@@ -111,15 +116,18 @@ public class ObjectPoolManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("2");
+            //Debug.Log("2");
+            //Debug.Log(prefab);
             targetObj = Instantiate(prefab, position, rotation);
             targetObj.transform.SetParent(parent);
-
+            //Debug.Log(targetObj.transform.parent);
             //没有对象池就创建一个
             if (!_poolDict.ContainsKey(prefab))
             {
                 _poolDict[prefab] = new Queue<GameObject>();
+                //Debug.Log("4");
             }
+
         }
 
         return targetObj;
@@ -136,8 +144,8 @@ public class ObjectPoolManager : MonoBehaviour
         if (!_poolDict.ContainsKey(prefab))
         {
             Destroy(obj);
-            Debug.Log("No:" + prefab);
-            Debug.Log(obj.GetComponent<GeneralProperty>().prefabReference);
+            //Debug.Log("No:" + prefab);
+            //Debug.Log(obj.GetComponent<GeneralProperty>().prefabReference);
             return;
         }
 
@@ -147,12 +155,12 @@ public class ObjectPoolManager : MonoBehaviour
         {
             _poolDict[prefab].Enqueue(obj);
             obj.transform.SetParent(transform);//把对象回收回对象池
-            Debug.Log("recycle");
+            //Debug.Log("recycle");
         }
         else
         {
             Destroy(obj);//溢出则销毁
-            Debug.Log("max");
+            //Debug.Log("max");
         }
 
     }

@@ -40,8 +40,7 @@ public enum DefenseTowerType
     Barrier,
     MagicalTurret,
     PlaceMakerTower,
-
-
+    SnipeTurret,
 
 }
 
@@ -61,4 +60,16 @@ public enum SceneType
 
 }
 
+public enum Levels
+{
+    level1,
+    level2,
+    level3,
+    level4,
+    level5,
+    level6,
+    level7,
+    level8,
 
+
+}

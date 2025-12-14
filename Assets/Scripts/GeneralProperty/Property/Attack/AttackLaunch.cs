@@ -57,7 +57,7 @@ public class AttackLaunch : MonoBehaviour, ITowerAttackStrategy
                 if (timerManager.IsFinished("AttackFrequency"))
                 {
                     GameObject entity = ObjectPoolManager.Instance.GetObject(prefab, _blackboard.SpawnPosition, Quaternion.identity, parent);
-                    entity.name = "Bullet(Clone)";
+                    //entity.name = "Bullet(Clone)";
                     LaunchObject(entity);
 
                     timerManager.Remove("AttackFrequency");

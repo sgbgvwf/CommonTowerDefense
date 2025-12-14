@@ -43,19 +43,7 @@ public class CheckDefenseTower : MonoBehaviour
 
         }
 
-
-
-
-
-
-
-
-
-
     }
-
-
-
 
 
 

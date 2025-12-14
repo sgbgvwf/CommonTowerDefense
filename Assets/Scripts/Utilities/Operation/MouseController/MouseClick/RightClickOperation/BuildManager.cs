@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 // 可选：添加这个属性，防止在同一个 GameObject 上挂载多个该组件
@@ -9,15 +10,41 @@ public class BuildManager : MonoBehaviour
 
     private DefenseTowerType selectedTowerType;
 
+    [System.Serializable]
+    public struct TowerPrefabEntry
+    {
+        public DefenseTowerType towerType;
+
+        public GameObject towerPrefab;
+    }
+
+    [Header("塔预制体映射")]
+    public List<TowerPrefabEntry> towerPrefabEntries;
+
+    public Dictionary<DefenseTowerType, GameObject> towerPrefabDictionary;//用字典映射
+
     public bool HasTowerSelected;
 
     private DefenseTowerChoose_UI lastChoose;
+
+
 
     private void Awake()
     {
         if(instance == null)
         {
             Instance = this;
+        }
+
+        //建立映射
+        towerPrefabDictionary = new Dictionary<DefenseTowerType, GameObject>();
+
+        foreach (var entry in towerPrefabEntries)
+        {
+            if (!towerPrefabDictionary.ContainsKey(entry.towerType))
+            {
+                towerPrefabDictionary.Add(entry.towerType, entry.towerPrefab);
+            }
         }
     }
 
@@ -26,6 +53,8 @@ public class BuildManager : MonoBehaviour
         HasTowerSelected = false;
 
         selectedTowerType = DefenseTowerType.None;
+
+        
     }
 
 

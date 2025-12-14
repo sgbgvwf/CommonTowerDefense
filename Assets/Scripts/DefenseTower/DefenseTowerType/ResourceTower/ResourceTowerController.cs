@@ -57,10 +57,8 @@ public class ResourceTowerController : MonoBehaviour
     public void GetMoney()
     {
 
-        if (Money.Instance.ChangeMoney(getMoneyValue))
-        {
-            Money.Instance.MoneyUpdate();
-        }
+        Money.Instance.ChangeMoney(getMoneyValue);
+        
         
     }
 

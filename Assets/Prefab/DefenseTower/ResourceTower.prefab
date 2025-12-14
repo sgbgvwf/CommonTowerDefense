@@ -475,9 +475,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stoping: 0
   stopingSpeed: 1
-  stopingDuration: 5
+  stopingDuration: 8
   stopingCounter: 0
-  getMoneyValue: 20
+  getMoneyValue: 25
 --- !u!61 &2589894512681306183
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -535,7 +535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b175d06dab15f94cba6eb1a0caab61d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placementCost: 300
+  placementCost: 250
 --- !u!114 &7399958423920437832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -595,7 +595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2702fefd934fe724ea714a7608d80241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itselfPrefab: {fileID: 4335507091346470020}
+  prefabReference: {fileID: 0}
 --- !u!1 &6746147734504869856
 GameObject:
   m_ObjectHideFlags: 0

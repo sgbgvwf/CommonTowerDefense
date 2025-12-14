@@ -13,7 +13,9 @@ public class FadeCanvas : MonoBehaviour
 
     public float fadeTransitionDuration;
 
-    private bool faded;
+    private bool fade;
+
+    private bool graduallyFade;
 
     private string fadeTimer = "fadeTimer";
 
@@ -28,57 +30,66 @@ public class FadeCanvas : MonoBehaviour
 
     private void Update()
     {
-
         if (!timerManager.Exists(fadeTimer))
         {
             return;
         }
 
-
-        Color currentColor = this.fadeImage.color;
-        
-        if (faded )
-        {
-            fadeImage.raycastTarget = true;
-            currentColor.a =  timerManager.GetElapsed(fadeTimer) / fadeTransitionDuration;
-        }
-        else
-        {
-            currentColor.a =  (1 - timerManager.GetElapsed(fadeTimer) / fadeTransitionDuration);
-            fadeImage.raycastTarget = false;
-        }
+        Fade();
 
         //Debug.Log(this.fadeImage.color.a);
-        this.fadeImage.color = currentColor;
 
         if (timerManager.IsFinished(fadeTimer))
         {
             timerManager.Remove(fadeTimer);
         }
 
-
     }
 
-    public void EnterFade()
+    /// <summary>
+    /// ½øÈëºÚÆÁ
+    /// </summary>
+    /// <param name="_graduallyFade"></param>
+    public void EnterFade(bool _graduallyFade)
     {
 
-        faded = true;
+        fade = true;
         if (GetComponent<MouseClickManager>())
         {
             MouseClickManager.Instance.enabled = false;
         }
-        timerManager.Start(fadeTimer, fadeTransitionDuration);
+        if (_graduallyFade)
+        {
+            timerManager.Start(fadeTimer, fadeTransitionDuration);
+        }
+        else
+        {
+            timerManager.Start(fadeTimer, 0);
+        }
+        graduallyFade = _graduallyFade;
     }
 
-    public void ExitFade()
+    /// <summary>
+    /// ÍË³öºÚÆÁ
+    /// </summary>
+    /// <param name="_graduallyFade"></param>
+    public void ExitFade(bool _graduallyFade)
     {
 
-        faded = false;
+        fade = false;
         if (GetComponent<MouseClickManager>())
         {
             MouseClickManager.Instance.enabled = true;
         }
-        timerManager.Start(fadeTimer, fadeTransitionDuration);
+        if (_graduallyFade)
+        {
+            timerManager.Start(fadeTimer, fadeTransitionDuration); 
+        }
+        else
+        {
+            timerManager.Start(fadeTimer, 0);
+        }
+        graduallyFade = _graduallyFade;
     }
 
     public void newGame()
@@ -86,6 +97,42 @@ public class FadeCanvas : MonoBehaviour
         Color currentColor = this.fadeImage.color;
         currentColor.a = 1;
         this.fadeImage.color = currentColor;
-
     }
+
+    private void Fade()
+    {
+        Color currentColor = this.fadeImage.color;
+
+        if (graduallyFade)
+        {
+            if (!fade)
+            {
+                fadeImage.raycastTarget = false;
+                currentColor.a = (1 - timerManager.GetElapsed(fadeTimer) / fadeTransitionDuration);
+            }
+            else
+            {
+                
+                fadeImage.raycastTarget = true;
+                currentColor.a = timerManager.GetElapsed(fadeTimer) / fadeTransitionDuration;
+            }
+        }
+        else
+        {
+            if (!fade)
+            {
+                fadeImage.raycastTarget = false;
+                currentColor.a = 0;
+            }
+            else
+            {
+                
+                fadeImage.raycastTarget = true;
+                currentColor.a = 1;
+            }
+        }
+
+        this.fadeImage.color = currentColor;
+    }
+
 }

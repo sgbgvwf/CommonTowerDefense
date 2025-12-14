@@ -520,7 +520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 382d09b5712c87d4ea3b5a52ea0ac908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  physicalDefense: 15
+  physicalDefense: 10
   magicalDefense: 10
 --- !u!114 &7553778362347180767
 MonoBehaviour:
@@ -551,7 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2702fefd934fe724ea714a7608d80241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itselfPrefab: {fileID: 1846287447054962179}
+  prefabReference: {fileID: 0}
 --- !u!1 &2553205274714176970
 GameObject:
   m_ObjectHideFlags: 0

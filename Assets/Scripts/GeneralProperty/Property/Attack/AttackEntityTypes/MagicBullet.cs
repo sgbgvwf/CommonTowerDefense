@@ -46,6 +46,7 @@ public class MagicBullet : MonoBehaviour
         if (gameObject.GetComponent<FlyerStraightController>())
         {
             gameObject.GetComponent<FlyerStraightController>().direction = Vector3.zero;
+            gameObject.GetComponent<FlyerStraightController>().InitializeData();
         }
         ObjectPoolManager.Instance.ReturnObject(GetComponent<GeneralProperty>().prefabReference, gameObject);
     }

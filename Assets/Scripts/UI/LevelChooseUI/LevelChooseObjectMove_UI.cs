@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelChooseObjectMove_UI : MonoBehaviour
 {
-    public CameraPositionSO cameraPositionSO;
+    public CameraDataSO cameraDataSO;
 
     //public CameraController cameraController;
 
@@ -25,7 +25,7 @@ public class LevelChooseObjectMove_UI : MonoBehaviour
 
     private void Update()
     {
-        Move(cameraPositionSO.cameraPosition);
+        Move(cameraDataSO.cameraPosition);
     }
 
     public void Move(Vector3 newPosition)

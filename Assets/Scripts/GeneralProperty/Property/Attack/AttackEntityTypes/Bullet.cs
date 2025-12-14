@@ -62,9 +62,10 @@ public class Bullet : MonoBehaviour
         if (gameObject.GetComponent<FlyerStraightController>())
         {
             gameObject.GetComponent<FlyerStraightController>().direction = Vector3.zero;
+            gameObject.GetComponent<FlyerStraightController>().InitializeData();
         }
         ObjectPoolManager.Instance.ReturnObject(GetComponent<GeneralProperty>().prefabReference, gameObject);
-        Debug.Log("return");
+        //Debug.Log("return");
     }
 
 }

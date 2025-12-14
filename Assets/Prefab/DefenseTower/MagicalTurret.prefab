@@ -718,9 +718,9 @@ MonoBehaviour:
   strategyManager: {fileID: 4080324171632193727}
   prefab: {fileID: 1847172537090209266, guid: a97e091a0c2227c4ab2c4dae9a07705a, type: 3}
   parent: {fileID: 2777321657480754792}
-  attackFrequency: 1.5
+  attackFrequency: 2
   attackSpeedScale: 1
-  delayTime: 0.5
+  delayTime: 1
 --- !u!114 &5488388756540247577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -746,7 +746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2702fefd934fe724ea714a7608d80241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itselfPrefab: {fileID: 8332606756664089033}
+  prefabReference: {fileID: 0}
 --- !u!1 &8466362466150038271
 GameObject:
   m_ObjectHideFlags: 0

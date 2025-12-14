@@ -582,7 +582,7 @@ MonoBehaviour:
   display: {fileID: 2095675326600663917}
   processDisplay: {fileID: 8565376587456538442}
   way: {x: 0, y: 0, z: 0}
-  changeDuration: 15
+  changeDuration: 10
   destroyDuration: 3
 --- !u!61 &224221304270187760
 BoxCollider2D:
@@ -641,7 +641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b175d06dab15f94cba6eb1a0caab61d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placementCost: 500
+  placementCost: 450
 --- !u!114 &8554031714258403027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -726,7 +726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2702fefd934fe724ea714a7608d80241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itselfPrefab: {fileID: 7317905059417382320}
+  prefabReference: {fileID: 0}
 --- !u!1 &8860918242718903738
 GameObject:
   m_ObjectHideFlags: 0

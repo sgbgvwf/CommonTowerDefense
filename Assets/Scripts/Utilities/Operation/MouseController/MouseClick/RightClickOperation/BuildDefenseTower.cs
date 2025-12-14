@@ -5,58 +5,47 @@ using UnityEngine;
 
 public class BuildDefenseTower : MonoBehaviour
 {
+    /*
+    private static BuildDefenseTower instance;
+    public static BuildDefenseTower Instance;
+    */
     public SpriteRenderer mouseDisplay;
 
-    [System.Serializable]
-    public struct TowerPrefabEntry
-    {
-        public DefenseTowerType towerType;
 
-        public GameObject towerPrefab;
-    }
-
-    [Header("塔预制体映射")]
-    [SerializeField] private List<TowerPrefabEntry> towerPrefabEntries;
-
+    /*
     [Header("防御塔管理器")]
     [SerializeField] private BuildManager buildManager;
+    */
 
-    private Dictionary<DefenseTowerType, GameObject> towerPrefabDictionary;//用字典映射
 
     public bool buildOperation;
 
+    public Option_UI noMoney;
 
-
-    private void Start()
+    public Option_UI noTower;
+    /*
+    private void Awake()
     {
-        towerPrefabDictionary = new Dictionary<DefenseTowerType, GameObject>();
-
-        foreach (var entry in towerPrefabEntries)
+        if(instance == null)
         {
-            if (!towerPrefabDictionary.ContainsKey(entry.towerType))
-            {
-                towerPrefabDictionary.Add(entry.towerType, entry.towerPrefab);
-            }
-            else
-            {
-                //Debug.Log("重复的塔类型: " + entry.towerType);
-            }
+            Instance = this;
         }
     }
+    */
+    private void Start()
+    {
 
+    }
 
     private GameObject GetTowerPrefab(DefenseTowerType towerType)
     {
-        if (towerPrefabDictionary.TryGetValue(towerType, out GameObject prefab))
+        if (BuildManager.Instance.towerPrefabDictionary.TryGetValue(towerType, out GameObject prefab))
         {
             return prefab;
         }
         Debug.Log("找不到塔预制体: " + towerType);
         return null;
     }
-
-
-
 
     public void Build()
     {
@@ -70,11 +59,12 @@ public class BuildDefenseTower : MonoBehaviour
         }
         else
         {
-            DefenseTowerType towerSelectedType = buildManager.GetSelectedTowerType();
+            DefenseTowerType towerSelectedType = BuildManager.Instance.GetSelectedTowerType();
 
             if (towerSelectedType == DefenseTowerType.None)
             {
-                Debug.Log("请先选择一个防御塔再建造！");
+                noTower.Display();
+                //Debug.Log("请先选择一个防御塔再建造！");
                 return;
             }
 
@@ -100,24 +90,17 @@ public class BuildDefenseTower : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("金钱不足");
+                    noMoney.Display();
+                    //Debug.Log("金钱不足");
                 }
             }
-            
-            
-            
+
             mouseDisplay.color = MousePointStateManager.Instance.blackboard.originalColor;
 
             buildOperation = false;
 
             MousePositionDisplay.Instance.positionStatic = false;
         }
-
-
-
-
-
-
 
     }
 
