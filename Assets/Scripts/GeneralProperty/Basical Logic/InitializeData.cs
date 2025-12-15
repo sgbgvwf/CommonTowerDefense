@@ -12,6 +12,8 @@ public class InitializeData : MonoBehaviour
 
     public GameDataSO gameDataSO;
 
+    public LevelAccomplishDataSO LevelAccomplishDataSO;
+
     public bool maxMoney;
 
     public float maxMoneyCount;
@@ -28,7 +30,9 @@ public class InitializeData : MonoBehaviour
         CoreHealth.Instance.InitializeHealthData(initialHealth);
 
         gameDataSO.thisLevel = thisLevel;
-        
+
+        LevelAccomplishDataSO.BeginLevel(thisLevel);
+
         //gameDataSO.accomplish = false;
     }
 

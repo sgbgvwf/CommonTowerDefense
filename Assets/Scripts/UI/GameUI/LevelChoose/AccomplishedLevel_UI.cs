@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AccomplishedLevel_UI : MonoBehaviour
 {
@@ -8,11 +9,13 @@ public class AccomplishedLevel_UI : MonoBehaviour
 
     public GameObject image;
 
+    private Button button;
+
     public Levels thislevel;
 
     private void Awake()
     {
-        Debug.Log("1");
+        //Debug.Log("1");
         image.SetActive(false);
         if (levelAccomplishDataSO == null)
         {
@@ -21,28 +24,24 @@ public class AccomplishedLevel_UI : MonoBehaviour
 
         bool isAccomplished = levelAccomplishDataSO.GetLevelAccomplishState(thislevel);
         image.SetActive(isAccomplished);
-        Debug.Log("2");
+        //Debug.Log("2");
+
+        button = GetComponent<Button>();
     }
-    /*
+
     private void Start()
     {
-        if (levelAccomplishDataSO.levelsAccomplishDict.ContainsKey(thislevel))
-        {
-            StateUpdate();
+        var levelPair = levelAccomplishDataSO._serializedLevelData.Find(p => p.level == thislevel);
 
+        if (!levelPair.isUnLocked)
+        {
+            button.enabled = false;
+        }
+        else
+        {
+            button.enabled = true;
         }
     }
-
-
-    public void StateUpdate()
-    {
-        if (levelAccomplishDataSO.GetLevelAccomplishState(thislevel))
-        {
-            image?.SetActive(true);
-        }
-    }
-    */
-
 
 
 }

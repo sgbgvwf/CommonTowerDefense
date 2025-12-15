@@ -12,16 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c5e3b1ed96bbf43bc8fe2032816ee2, type: 3}
   m_Name: Level Accomplish Data SO
   m_EditorClassIdentifier: 
+  currentLevel: 1
   _serializedLevelData:
   - level: 0
+    isUnLocked: 0
     isAccomplished: 0
   - level: 1
+    isUnLocked: 1
     isAccomplished: 0
   - level: 2
+    isUnLocked: 0
     isAccomplished: 0
   - level: 3
+    isUnLocked: 0
     isAccomplished: 0
   - level: 4
+    isUnLocked: 0
     isAccomplished: 0
   - level: 5
+    isUnLocked: 0
     isAccomplished: 0

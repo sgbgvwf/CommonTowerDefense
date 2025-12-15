@@ -1526,10 +1526,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b6a848314475054fbae258b2876485e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisLevel: 0
+  thisLevel: 1
   initialMoney: 500
   initialHealth: 5
   gameDataSO: {fileID: 11400000, guid: 4d0ba066402ed96488c82fce9db426a4, type: 2}
+  LevelAccomplishDataSO: {fileID: 11400000, guid: d364ba163ffa10640885fa1fb17ccae0, type: 2}
   maxMoney: 0
   maxMoneyCount: 0
 --- !u!1 &257205694

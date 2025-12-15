@@ -62,6 +62,7 @@ public enum SceneType
 
 public enum Levels
 {
+    None,
     level1,
     level2,
     level3,

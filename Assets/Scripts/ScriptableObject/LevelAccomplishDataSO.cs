@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.SearchService;
 using UnityEngine;
 
@@ -7,6 +9,8 @@ using UnityEngine;
 
 public class LevelAccomplishDataSO : ScriptableObject
 {
+    public Levels currentLevel;
+    //[SerializeField]private CurrentAttackingLevel currentAttackingLevel = new CurrentAttackingLevel();
 
     [SerializeField]public List<LevelAccomplishPair> _serializedLevelData = new List<LevelAccomplishPair>();
 
@@ -34,8 +38,7 @@ public class LevelAccomplishDataSO : ScriptableObject
                 levelsAccomplishDict.Add(pair.level, pair.isAccomplished);
             }
         }
-
-
+        
     }
 
     public void UpdateLevelAccomplishState(Levels level, bool isAccomplished)
@@ -61,7 +64,22 @@ public class LevelAccomplishDataSO : ScriptableObject
             _serializedLevelData.Add(new LevelAccomplishPair { level = level, isAccomplished = isAccomplished });
         }
 
+        UnLockLevel(level, isAccomplished);
+    }
 
+    public void UnLockLevel(Levels level, bool isAccomplished)
+    {
+        
+        Levels maxLevel = (Levels)Enum.GetValues(typeof(Levels)).Cast<int>().Max();
+        if (maxLevel != level)
+        {
+            Levels nextLevel = (Levels)((int)level + 1);
+            var existingPair = _serializedLevelData.Find(p => p.level == nextLevel); 
+            if (existingPair != null && isAccomplished)
+            {
+                existingPair.isUnLocked = true;
+            }
+        }
     }
 
 
@@ -83,7 +101,10 @@ public class LevelAccomplishDataSO : ScriptableObject
     }
 
 
-
+    public void BeginLevel(Levels level)
+    {
+        currentLevel = level;
+    }
 
 
 }
@@ -92,5 +113,13 @@ public class LevelAccomplishDataSO : ScriptableObject
 public class LevelAccomplishPair
 {
     public Levels level;
+    public bool isUnLocked;
     public bool isAccomplished;
+
+}
+
+[System.Serializable]
+public class CurrentAttackingLevel
+{
+    public Levels level;
 }

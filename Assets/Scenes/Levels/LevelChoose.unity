@@ -2306,7 +2306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelAccomplishDataSO: {fileID: 11400000, guid: d364ba163ffa10640885fa1fb17ccae0, type: 2}
   image: {fileID: 714509006}
-  thislevel: 0
+  thislevel: 1
 --- !u!1 &1746491156
 GameObject:
   m_ObjectHideFlags: 0
@@ -2401,7 +2401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 1}
+  m_Color: {r: 0.27450982, g: 0.27450982, b: 0.27450982, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2440,7 +2440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelAccomplishDataSO: {fileID: 11400000, guid: d364ba163ffa10640885fa1fb17ccae0, type: 2}
   image: {fileID: 2016813576}
-  thislevel: 1
+  thislevel: 2
 --- !u!114 &1843323593
 MonoBehaviour:
   m_ObjectHideFlags: 0
