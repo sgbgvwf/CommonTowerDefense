@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dbe92cfa64a6ae499cfc9155ffdf70f, type: 3}
+  m_Name: Sky_Delta
+  m_EditorClassIdentifier: 
+  prefabReference: {fileID: 8384405118384319249, guid: 9aeb2c089c78f934b83fad1e901c0b12, type: 3}
+  levelData: {fileID: 11400000, guid: 139eb7bc5d33bc7489b4fdfd78a7064b, type: 2}
+  health: 60
+  initialHealth: 60
+  maxHealth: 60
+  damage: 0
+  attackFrequency: 0
+  attackSpeedScale: 0
+  damageType: 0
+  buffType: 0
+  effectType: 0
+  physicalDefense: 0
+  magicalDefense: 0

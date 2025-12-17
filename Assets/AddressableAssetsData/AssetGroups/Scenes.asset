@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Scenes
+  m_EditorClassIdentifier: 
+  m_GroupName: Scenes
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 8af33d6b16a2e4341bac8560ba7d2a41
+  m_SerializeEntries:
+  - m_GUID: 1fd9383e67c12a04eb880cd59204fa50
+    m_Address: Level
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 765ea4e446a20de4bb544ccade4b71aa
+    m_Address: Persistent
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 80b3e46daf7e3e44699d8184ff316b2f
+    m_Address: MapMake
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 83eded766672d5843869ee65ac129987
+    m_Address: LevelChoose
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 875cf78817d6e7440ac2d7025cbafd29
+    m_Address: MainMenu
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8fa0c9d1b44c82549afb701eb93a59fb
+    m_Address: Setting
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: a0d0f6b4a37e2d447be6a1396b8c6646, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ae58d659b16fb0b4ab00338ce6a9cbc6, type: 2}
+    - {fileID: 11400000, guid: a2b462bd61da2ca4cb6e7c2831a38de8, type: 2}

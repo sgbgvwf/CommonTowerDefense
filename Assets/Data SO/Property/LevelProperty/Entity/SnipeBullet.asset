@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a85422786cc2aa040b306ed204480231, type: 3}
+  m_Name: SnipeBullet
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1054255101459098595, guid: 351e9279e5a17d249b4b3cb06b08845b, type: 3}
+  Level:
+    initLevel: 0
+    usingMaxLevel: 0
+    maxLevel: 0
+  levelPropertiesList: []
