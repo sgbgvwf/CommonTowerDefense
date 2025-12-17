@@ -98,6 +98,5 @@ InitTestScene*.unity*
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
 
-# 1. 精准忽略截图中的超大字体文件（路径要和项目一致）
-Assets/Fonts/ChillJinshuSongRegular_SDF.asset
-Assets/Fonts/ChillJinshuSongRegular_SDF.asset.meta
+
+Assets/Fonts/
