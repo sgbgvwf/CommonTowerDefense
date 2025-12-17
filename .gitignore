@@ -101,12 +101,3 @@ InitTestScene*.unity*
 # 1. 精准忽略截图中的超大字体文件（路径要和项目一致）
 Assets/Fonts/ChillJinshuSongRegular_SDF.asset
 Assets/Fonts/ChillJinshuSongRegular_SDF.asset.meta
-
-# 2. 通用忽略所有字体相关文件（可选，避免后续新增字体误提交）
-# 常见字体后缀：ttf/otf/woff/woff2/asset/meta（Unity字体）
-Assets/Fonts/*.ttf
-Assets/Fonts/*.otf
-Assets/Fonts/*.woff
-Assets/Fonts/*.woff2
-Assets/Fonts/*.asset
-Assets/Fonts/*.asset.meta
