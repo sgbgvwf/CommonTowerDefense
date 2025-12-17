@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-   
-
+    /*
     [Header("伤害")]
     public float attack;
 
@@ -17,25 +16,37 @@ public class Bullet : MonoBehaviour
 
     [Header("持续类型")]
     public EffectType effectType;
+    */
+    private FlyerStraightController flyerStraightController;
 
     [Header("子弹穿透")]
     public bool bulletCross;
-
     public float maxCrossTimes;
-
     public float currentCrossTimes;
 
+    private DamageInfomation damageInfomation;
+
+    private void Awake()
+    {
+        flyerStraightController = GetComponent<FlyerStraightController>();
+    }
+
+    public void GetDamageProperties(GameObject resource)
+    {
+        GeneralProperty generalProperty = resource.GetComponent<GeneralProperty>();
+        damageInfomation = new DamageInfomation(generalProperty.damage, generalProperty.damageType, generalProperty.buffType, resource);
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        GetDamageProperties(flyerStraightController.resource);
+
         //Debug.Log(other.name);
         //Hurt enemy = other.GetComponent<Hurt>();
         IDamageable damageTarget = other.GetComponent<IDamageable>();
 
         if (other != null && other.tag == "Enemy")
         {
-            DamageInfomation damageInfomation = new DamageInfomation(attack, damageType, buffType, gameObject);
-
             damageTarget.TakeDamage(damageInfomation);
 
             if (bulletCross)
@@ -50,11 +61,7 @@ public class Bullet : MonoBehaviour
             {
                 finalDeal();
             }
-
         }
-
-
-
     }
 
     private void finalDeal()

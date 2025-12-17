@@ -21,7 +21,7 @@ public class TowerStateManager : MonoBehaviour
 
     //public EnemyDetection enemyDetection;
     
-    private ITowerAttackStrategy _attackStrategy;
+    private IAttackStrategy _attackStrategy;
 
     private AttackDetection attackDetection;
 
@@ -32,25 +32,19 @@ public class TowerStateManager : MonoBehaviour
     {
         _fsm = new FSM(blackboard);
 
-        TowerAttack attackState = new TowerAttack();
+        attackDetection = GetComponent<AttackDetection>();
+        _attackStrategy = GetComponent<AttackLaunch>();
+
+        TowerAttack towerAttack = new TowerAttack();
+        _fsm.AddState(TowerState.Attack, towerAttack);
+        towerAttack.Init(blackboard, attackDetection, _attackStrategy);
 
         _fsm.AddState(TowerState.Idle, new TowerIdle());
-
-        _fsm.AddState(TowerState.Attack, attackState);
-
-        //Debug.Log(_attackStrategy);
 
         //黑板数据初始化
         blackboard.currentState = TowerState.Idle;
 
         blackboard.firePosition = transform.position + new Vector3(0.5f, 0.5f, 0);
-
-        attackDetection = GetComponent<AttackDetection>();
-
-        _attackStrategy = GetComponent<AttackLaunch>();
-
-        attackState.Init(blackboard, attackDetection, _attackStrategy);
-
 
         _fsm.SwitchState(TowerState.Idle);
     }
@@ -72,11 +66,12 @@ public class TowerStateManager : MonoBehaviour
             _currentState = TowerState.Idle;
         }
 
-        GetCurrentState();
+        GetCurrentAttackState();
+        //Debug.Log(blackboard.currentState);
     }
 
 
-    public void GetCurrentState()
+    public void GetCurrentAttackState()
     {
         //Debug.Log(attackDetection);
         if (attackDetection.objectPosition.Count > 0)

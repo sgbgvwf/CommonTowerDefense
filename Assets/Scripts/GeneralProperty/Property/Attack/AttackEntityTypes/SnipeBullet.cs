@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SnipeBullet : MonoBehaviour
 {
+    /*
     //[Header("攻击者")]
     private GameObject attacker;
 
@@ -18,25 +19,37 @@ public class SnipeBullet : MonoBehaviour
 
     [Header("持续类型")]
     public EffectType effectType;
+    */
+    private FlyerStraightController flyerStraightController;
+    private DamageInfomation damageInfomation;
+
+    private void Awake()
+    {
+        flyerStraightController = GetComponent<FlyerStraightController>();
+
+    }
+
+    public void GetDamageProperties(GameObject resource)
+    {
+        GeneralProperty generalProperty = resource.GetComponent<GeneralProperty>();
+        damageInfomation = new DamageInfomation(generalProperty.damage, generalProperty.damageType, generalProperty.buffType, resource);
+    }
 
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        GetDamageProperties(flyerStraightController.resource);
         //Debug.Log(other.name);
         //Hurt enemy = other.GetComponent<Hurt>();
         IDamageable damageTarget = other.GetComponent<IDamageable>();
 
         if (other != null && other.tag == "Enemy")
         {
-            DamageInfomation damageInfomation = new DamageInfomation(attack, damageType, buffType, GetComponent<GeneralProperty>().prefabReference);
-
             damageTarget.TakeDamage(damageInfomation);
 
             //Debug.Log(damageInfomation.buffType);
 
             finalDeal();
-
-
         }
 
     }
@@ -50,8 +63,5 @@ public class SnipeBullet : MonoBehaviour
         }
         ObjectPoolManager.Instance.ReturnObject(GetComponent<GeneralProperty>().prefabReference, gameObject);
     }
-
-
-
 
 }

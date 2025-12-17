@@ -9,23 +9,17 @@ public interface IDamageable
 
 public class Hurt : MonoBehaviour, IDamageable
 {
-    private Health health;
-
-    private DefenseProperty defense;
-
+    private HealthOperation health;
+    private GeneralProperty generalProperty;
     private BuffStateManager BuffStateManager;
 
 
     private void Awake()
     {
-        health = GetComponent<Health>();
-
-        defense = GetComponent<DefenseProperty>();
-
+        health = GetComponent<HealthOperation>();
+        generalProperty = GetComponent<GeneralProperty>();
         BuffStateManager = GetComponent<BuffStateManager>();
     }
-
-
 
     public void TakeDamage(DamageInfomation damage)
     {
@@ -36,25 +30,25 @@ public class Hurt : MonoBehaviour, IDamageable
         //伤害类型
         if(damage.damageType == DamageType.Physical)//物理伤害
         {
-            if (finalDamage - defense.physicalDefense < finalDamage * 0.05f)
+            if (finalDamage - generalProperty.physicalDefense < finalDamage * 0.05f)
             {
                 finalDamage = finalDamage * 0.05f;
             }
             else
             {
-                finalDamage -= defense.physicalDefense;
+                finalDamage -= generalProperty.physicalDefense;
             }
 
         }
         else if(damage.damageType == DamageType.Magical)//法术伤害
         {
-            if (1 - defense.magicalDefense/100 <0.05f)
+            if (1 - generalProperty.magicalDefense/100 <0.05f)
             {
                 finalDamage = finalDamage * 0.05f;
             }
             else
             {
-                finalDamage *= (1 - defense.magicalDefense / 100);
+                finalDamage *= (1 - generalProperty.magicalDefense / 100);
             }
         }
 

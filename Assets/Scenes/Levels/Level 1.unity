@@ -1544,7 +1544,7 @@ GameObject:
   - component: {fileID: 257205695}
   - component: {fileID: 257205696}
   m_Layer: 0
-  m_Name: LevelAccomplish
+  m_Name: GameFinish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

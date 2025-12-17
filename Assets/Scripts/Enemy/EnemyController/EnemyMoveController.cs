@@ -5,6 +5,8 @@ using UnityEngine.TextCore.Text;
 
 public class EnemyMoveController : MonoBehaviour
 {
+    private EnemyProperty enemyProperty;
+
     private Rigidbody2D rb;
 
     public bool move;
@@ -16,18 +18,11 @@ public class EnemyMoveController : MonoBehaviour
 
     private bool faceLeft;
 
-    [Header("移动速度")]
-    public float moveSpeed;
-
-    public float SlowScale;
-
-
     //游戏开始前的初始化
     private void Awake()
     {
-
         rb = GetComponent<Rigidbody2D>();
-
+        enemyProperty = GetComponent<EnemyProperty>();
 
     }
 
@@ -42,7 +37,7 @@ public class EnemyMoveController : MonoBehaviour
     //移动和朝向
     public void Move()
     {
-        transform.position += Dirrection * moveSpeed * SlowScale * 0.01f;
+        transform.position += Dirrection * enemyProperty.moveSpeed * enemyProperty.moveSpeedScale * 0.01f;
 
         //方向
         Dirrection = (enemyPath.currentTargetPathPoint.transform.position - transform.position + new Vector3(0.5f, 0.5f, 0)).normalized;

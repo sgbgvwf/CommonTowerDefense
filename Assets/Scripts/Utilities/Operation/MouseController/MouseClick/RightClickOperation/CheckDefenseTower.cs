@@ -10,7 +10,9 @@ public class CheckDefenseTower : MonoBehaviour
 
     public bool checkOperation;
 
+    public TowerLevelDataDisplay_UI towerLevelDataDisplay_UI;
 
+    public TowerLevelWindowDisplayButton_UI towerLevelWindowDisplayButton_UI;
 
     public void Check(GameObject currentTower)
     {
@@ -27,6 +29,14 @@ public class CheckDefenseTower : MonoBehaviour
                 currentTower.GetComponent<TowerCheckDisplay>().EnterDisplay();
             }
 
+            towerLevelDataDisplay_UI.OpenAllDisplay();
+            towerLevelDataDisplay_UI.CurrentTowerUpdate();
+
+            if (!towerLevelWindowDisplayButton_UI.isDisplay)
+            {
+                towerLevelWindowDisplayButton_UI.Display();
+            }
+
         }
         else
         {
@@ -41,11 +51,17 @@ public class CheckDefenseTower : MonoBehaviour
 
             MousePositionDisplay.Instance.positionStatic = false;
 
+            towerLevelDataDisplay_UI.CloseAllDisplay();
         }
 
     }
 
-
+    public void CheckReset()
+    {
+        Check(MousePointStateManager.Instance.blackboard.currentTower);
+        checkOperation = false;
+        towerLevelDataDisplay_UI.CloseAllDisplay();
+    }
 
 
 

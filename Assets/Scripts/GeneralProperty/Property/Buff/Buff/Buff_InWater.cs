@@ -31,7 +31,7 @@ public class Buff_InWater : IState
 
         if (gameObject.tag == "Enemy")
         {
-            gameObject.GetComponent<EnemyMoveController>().moveSpeed = 0.9f * gameObject.GetComponent<EnemyMoveController>().moveSpeed;
+            gameObject.GetComponent<EnemyProperty>().moveSpeed = 0.9f * gameObject.GetComponent<EnemyProperty>().moveSpeed;
         }
         _blackboard.InWater = true;
     }
@@ -42,7 +42,7 @@ public class Buff_InWater : IState
 
         if (gameObject.tag == "Enemy")
         {
-            gameObject.GetComponent<EnemyMoveController>().moveSpeed = 1f / 0.9f * gameObject.GetComponent<EnemyMoveController>().moveSpeed;
+            gameObject.GetComponent<EnemyProperty>().moveSpeed = 1f / 0.9f * gameObject.GetComponent<EnemyProperty>().moveSpeed;
         }
         _blackboard.InWater = false;
     }

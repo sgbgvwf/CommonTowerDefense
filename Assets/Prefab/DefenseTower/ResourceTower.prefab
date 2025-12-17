@@ -359,11 +359,11 @@ GameObject:
   - component: {fileID: 2404427925377495470}
   - component: {fileID: 7353903623170687684}
   - component: {fileID: 2589894512681306183}
+  - component: {fileID: 4312429232273473123}
   - component: {fileID: 7305415518009081578}
   - component: {fileID: 7399958423920437832}
   - component: {fileID: 7093712553723871513}
-  - component: {fileID: 6832517627236497215}
-  - component: {fileID: 4312429232273473123}
+  - component: {fileID: 8379077590370859942}
   m_Layer: 10
   m_Name: ResourceTower
   m_TagString: DefenseTower
@@ -523,6 +523,35 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.2}
   m_EdgeRadius: 0
+--- !u!114 &4312429232273473123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4335507091346470020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2702fefd934fe724ea714a7608d80241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generalPropertyData: {fileID: 11400000, guid: a891c1210ba02f84db87da2dbe2ccf59, type: 2}
+  levelData: {fileID: 11400000, guid: ffd3a1053b952b644ae7fba371de93a3, type: 2}
+  prefabReference: {fileID: 0}
+  health: 0
+  initialHealth: 0
+  maxHealth: 0
+  damage: 0
+  attackFrequency: 0
+  attackSpeedScale: 0
+  damageType: 0
+  buffType: 0
+  effectType: 0
+  physicalDefense: 0
+  magicalDefense: 0
+  level: 0
+  usingMaxLevel: 0
+  MaxLevel: 0
 --- !u!114 &7305415518009081578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,9 +577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d84d762193fe994a8ac60f817e21896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealth: 300
-  maxHealth: 300
-  health: 0
+  GeneralProperty: {fileID: 0}
   OnTakeDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -569,7 +596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4449d9bb57595a04989fa3fad0cf0803, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6832517627236497215
+--- !u!114 &8379077590370859942
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -578,24 +605,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 4335507091346470020}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 382d09b5712c87d4ea3b5a52ea0ac908, type: 3}
+  m_Script: {fileID: 11500000, guid: 33e9b9eebc2607d44b6758e0399e7910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  physicalDefense: 20
-  magicalDefense: 10
---- !u!114 &4312429232273473123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4335507091346470020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2702fefd934fe724ea714a7608d80241, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabReference: {fileID: 0}
+  levelDataSO: {fileID: 11400000, guid: ffd3a1053b952b644ae7fba371de93a3, type: 2}
+  _levelProperties:
+    level: 0
+    levelUpMoney: 0
+    health: 0
+    maxHealth: 0
+    damage: 0
+    attackFrequency: 0
+    attackSpeedScale: 0
+    damageType: 0
+    buffType: 0
+    effectType: 0
+    physicalDefense: 0
+    magicalDefense: 0
 --- !u!1 &6746147734504869856
 GameObject:
   m_ObjectHideFlags: 0

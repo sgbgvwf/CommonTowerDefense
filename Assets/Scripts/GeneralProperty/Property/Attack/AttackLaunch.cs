@@ -4,13 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class AttackLaunch : MonoBehaviour, ITowerAttackStrategy
+public class AttackLaunch : MonoBehaviour, IAttackStrategy
 {
     public AttackLockStrategyManager strategyManager;
 
     private TimerManager timerManager;
 
     private AttackLockBlackboard _blackboard;
+
+    [HideInInspector]public AttackLaunchTimer _timer = new AttackLaunchTimer();
 
     [Header("预制体与其父物体")]
     public GameObject prefab;
@@ -19,7 +21,6 @@ public class AttackLaunch : MonoBehaviour, ITowerAttackStrategy
 
     [Header("攻击间隔")]
     public float attackFrequency;
-
     public float attackSpeedScale;
 
     [Header("延迟时间")]
@@ -27,48 +28,48 @@ public class AttackLaunch : MonoBehaviour, ITowerAttackStrategy
 
 
 
-    public void OnAttackEnter(TowerStateBlackboard blackboard, AttackDetection attackDetection)
+    public void OnAttackEnter<T1, T2>(ref T1 blackboard, T2 attackDetection)
     {
+
         _blackboard = strategyManager.blackboard;
         timerManager = new TimerManager();
-        timerManager.Start("AttackFrequency", 0f);
+
+        _timer.BeginTimer();
     }
 
-    public void OnAttackUpdate(TowerStateBlackboard blackboard, AttackDetection attackDetection)
+    public void OnAttackUpdate<T1, T2>(ref T1 blackboard, T2 attackDetection)
     {
-        //Debug.Log(blackboard.currentState);
+        Debug.Log("111"+ _blackboard.delayAttack);
         switch (_blackboard.delayAttack)
         {
             case true:
-                if (timerManager.IsFinished("AttackFrequency"))
+                if (_timer.DetectTimer())
                 {
-                    GameObject entity = ObjectPoolManager.Instance.GetObject(prefab, _blackboard.SpawnPosition, Quaternion.identity, parent);
+                    GameObject entity = GetEntity();
                     //entity.name = "entity";
                     //entity.GetComponent<FlyerStraightController>().direction = Vector3.zero;
 
                     StartCoroutine(DelayTime(entity));
 
-                    timerManager.Remove("AttackFrequency");
-                    timerManager.Start("AttackFrequency", attackFrequency * attackSpeedScale + delayTime);
+                    _timer.EndTimer(attackFrequency, delayTime, attackSpeedScale, _blackboard.delayAttack);
                 }
                 break;
 
             case false:
-                if (timerManager.IsFinished("AttackFrequency"))
+                if (_timer.DetectTimer())
                 {
-                    GameObject entity = ObjectPoolManager.Instance.GetObject(prefab, _blackboard.SpawnPosition, Quaternion.identity, parent);
+                    GameObject entity = GetEntity();
                     //entity.name = "Bullet(Clone)";
                     LaunchObject(entity);
 
-                    timerManager.Remove("AttackFrequency");
-                    timerManager.Start("AttackFrequency", attackFrequency * attackSpeedScale);
+                    _timer.EndTimer(attackFrequency, delayTime, attackSpeedScale, _blackboard.delayAttack);
                 }
                 break;
         }
 
     }
     
-    public void OnAttackExit(TowerStateBlackboard blackboard)
+    public void OnAttackExit<T>(ref T blackboard)
     {
         if (_blackboard.delayAttack)
         {
@@ -82,28 +83,13 @@ public class AttackLaunch : MonoBehaviour, ITowerAttackStrategy
 
     }
 
-    private void Update()
+    private GameObject GetEntity()
     {
-
-    }
-
-    
-
-    /*
-    /// <summary>
-    /// 生成攻击物
-    /// </summary>
-    /// <param name="prefab"></param>
-    /// <param name="spawnPosition"></param>
-    /// <param name="parent"></param>
-    /// <returns></returns>
-    public GameObject InstantiateObject(GameObject prefab, Vector3 spawnPosition, Transform parent)
-    {
-        GameObject entity = Instantiate(prefab, spawnPosition, Quaternion.identity, parent);
-        
+        Debug.Log("222");
+        GameObject entity = ObjectPoolManager.Instance.GetObject(prefab, _blackboard.SpawnPosition, Quaternion.identity, parent);
+        entity.GetComponent<FlyerStraightController>().resource = gameObject;
         return entity;
     }
-    */
 
     /// <summary>
     /// 发射攻击
@@ -113,6 +99,7 @@ public class AttackLaunch : MonoBehaviour, ITowerAttackStrategy
     {
         gameObject.GetComponent<FlyerStraightController>().direction = _blackboard.attackDirection;
         gameObject.GetComponent<FlyerStraightController>().fly = true;
+        gameObject.GetComponent<FlyerStraightController>().resource = this.gameObject;
         //Debug.Log(_blackboard.attackDirection);
 
     }
@@ -123,6 +110,9 @@ public class AttackLaunch : MonoBehaviour, ITowerAttackStrategy
         yield return new WaitForSeconds(delayTime);
         LaunchObject(entity);
     }
+
+
+
 
 
 }

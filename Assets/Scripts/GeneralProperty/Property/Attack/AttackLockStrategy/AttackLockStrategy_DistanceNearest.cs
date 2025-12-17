@@ -136,7 +136,7 @@ public class AttackLockStrategy_DistanceNearest : IState
                 continue;
             }
 
-            if (_object.GetComponent<Health>().health <= 0)
+            if (_object.GetComponent<GeneralProperty>().health <= 0)
             {
                 momentObject.Add(_object);
             }

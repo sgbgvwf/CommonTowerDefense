@@ -13,13 +13,10 @@ public class GameDataSO : ScriptableObject
     public Dictionary<Levels, GameSceneSO> levelsDict = new Dictionary<Levels, GameSceneSO>();
 
     public Levels thisLevel;
-
     public int coreHealth;
 
     public float money;
-
     public bool maxMoney;
-
     public float maxMoneyCount;
     //public bool levelAccomplish;
 

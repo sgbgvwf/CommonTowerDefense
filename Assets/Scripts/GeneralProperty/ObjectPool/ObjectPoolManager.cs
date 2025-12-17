@@ -118,8 +118,8 @@ public class ObjectPoolManager : MonoBehaviour
         {
             //Debug.Log("2");
             //Debug.Log(prefab);
-            targetObj = Instantiate(prefab, position, rotation);
-            targetObj.transform.SetParent(parent);
+            targetObj = Instantiate(prefab, position, rotation, parent);
+            //targetObj.transform.SetParent(parent);
             //Debug.Log(targetObj.transform.parent);
             //没有对象池就创建一个
             if (!_poolDict.ContainsKey(prefab))

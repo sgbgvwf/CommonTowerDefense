@@ -11827,7 +11827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12f10b679a162904abe931fc87551a1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1846287447054962179, guid: d5876ec427fe3614499eb04e72a3675e, type: 3}
+  enemyPrefab: {fileID: 5259758696502363265, guid: f82fb3bcb84b14545986b1379491a853, type: 3}
   enemiesParent: {fileID: 739667444}
   planPathPointsList:
   - {fileID: 365891247}

@@ -107,8 +107,7 @@ public class MouseClickManager : MonoBehaviour
         //ºÏ≤È÷ÿ÷√
         if (checkDefenseTower.checkOperation)
         {
-            checkDefenseTower.Check(MousePointStateManager.Instance.blackboard.currentTower);
-            checkDefenseTower.checkOperation = false;
+            checkDefenseTower.CheckReset();
         }
 
 

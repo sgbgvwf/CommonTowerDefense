@@ -6,32 +6,23 @@ using UnityEngine;
 public enum DamageType
 {
     Physical,//物理
-
     Magical//法术
-
 }
 
 //效果类型
 public enum EffectType
 {
     Instant,//单次
-
     Continuous//持续
 }
-
 
 public class DamageInfomation
 {
     public float damageValue;//伤害值
-
     public DamageType damageType;//伤害类型
-
     public BuffState buffType;//元素类型
-
     public EffectType effectType;//效果类型
-
     public GameObject source;//伤害来源
-
     public float duration;//持续时间
 
     /// <summary>

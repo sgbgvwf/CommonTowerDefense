@@ -80,12 +80,12 @@ public class AttackLockStrategy_HealthMinimum : IState
 
     private float HealthMinimumCalculation(GameObject gameObject)
     {
-        if (!gameObject.GetComponent<Health>())
+        if (!gameObject.GetComponent<GeneralProperty>())
         {
             return float.MaxValue;
         }
 
-        float health = gameObject.GetComponent<Health>().health;
+        float health = gameObject.GetComponent<GeneralProperty>().health;
 
         return health;
     }
@@ -133,7 +133,7 @@ public class AttackLockStrategy_HealthMinimum : IState
                 continue;
             }
 
-            if (_object.GetComponent<Health>().health <= 0)
+            if (_object.GetComponent<GeneralProperty>().health <= 0)
             {
                 momentObject.Add(_object);
             }

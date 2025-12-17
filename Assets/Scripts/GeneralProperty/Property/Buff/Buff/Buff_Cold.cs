@@ -37,7 +37,7 @@ public class Buff_Cold : IState
 
         if (gameObject.tag == "Enemy" && !_blackboard.Cold)
         {
-            gameObject.GetComponent<EnemyMoveController>().moveSpeed = 0.9f * gameObject.GetComponent<EnemyMoveController>().moveSpeed;
+            gameObject.GetComponent<EnemyProperty>().moveSpeed = 0.9f * gameObject.GetComponent<EnemyProperty>().moveSpeed;
         }
         else if (gameObject.tag == "DefenseTower" && _blackboard.Cold)
         {
@@ -55,7 +55,7 @@ public class Buff_Cold : IState
 
         if (gameObject.tag == "Enemy" && _blackboard.Cold)
         {
-            gameObject.GetComponent<EnemyMoveController>().moveSpeed = 1f / 0.9f * gameObject.GetComponent<EnemyMoveController>().moveSpeed;
+            gameObject.GetComponent<EnemyProperty>().moveSpeed = 1f / 0.9f * gameObject.GetComponent<EnemyProperty>().moveSpeed;
         }
         else if(gameObject.tag == "DefenseTower" && _blackboard.Cold)
         {

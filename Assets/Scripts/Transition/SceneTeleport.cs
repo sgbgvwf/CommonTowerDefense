@@ -55,7 +55,11 @@ public class SceneTeleport : MonoBehaviour
                 loadEventSO.RaiseUnLoadAllThenLoadEvent(scenesToLoadAfterUnloadAll, cameraTargetPosition, fadeTransition);
                 break;
             case SceneOperationType.CustomSceneOperation:
-                scenesToUnLoad.Add(gameDataSO.levelsDict[gameDataSO.thisLevel]);
+                if (autoUnLoadThisLevel)
+                {
+                    scenesToUnLoad.Add(gameDataSO.levelsDict[gameDataSO.thisLevel]);
+
+                }
                 loadEventSO.RaiseCustomSceneOperation(scenesToUnLoad, scenesToLoad, cameraTargetPosition, fadeTransition);
                 break;
         }

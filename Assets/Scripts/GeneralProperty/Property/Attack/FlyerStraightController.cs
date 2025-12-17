@@ -5,10 +5,10 @@ using Concorde.Timer;
 
 public class FlyerStraightController : MonoBehaviour
 {
-    
-    //[HideInInspector]public Vector3 direction;
-    public Vector3 direction;
 
+    //[HideInInspector]public Vector3 direction;
+    public GameObject resource;
+    public Vector3 direction;
     private TimerManager timerManager;
 
 
@@ -27,6 +27,7 @@ public class FlyerStraightController : MonoBehaviour
     {
         timerManager = new TimerManager();
         InitializeData();
+        resource = this.gameObject;
     }
 
     private void Update()

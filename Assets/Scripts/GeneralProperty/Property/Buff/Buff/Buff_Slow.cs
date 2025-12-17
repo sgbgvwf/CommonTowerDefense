@@ -23,14 +23,14 @@ public class Buff_Slow : IState
         _blackboard = buffBlackboard;
         _fsm = buffFSM;
         timerManager = new TimerManager();
-        originalSpeed = gameObject.GetComponent<EnemyMoveController>().moveSpeed;
+        originalSpeed = gameObject.GetComponent<EnemyProperty>().moveSpeed;
     }
     public void OnEnter()
     {
         _blackboard.Slow = true;
         if(gameObject.tag == "Enemy")
         {
-            gameObject.GetComponent<EnemyMoveController>().moveSpeed = SlowScale * gameObject.GetComponent<EnemyMoveController>().moveSpeed;
+            gameObject.GetComponent<EnemyProperty>().moveSpeed = SlowScale * gameObject.GetComponent<EnemyProperty>().moveSpeed;
         }
     }
 
@@ -39,7 +39,7 @@ public class Buff_Slow : IState
         _blackboard.Slow = false;
         if (gameObject.tag == "Enemy")
         {
-            gameObject.GetComponent<EnemyMoveController>().moveSpeed = 1f / SlowScale * gameObject.GetComponent<EnemyMoveController>().moveSpeed;
+            gameObject.GetComponent<EnemyProperty>().moveSpeed = 1f / SlowScale * gameObject.GetComponent<EnemyProperty>().moveSpeed;
         }
     }
 
