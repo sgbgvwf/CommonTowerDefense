@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3256852881529815371}
   - component: {fileID: 841243571659097542}
   - component: {fileID: 369912372088507517}
+  - component: {fileID: -1257035408856461433}
   m_Layer: 16
   m_Name: MagicBullet
   m_TagString: Attacker
@@ -142,7 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generalPropertyData: {fileID: 11400000, guid: d9eb4af0764a21f4cacaf2b7e7425152, type: 2}
   levelData: {fileID: 11400000, guid: c1eaf656ab9dba84d8a5050cff8af7cd, type: 2}
-  prefabReference: {fileID: 0}
+  prefabReference: {fileID: 1847172537090209266}
   health: 0
   initialHealth: 0
   maxHealth: 0
@@ -156,8 +157,19 @@ MonoBehaviour:
   magicalDefense: 0
   level: 0
   initLevel: 0
-  usingMaxLevel: 0
   MaxLevel: 0
+--- !u!114 &-1257035408856461433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847172537090209266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ea89769fbb352349b1f42cebf20baa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2945154771218819668
 GameObject:
   m_ObjectHideFlags: 0

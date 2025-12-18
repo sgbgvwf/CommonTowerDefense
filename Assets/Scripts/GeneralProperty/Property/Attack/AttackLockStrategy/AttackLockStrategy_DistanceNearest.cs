@@ -65,9 +65,21 @@ public class AttackLockStrategy_DistanceNearest : IState
             .Select(pair => pair.Key)
             .FirstOrDefault();
 
-        _blackboard.attackDirection = (_attackDetection.objectPosition[nearestObject] - _attackDetection.detectionPosition).normalized;
+        SetAttackDetection(nearestObject);
     }
 
+    private void SetAttackDetection(GameObject nearestObject)
+    {
+        if (_blackboard.attackLockType.targetType == EntityType.Enemy)
+        {
+            _blackboard.attackDirection = (_attackDetection.objectPosition[nearestObject] - _attackDetection.detectionPosition).normalized;
+        }
+        else if (_blackboard.attackLockType.targetType == EntityType.DefenseTower)
+        {
+            _blackboard.attackDirection = (_attackDetection.objectPosition[nearestObject] + new Vector3(0.5f, 0.5f, 0) - _attackDetection.detectionPosition).normalized;
+        }
+
+    }
 
     /// <summary>
     /// 计算对象与检测点之间的距离
@@ -86,7 +98,7 @@ public class AttackLockStrategy_DistanceNearest : IState
             return float.MaxValue;
         }
 
-        EnemyPath enemyPath = gameObject.GetComponent<EnemyPath>();
+        //EnemyPath enemyPath = gameObject.GetComponent<EnemyPath>();
 
         float distance = Mathf.Abs((gameObject.transform.position - detector).magnitude);
 

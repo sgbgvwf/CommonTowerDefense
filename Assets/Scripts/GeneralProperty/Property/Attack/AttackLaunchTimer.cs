@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AttackLaunchTimer
 {
     private TimerManager timerManager = new TimerManager();
 
+    public UnityAction attackCircle;
+ 
     public void BeginTimer()
     {
         if (timerManager.Exists("AttackFrequency"))
@@ -31,8 +34,10 @@ public class AttackLaunchTimer
         {
             return false;
         }
+
         if (timerManager.IsFinished("AttackFrequency"))
         {
+            attackCircle?.Invoke();
             return true;
         }
         else

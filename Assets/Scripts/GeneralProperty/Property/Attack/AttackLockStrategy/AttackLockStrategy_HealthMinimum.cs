@@ -66,8 +66,8 @@ public class AttackLockStrategy_HealthMinimum : IState
 
         if(minHealthObjectList.Count == 1)
         {
-            _blackboard.attackDirection = (_attackDetection.objectPosition[minHealthObjectList[0]] - _attackDetection.detectionPosition).normalized;
-
+            GameObject minHealthObject = minHealthObjectList[0];
+            SetAttackDetection(minHealthObject);
         }
         else if(minHealthObjectList.Count > 1) 
         {
@@ -76,6 +76,18 @@ public class AttackLockStrategy_HealthMinimum : IState
 
     }
 
+    private void SetAttackDetection(GameObject minHealthObject)
+    {
+        if (_blackboard.attackLockType.targetType == EntityType.Enemy)
+        {
+            _blackboard.attackDirection = (_attackDetection.objectPosition[minHealthObject] - _attackDetection.detectionPosition).normalized;
+        }
+        else if (_blackboard.attackLockType.targetType == EntityType.DefenseTower)
+        {
+            _blackboard.attackDirection = (_attackDetection.objectPosition[minHealthObject] + new Vector3(0.5f, 0.5f, 0) - _attackDetection.detectionPosition).normalized;
+        }
+
+    }
 
 
     private float HealthMinimumCalculation(GameObject gameObject)
@@ -179,7 +191,19 @@ public class AttackLockStrategy_HealthMinimum : IState
             .Select(pair => pair.Key)
             .FirstOrDefault();
 
-        _blackboard.attackDirection = (_attackDetection.objectPosition[nearestObject] - _attackDetection.detectionPosition).normalized;
+        SetDisAttackDetection(nearestObject);
+    }
+
+    private void SetDisAttackDetection(GameObject nearestObject)
+    {
+        if (_blackboard.attackLockType.targetType == EntityType.Enemy)
+        {
+            _blackboard.attackDirection = (_attackDetection.objectPosition[nearestObject] - _attackDetection.detectionPosition).normalized;
+        }
+        else if (_blackboard.attackLockType.targetType == EntityType.DefenseTower)
+        {
+            _blackboard.attackDirection = (_attackDetection.objectPosition[nearestObject] + new Vector3(0.5f, 0.5f, 0) - _attackDetection.detectionPosition).normalized;
+        }
 
     }
 

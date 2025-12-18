@@ -16,6 +16,13 @@ public class CheckDefenseTower : MonoBehaviour
 
     public void Check(GameObject currentTower)
     {
+        if(currentTower == null)
+        {
+            return;
+        }
+
+        TowerCheckDisplay towerCheckDisplay = currentTower.GetComponent<TowerCheckDisplay>();
+
         if (!checkOperation)
         {
             checkOperation = true;
@@ -24,7 +31,7 @@ public class CheckDefenseTower : MonoBehaviour
 
             MousePositionDisplay.Instance.positionStatic = true;
 
-            if(currentTower.GetComponent<TowerCheckDisplay>())
+            if (towerCheckDisplay != null)
             {
                 currentTower.GetComponent<TowerCheckDisplay>().EnterDisplay();
             }
@@ -40,7 +47,7 @@ public class CheckDefenseTower : MonoBehaviour
         }
         else
         {
-            if (currentTower.GetComponent<TowerCheckDisplay>())
+            if (towerCheckDisplay != null)
             {
                 currentTower.GetComponent<TowerCheckDisplay>().ExitDisplay();
             }

@@ -1317,7 +1317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12f10b679a162904abe931fc87551a1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1846287447054962179, guid: d5876ec427fe3614499eb04e72a3675e, type: 3}
+  enemyPrefab: {fileID: 5259758696502363265, guid: f82fb3bcb84b14545986b1379491a853, type: 3}
   enemiesParent: {fileID: 1697380219}
   planPathPointsList:
   - {fileID: 1958672336}
@@ -1329,11 +1329,11 @@ MonoBehaviour:
   - {fileID: 1419126488}
   - {fileID: 1900013566}
   - {fileID: 987794009}
-  planAmount: 10
+  planAmount: 50
   enemySpawnTimeType: 1
-  spwanInitialTime: 15
+  spwanInitialTime: 0
   lastSpawn: {fileID: 236258419}
-  spawnFrequency: 5
+  spawnFrequency: 0.5
 --- !u!114 &236258422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2859,11 +2859,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectProperties:
   - prefab: {fileID: 8884754432598066259, guid: 3ca301c53fd4e0843a586207197db891, type: 3}
-    initCount: 20
-    maxCount: 40
+    initCount: 1
+    maxCount: 2
   - prefab: {fileID: 1847172537090209266, guid: a97e091a0c2227c4ab2c4dae9a07705a, type: 3}
-    initCount: 20
-    maxCount: 40
+    initCount: 1
+    maxCount: 2
   - prefab: {fileID: 1054255101459098595, guid: 351e9279e5a17d249b4b3cb06b08845b, type: 3}
     initCount: 10
     maxCount: 15

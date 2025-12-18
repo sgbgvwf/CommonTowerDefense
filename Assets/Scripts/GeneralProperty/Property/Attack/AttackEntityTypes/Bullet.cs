@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
     public float currentCrossTimes;
 
     private DamageInfomation damageInfomation;
-
+    /*
     private void Awake()
     {
         flyerStraightController = GetComponent<FlyerStraightController>();
@@ -45,7 +45,7 @@ public class Bullet : MonoBehaviour
         //Hurt enemy = other.GetComponent<Hurt>();
         IDamageable damageTarget = other.GetComponent<IDamageable>();
 
-        if (other != null && other.tag == "Enemy")
+        if (other != null && (other.tag == "Enemy"|| other.tag == "DefenseTower"))
         {
             damageTarget.TakeDamage(damageInfomation);
 
@@ -74,5 +74,5 @@ public class Bullet : MonoBehaviour
         ObjectPoolManager.Instance.ReturnObject(GetComponent<GeneralProperty>().prefabReference, gameObject);
         //Debug.Log("return");
     }
-
+    */
 }

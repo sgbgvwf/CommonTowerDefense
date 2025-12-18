@@ -39,7 +39,7 @@ public class AttackLaunch : MonoBehaviour, IAttackStrategy
 
     public void OnAttackUpdate<T1, T2>(ref T1 blackboard, T2 attackDetection)
     {
-        Debug.Log("111"+ _blackboard.delayAttack);
+        //Debug.Log("111"+ _blackboard.delayAttack);
         switch (_blackboard.delayAttack)
         {
             case true:
@@ -85,10 +85,12 @@ public class AttackLaunch : MonoBehaviour, IAttackStrategy
 
     private GameObject GetEntity()
     {
-        Debug.Log("222");
+
         GameObject entity = ObjectPoolManager.Instance.GetObject(prefab, _blackboard.SpawnPosition, Quaternion.identity, parent);
+
         entity.GetComponent<FlyerStraightController>().resource = gameObject;
         return entity;
+        
     }
 
     /// <summary>
@@ -108,7 +110,11 @@ public class AttackLaunch : MonoBehaviour, IAttackStrategy
     private IEnumerator DelayTime(GameObject entity)
     {
         yield return new WaitForSeconds(delayTime);
-        LaunchObject(entity);
+        if(entity != null)
+        {
+            LaunchObject(entity);
+
+        }
     }
 
 

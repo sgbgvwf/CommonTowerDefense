@@ -26,9 +26,15 @@ public class EnemyStateManager : MonoBehaviour
 
     private AttackLaunchTimer attackLaunchTimer;
 
-    private void Start()
+
+    private void Awake()
     {
         _fsm = new FSM(blackboard);
+
+        _attackStrategy = GetComponent<AttackLaunch>();
+        _attackLaunch = GetComponent<AttackLaunch>();
+        attackDetection = GetComponent<AttackDetection>();
+        attackLaunchTimer = _attackLaunch._timer;
 
         EnemyIdle enemyIdle = new EnemyIdle();
         _fsm.AddState(EnemyState.Idle, enemyIdle);
@@ -40,15 +46,16 @@ public class EnemyStateManager : MonoBehaviour
         _fsm.AddState(EnemyState.Attack, enemyAttack);
         enemyAttack.Init(blackboard, attackDetection, _attackStrategy);
 
-        attackDetection = GetComponent<AttackDetection>();
 
-        _attackStrategy = GetComponent<AttackLaunch>();
-        _attackLaunch = GetComponent<AttackLaunch>();
-        attackLaunchTimer = _attackLaunch._timer;
+    }
+
+    private void Start()
+    {
+
 
 
         //黑板数据初始化
-        blackboard.currentState = EnemyState.Idle;
+        blackboard.currentState = EnemyState.Move;
 
         blackboard.firePosition = transform.position;
 
@@ -81,9 +88,31 @@ public class EnemyStateManager : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+        attackLaunchTimer.attackCircle += AttackDetectionTimer;
+    }
+
+    private void OnDisable()
+    {
+        attackLaunchTimer.attackCircle -= AttackDetectionTimer;
+    }
+
+    /// <summary>
+    /// 每隔一段时间（攻击间隔）检查一次是否进入攻击状态
+    /// </summary>
+    public void AttackDetectionTimer()
+    {
+
+        
+        GetCurrentAttackState();
+        
+
+    }
+
     public void GetCurrentAttackState()
     {
-        //Debug.Log(attackDetection);
+        //Debug.Log(attackDetection.objectPosition.Count);
         if (attackDetection.objectPosition.Count > 0)
         {
             blackboard.currentState = EnemyState.Attack;
@@ -94,17 +123,7 @@ public class EnemyStateManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 每隔一段时间（攻击间隔）检查一次是否进入攻击状态
-    /// </summary>
-    public void AttackDetectionTimer()
-    {
-        if (attackLaunchTimer.DetectTimer())
-        {
-            GetCurrentAttackState();
-        }
 
-    }
 
 
 

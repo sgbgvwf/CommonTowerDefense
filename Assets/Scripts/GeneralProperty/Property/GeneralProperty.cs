@@ -8,8 +8,8 @@ public class GeneralProperty : MonoBehaviour
     public LevelDataSO levelData;
     private DataOperation dataOperation;
 
-    //[Header("预制体")]
-    [HideInInspector]public GameObject prefabReference;
+    [Header("预制体")]
+    public GameObject prefabReference;
 
     [Header("生命值")]
     public float health;
@@ -44,6 +44,8 @@ public class GeneralProperty : MonoBehaviour
 
     public void DataUpdate()
     {
+        dataOperation.UpdateSingleData(ref prefabReference, generalPropertyData.prefabReference);
+
         dataOperation.UpdateSingleData(ref initialHealth, generalPropertyData.initialHealth);
         health = initialHealth;
         dataOperation.UpdateSingleData(ref maxHealth, generalPropertyData.maxHealth);

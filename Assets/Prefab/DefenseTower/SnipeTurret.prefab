@@ -265,8 +265,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blackboard:
-    itselfType: 1
-    targetType: 0
+    attackLockType:
+      itselfType: 1
+      targetType: 0
     strategy: 2
     delayAttack: 0
     lockEnemy: 0

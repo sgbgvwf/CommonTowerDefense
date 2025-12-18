@@ -21,17 +21,17 @@ public class AttackDetection : MonoBehaviour
 
     private void Awake()
     {
-        _targetType = _StrategyManager.blackboard.targetType;
+        _targetType = _StrategyManager.blackboard.attackLockType.targetType;
     }
 
     private void Start()
     {
-        detectionPosition = transform.position + new Vector3(0.5f, 0.5f, 0);
+
     }
 
     private void Update()
     {
-        
+        PositionUpdate();
         EnterScope(_targetType.ToString());
         ExitScope();
 
@@ -42,6 +42,18 @@ public class AttackDetection : MonoBehaviour
         else
         {
             _StrategyManager.blackboard.lockEnemy = false;
+        }
+    }
+
+    private void PositionUpdate()
+    {
+        if (_StrategyManager.blackboard.attackLockType.itselfType == EntityType.DefenseTower)
+        {
+            detectionPosition = transform.position + new Vector3(0.5f, 0.5f, 0);
+        }
+        else if (_StrategyManager.blackboard.attackLockType.itselfType == EntityType.Enemy)
+        {
+            detectionPosition = transform.position;
         }
     }
 
@@ -109,7 +121,14 @@ public class AttackDetection : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(transform.position + new Vector3(0.5f, 0.5f, 0), detectionRadius);
+        if (_StrategyManager.blackboard.attackLockType.itselfType == EntityType.DefenseTower)
+        {
+            Gizmos.DrawWireSphere(transform.position + new Vector3(0.5f, 0.5f, 0), detectionRadius);
+        }
+        else if (_StrategyManager.blackboard.attackLockType.itselfType == EntityType.Enemy)
+        {
+            Gizmos.DrawWireSphere(transform.position, detectionRadius);
+        }
     }
 
 

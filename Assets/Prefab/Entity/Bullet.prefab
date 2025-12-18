@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 8534090980419841074}
   - component: {fileID: 6466338056114299114}
   - component: {fileID: 1762693053363473017}
+  - component: {fileID: -5865202400224833257}
   m_Layer: 16
   m_Name: Bullet
   m_TagString: Attacker
@@ -242,5 +243,16 @@ MonoBehaviour:
   magicalDefense: 0
   level: 0
   initLevel: 0
-  usingMaxLevel: 0
   MaxLevel: 0
+--- !u!114 &-5865202400224833257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8884754432598066259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ea89769fbb352349b1f42cebf20baa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -312,7 +312,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blackboard:
-    currentState: 0
+    currentState: 1
+    firePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &9170595743134567879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,8 +467,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blackboard:
-    itselfType: 0
-    targetType: 1
+    attackLockType:
+      itselfType: 0
+      targetType: 1
     strategy: 1
     delayAttack: 0
     lockEnemy: 0

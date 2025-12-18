@@ -22,7 +22,7 @@ public class MagicBullet : MonoBehaviour
     */
     private FlyerStraightController flyerStraightController;
     private DamageInfomation damageInfomation;
-
+    /*
     private void Awake()
     {
         flyerStraightController = GetComponent<FlyerStraightController>();
@@ -64,7 +64,7 @@ public class MagicBullet : MonoBehaviour
         }
         ObjectPoolManager.Instance.ReturnObject(GetComponent<GeneralProperty>().prefabReference, gameObject);
     }
-
+    */
 
 
 

@@ -13,11 +13,17 @@ public enum AttackLockStrategy
 }
 
 [Serializable]
-public class AttackLockBlackboard : Blackboard
+public class AttackLockType
 {
     public EntityType itselfType;//自身类型
 
     public EntityType targetType;//目标类型
+}
+
+[Serializable]
+public class AttackLockBlackboard : Blackboard
+{
+    public AttackLockType attackLockType = new AttackLockType();
 
     public AttackLockStrategy strategy;//索敌策略
 
@@ -35,6 +41,8 @@ public class AttackLockBlackboard : Blackboard
 public class AttackLockStrategyManager : MonoBehaviour
 {
     private FSM _fsm;
+
+
 
     public AttackLockBlackboard blackboard;
 
@@ -62,20 +70,16 @@ public class AttackLockStrategyManager : MonoBehaviour
         _attackDetection = GetComponent<AttackDetection>();
 
 
-        if(blackboard.targetType == EntityType.DefenseTower && blackboard.strategy == AttackLockStrategy.PathNearest)
+        if (blackboard.attackLockType.targetType == EntityType.DefenseTower && blackboard.strategy == AttackLockStrategy.PathNearest)
         {
             blackboard.strategy = AttackLockStrategy.DistanceNearest;
         }
 
-        if(blackboard.itselfType == EntityType.DefenseTower)
+        if(blackboard.attackLockType.itselfType == EntityType.DefenseTower)
         {
             blackboard.SpawnPosition = transform.position + new Vector3(0.5f, 0.5f, 0);
         }
-        else if(blackboard.itselfType == EntityType.Enemy)
-        {
-            blackboard.SpawnPosition = transform.position;
-
-        }
+        
 
         blackboard.attackDetection = _attackDetection;
         //Debug.Log(_currentStrategy);
@@ -108,7 +112,11 @@ public class AttackLockStrategyManager : MonoBehaviour
             _currentStrategy = AttackLockStrategy.HealthMinimum;
         }
 
-        
+        if (blackboard.attackLockType.itselfType == EntityType.Enemy)
+        {
+            blackboard.SpawnPosition = transform.position;
+
+        }
 
     }
     

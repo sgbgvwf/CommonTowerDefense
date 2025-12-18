@@ -65,7 +65,19 @@ public class AttackLockStrategy_PathNearest : IState
             .Select(pair => pair.Key)
             .FirstOrDefault();
 
-        _blackboard.attackDirection = (_attackDetection.objectPosition[nearestObject] - _attackDetection.detectionPosition).normalized;
+        SetAttackDetection(nearestObject);
+    }
+
+    private void SetAttackDetection(GameObject nearestObject)
+    {
+        if(_blackboard.attackLockType.targetType == EntityType.Enemy)
+        {
+            _blackboard.attackDirection = (_attackDetection.objectPosition[nearestObject] - _attackDetection.detectionPosition).normalized;
+        }
+        else if (_blackboard.attackLockType.targetType == EntityType.DefenseTower)
+        {
+            _blackboard.attackDirection = (_attackDetection.objectPosition[nearestObject] + new Vector3(0.5f, 0.5f, 0) - _attackDetection.detectionPosition).normalized;
+        }
 
     }
 

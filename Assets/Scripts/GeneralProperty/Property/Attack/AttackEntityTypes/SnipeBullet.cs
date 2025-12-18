@@ -22,7 +22,7 @@ public class SnipeBullet : MonoBehaviour
     */
     private FlyerStraightController flyerStraightController;
     private DamageInfomation damageInfomation;
-
+    /*
     private void Awake()
     {
         flyerStraightController = GetComponent<FlyerStraightController>();
@@ -63,5 +63,5 @@ public class SnipeBullet : MonoBehaviour
         }
         ObjectPoolManager.Instance.ReturnObject(GetComponent<GeneralProperty>().prefabReference, gameObject);
     }
-
+    */
 }

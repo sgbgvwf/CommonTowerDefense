@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7856557303457449512}
   - component: {fileID: 5936275785061870728}
   - component: {fileID: 3297450868168163554}
+  - component: {fileID: 3847907719004424780}
   m_Layer: 16
   m_Name: SnipeBullet
   m_TagString: Attacker
@@ -165,8 +166,19 @@ MonoBehaviour:
   magicalDefense: 0
   level: 0
   initLevel: 0
-  usingMaxLevel: 0
   MaxLevel: 0
+--- !u!114 &3847907719004424780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1054255101459098595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ea89769fbb352349b1f42cebf20baa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5823683221081304694
 GameObject:
   m_ObjectHideFlags: 0
