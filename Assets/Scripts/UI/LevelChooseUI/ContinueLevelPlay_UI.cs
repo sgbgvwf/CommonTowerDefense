@@ -40,8 +40,10 @@ public class ContinueLevelPlay_UI : MonoBehaviour
             if (maxLevel != _currentLevel)
             {
                 Levels nextLevel = (Levels)((int)_currentLevel + 1);
+
                 sceneTeleport.scenesToLoad.Add(gameDataSO.levelsDict[nextLevel]);
                 currentLevel.text = nextLevel.ToString();
+
             }
 
         }

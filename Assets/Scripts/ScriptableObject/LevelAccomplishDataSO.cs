@@ -61,7 +61,7 @@ public class LevelAccomplishDataSO : ScriptableObject
         }
         else
         {
-            _serializedLevelData.Add(new LevelAccomplishPair { level = level, isAccomplished = isAccomplished });
+            _serializedLevelData.Add(new LevelAccomplishPair { level = level, isAccomplished = isAccomplished , isUnLocked = false});
         }
 
         UnLockLevel(level, isAccomplished);

@@ -596,7 +596,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionPosition: {x: 0, y: 0, z: 0}
   _StrategyManager: {fileID: 5726405117217021504}
-  detectionRadius: 2
+  detectionRadius: 3
 --- !u!114 &8289359131900639497
 MonoBehaviour:
   m_ObjectHideFlags: 0

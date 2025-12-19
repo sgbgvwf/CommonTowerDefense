@@ -92,6 +92,20 @@ public class BuffStateManager : MonoBehaviour
 
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Water")
+        {
+
+            _fsm.ExitState(BuffState.InWater);
+
+            Debug.Log("³öË®");
+        }
+    }
+
+
+
+
 
     public void UpDateBlackboard()
     {

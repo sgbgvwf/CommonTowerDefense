@@ -61,7 +61,8 @@ public class TowerLevelDataDisplay_UI : MonoBehaviour
 
         _levelData = _generalProperty.levelData;//等级数据
         _currentLevel = _generalProperty.level;//等级
-        
+        _nextLevel = _currentLevel + 1;
+
         _levelProperties_1 = _levelData.levelPropertiesList.Find(p => p.level == _currentLevel);//等级对应的数据
         _levelProperties_2 = _levelData.levelPropertiesList.Find(p => p.level == _nextLevel);//等级对应的数据
 
@@ -80,7 +81,7 @@ public class TowerLevelDataDisplay_UI : MonoBehaviour
 
             return true;
         }
-        _nextLevel = _currentLevel + 1;
+
         OpenAllNextDisplay();
         CurrentLevelDataUpdate();
         NextLevelDataUpdate();

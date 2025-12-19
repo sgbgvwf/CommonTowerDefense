@@ -40,7 +40,7 @@ public class LevelManager : MonoBehaviour
         }
 
         var nextlevelProperties = _levelPropertiesList.Find(p => p.level == _currentLevel + 1);
-        if (Money.Instance.ChangeMoney(nextlevelProperties.levelUpCost))
+        if (Money.Instance.ChangeMoney(-nextlevelProperties.levelUpCost))
         {
             //Debug.Log(_currentLevel);
             _currentLevel++;

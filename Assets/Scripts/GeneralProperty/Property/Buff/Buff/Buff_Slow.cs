@@ -15,7 +15,7 @@ public class Buff_Slow : IState
 
     private float originalSpeed;
 
-    public float SlowScale;
+    private float SlowScale = 0.8f;
 
     public void Init(GameObject itself, BuffBlackboard buffBlackboard, BuffFSM buffFSM)
     {
@@ -27,6 +27,8 @@ public class Buff_Slow : IState
     }
     public void OnEnter()
     {
+        timerManager.Start("SlowTimer", 5f);
+
         _blackboard.Slow = true;
         if(gameObject.tag == "Enemy")
         {
@@ -36,6 +38,8 @@ public class Buff_Slow : IState
 
     public void OnExit()
     {
+        timerManager.Remove("SlowTimer");
+
         _blackboard.Slow = false;
         if (gameObject.tag == "Enemy")
         {
@@ -45,6 +49,9 @@ public class Buff_Slow : IState
 
     public void OnUpdate()
     {
-       
+        if (timerManager.IsFinished("SlowTimer"))
+        {
+            _fsm.ExitState(BuffState.Burn);
+        }
     }
 }

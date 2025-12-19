@@ -15,44 +15,8 @@ MonoBehaviour:
   prefab: {fileID: 7317905059417382320, guid: f9287a57ece734a4882260b8410be63d, type: 3}
   Level:
     initLevel: 0
-    maxLevel: 3
+    maxLevel: 0
   levelPropertiesList:
-  - level: 1
-    levelUpCost: 0
-    health: 0
-    maxHealth: 0
-    damage: 0
-    attackFrequency: 0
-    attackSpeedScale: 0
-    damageType: 0
-    buffType: 0
-    effectType: 0
-    physicalDefense: 0
-    magicalDefense: 0
-  - level: 2
-    levelUpCost: 0
-    health: 0
-    maxHealth: 0
-    damage: 0
-    attackFrequency: 0
-    attackSpeedScale: 0
-    damageType: 0
-    buffType: 0
-    effectType: 0
-    physicalDefense: 0
-    magicalDefense: 0
-  - level: 3
-    levelUpCost: 0
-    health: 0
-    maxHealth: 0
-    damage: 0
-    attackFrequency: 0
-    attackSpeedScale: 0
-    damageType: 0
-    buffType: 0
-    effectType: 0
-    physicalDefense: 0
-    magicalDefense: 0
   - level: 0
     levelUpCost: 0
     health: 200

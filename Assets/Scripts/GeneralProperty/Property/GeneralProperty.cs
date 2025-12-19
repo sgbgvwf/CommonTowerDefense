@@ -8,8 +8,8 @@ public class GeneralProperty : MonoBehaviour
     public LevelDataSO levelData;
     private DataOperation dataOperation;
 
-    [Header("预制体")]
-    public GameObject prefabReference;
+    //[Header("预制体")]
+    [HideInInspector]public GameObject prefabReference;
 
     [Header("生命值")]
     public float health;
@@ -38,11 +38,11 @@ public class GeneralProperty : MonoBehaviour
     private void Awake()
     {
         dataOperation = DataOperation.Instance;
-        DataUpdate();
+        DataInitialization();
 
     }
 
-    public void DataUpdate()
+    public void DataInitialization()
     {
         dataOperation.UpdateSingleData(ref prefabReference, generalPropertyData.prefabReference);
 

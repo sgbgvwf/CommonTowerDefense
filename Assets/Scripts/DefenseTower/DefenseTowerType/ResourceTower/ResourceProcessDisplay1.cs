@@ -15,9 +15,9 @@ public class ResourceProcessDisplay1 : MonoBehaviour
     private void LocalScaleUpdate()
     {
         transform.localScale = new Vector3(
-            (float)(0.6 * (1 - resourceTowerController.stopingCounter / resourceTowerController.stopingDuration)),
-            (float)(0.6 * (1 - resourceTowerController.stopingCounter / resourceTowerController.stopingDuration)),
-            (float)(0.6 * (1 - resourceTowerController.stopingCounter / resourceTowerController.stopingDuration))
+            (float)(0.6 * (1 - resourceTowerController.stoppingCounter / resourceTowerController.stoppingDuration)),
+            (float)(0.6 * (1 - resourceTowerController.stoppingCounter / resourceTowerController.stoppingDuration)),
+            (float)(0.6 * (1 - resourceTowerController.stoppingCounter / resourceTowerController.stoppingDuration))
         );
     }
 

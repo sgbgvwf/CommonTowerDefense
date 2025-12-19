@@ -8,6 +8,6 @@ public class ResourceProcessDisplay2 : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(0, 0, -20 * resourceTowerController.stopingSpeed * Time.deltaTime);
+        transform.Rotate(0, 0, -20 * resourceTowerController.stoppingSpeed * Time.deltaTime);
     }
 }

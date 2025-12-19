@@ -1152,6 +1152,8 @@ MonoBehaviour:
     assetReference: {fileID: 11400000, guid: 289b2e116a169da409f13f00230a02d1, type: 2}
   - level: 2
     assetReference: {fileID: 11400000, guid: a47932bf84059d1409e1236dbd06de4b, type: 2}
+  - level: 3
+    assetReference: {fileID: 11400000, guid: 50afd69f3d0958143b8d13d5572968ff, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

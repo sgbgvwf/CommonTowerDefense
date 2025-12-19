@@ -12,10 +12,11 @@ public class ObjectPoolManager : MonoBehaviour
 
     private Dictionary<GameObject, int> _queueValue = new Dictionary<GameObject, int>();
 
-    // 为每个预制体创建独立的锁对象
+    //为每个预制体创建锁对象（通常用object）
+    //用字典映射就不会影响不同对象的分别获取
     private Dictionary<GameObject, object> _lockObjects = new Dictionary<GameObject, object>();
 
-    // 添加一个全局锁来保护字典操作
+    //添加一个全局锁来保护字典操作，防止同时访问get方法来操作
     private readonly object _dictionaryLock = new object();
 
     private void Awake()
@@ -37,7 +38,7 @@ public class ObjectPoolManager : MonoBehaviour
         {
             if (!_lockObjects.ContainsKey(prefab))
             {
-                _lockObjects[prefab] = new object();
+                _lockObjects[prefab] = new object();//直接“[]”包含了创建键
             }
             return _lockObjects[prefab];
         }
@@ -62,6 +63,7 @@ public class ObjectPoolManager : MonoBehaviour
             return;
         }
 
+        //上锁，即这里的代码同一时间只能有一个线程执行，其他线程会等待，直到这个锁被释放
         lock (GetLockObject(prefab))
         {
             _poolDict[prefab] = new Queue<GameObject>();
@@ -108,7 +110,7 @@ public class ObjectPoolManager : MonoBehaviour
                         targetObj.SetActive(true);
                         return targetObj;
                     }
-                    // 如果对象为null，继续从队列中取出下一个
+                    //如果对象为null，继续从队列中取出下一个
                 }
 
                 // 如果队列中所有对象都为null，创建一个新的
@@ -146,11 +148,11 @@ public class ObjectPoolManager : MonoBehaviour
 
         lock (GetLockObject(prefab))
         {
-            // 检查队列是否包含该预制体并且队列不为空
+            //检查队列是否包含该预制体并且队列不为空
             if (_poolDict.TryGetValue(prefab, out var queue) && queue.Count > 0)
             {
                 //Debug.Log("1");
-                // 检查队列中的对象是否有效
+                //检查队列中的对象是否有效
                 while (queue.Count > 0)
                 {
                     targetObj = queue.Dequeue();
@@ -162,7 +164,7 @@ public class ObjectPoolManager : MonoBehaviour
                         targetObj.SetActive(true);
                         return targetObj;
                     }
-                    // 如果对象为null，继续从队列中取出下一个
+                    //如果对象为null，继续从队列中取出下一个
                 }
 
                 // 如果队列中所有对象都为null，创建一个新的

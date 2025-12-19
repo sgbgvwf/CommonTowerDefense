@@ -1835,37 +1835,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5379894152887369210, guid: 44a9c3f068aa2fc43a2d9a8846dc1daa, type: 3}
   m_PrefabInstance: {fileID: 226308876}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &233462098
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 233462099}
-  m_Layer: 0
-  m_Name: LevelMechanics
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &233462099
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 233462098}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &233816682
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4533,7 +4502,7 @@ MonoBehaviour:
   - prefab: {fileID: 1847172537090209266, guid: a97e091a0c2227c4ab2c4dae9a07705a, type: 3}
     initCount: 20
     maxCount: 40
-  - prefab: {fileID: 1847172537090209266, guid: a97e091a0c2227c4ab2c4dae9a07705a, type: 3}
+  - prefab: {fileID: 1054255101459098595, guid: 351e9279e5a17d249b4b3cb06b08845b, type: 3}
     initCount: 10
     maxCount: 15
 --- !u!4 &625688435
@@ -11840,11 +11809,11 @@ MonoBehaviour:
   - {fileID: 1132724750}
   - {fileID: 1887765459}
   - {fileID: 1034557323}
-  planAmount: 5
+  planAmount: 3
   enemySpawnTimeType: 1
   spwanInitialTime: 10
   lastSpawn: {fileID: 1650241859}
-  spawnFrequency: 2
+  spawnFrequency: 5
 --- !u!114 &1650241859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11946,7 +11915,7 @@ MonoBehaviour:
   - {fileID: 1034557323}
   planAmount: 3
   enemySpawnTimeType: 1
-  spwanInitialTime: 5
+  spwanInitialTime: 10
   lastSpawn: {fileID: 1650241864}
   spawnFrequency: 1
 --- !u!114 &1650241863
@@ -11961,7 +11930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12f10b679a162904abe931fc87551a1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1846287447054962179, guid: d5876ec427fe3614499eb04e72a3675e, type: 3}
+  enemyPrefab: {fileID: 8384405118384319249, guid: 9aeb2c089c78f934b83fad1e901c0b12, type: 3}
   enemiesParent: {fileID: 739667444}
   planPathPointsList:
   - {fileID: 395213139}
@@ -11973,11 +11942,11 @@ MonoBehaviour:
   - {fileID: 392067654}
   - {fileID: 1887765459}
   - {fileID: 1034557323}
-  planAmount: 8
+  planAmount: 3
   enemySpawnTimeType: 1
   spwanInitialTime: 5
   lastSpawn: {fileID: 1650241865}
-  spawnFrequency: 2
+  spawnFrequency: 4
 --- !u!114 &1650241864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12006,7 +11975,7 @@ MonoBehaviour:
   enemySpawnTimeType: 1
   spwanInitialTime: 5
   lastSpawn: {fileID: 1650241865}
-  spawnFrequency: 3
+  spawnFrequency: 5
 --- !u!114 &1650241865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15783,7 +15752,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 245354403}
-  - {fileID: 233462099}
   - {fileID: 1693718240}
   - {fileID: 2052588448}
   - {fileID: 625688435}

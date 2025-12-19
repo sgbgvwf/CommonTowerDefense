@@ -22,4 +22,5 @@ public class EnemyProperty : MonoBehaviour
         DataOperation.Instance.UpdateSingleData(ref moveSpeedScale, enemyPropertyData.moveSpeedScale);
     }
 
+
 }

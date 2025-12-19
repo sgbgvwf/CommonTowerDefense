@@ -283,6 +283,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPropertyData: {fileID: 11400000, guid: 2d0e4151f6bf2634c8a6f29f7f533d99, type: 2}
   coreDamage: 1
+  moveSpeed: 0
+  moveSpeedScale: 0
 --- !u!114 &5704775109917995666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,8 +314,6 @@ MonoBehaviour:
   move: 0
   Dirrection: {x: 0, y: 0, z: 0}
   enemyPath: {fileID: 5704775109917995666}
-  moveSpeed: 1.7
-  SlowScale: 1
 --- !u!114 &1679223341549727454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,8 +343,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2702fefd934fe724ea714a7608d80241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generalPropertyData: {fileID: 0}
-  levelData: {fileID: 0}
+  generalPropertyData: {fileID: 11400000, guid: 3a8c10dbd25dfd14d9d12f96f826bf01, type: 2}
+  levelData: {fileID: 11400000, guid: 1de6aa7a1512eb04499bb61346075875, type: 2}
   prefabReference: {fileID: 0}
   health: 0
   initialHealth: 0
@@ -359,7 +359,6 @@ MonoBehaviour:
   magicalDefense: 0
   level: 0
   initLevel: 0
-  usingMaxLevel: 0
   MaxLevel: 0
 --- !u!95 &6730627778067185761
 Animator:

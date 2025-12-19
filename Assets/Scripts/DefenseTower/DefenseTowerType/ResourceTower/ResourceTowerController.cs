@@ -5,49 +5,60 @@ using UnityEngine;
 public class ResourceTowerController : MonoBehaviour
 {
 
+    private GeneralProperty generalProperty;
+
     [Header("采矿状态")]
-    public bool stoping;
+    public bool stopping;
 
-    public float stopingSpeed;
+    [HideInInspector] public float stoppingSpeed;//等于攻速
 
-    public float stopingDuration;
+    [HideInInspector] public float stoppingDuration;//等于攻击频率
 
-    public float stopingCounter;
+    [HideInInspector] public float stoppingCounter;//计数
 
 
     [Header("金钱获取量")]
-    public float getMoneyValue;
+    [HideInInspector] public float getMoneyValue;//等于伤害
 
+    private void Awake()
+    {
+        generalProperty = GetComponent<GeneralProperty>();
+    }
 
-
+    private void Start()
+    {
+        stoppingSpeed = generalProperty.attackSpeedScale;
+        stoppingDuration = generalProperty.attackFrequency;
+        getMoneyValue = generalProperty.damage;
+    }
 
 
     private void Update()
     {
-
         StopingTimeCounter();
-
-
+        stoppingSpeed = generalProperty.attackSpeedScale;
+        stoppingDuration = generalProperty.attackFrequency;
+        getMoneyValue = generalProperty.damage;
     }
 
 
 
     public void StopingTimeCounter()
     {
-        if (!stoping)
+        if (!stopping)
         {
             //采矿开始
-            stoping = true;
-            stopingCounter = stopingDuration;
+            stopping = true;
+            stoppingCounter = stoppingDuration;
         }
-        if (stoping)
+        if (stopping)
         {
-            stopingCounter -= stopingSpeed * Time.deltaTime;
+            stoppingCounter -= stoppingSpeed * Time.deltaTime;
 
-            if(stopingCounter <= 0)
+            if(stoppingCounter <= 0)
             {
                 //采矿结束
-                stoping = false;
+                stopping = false;
                 GetMoney();
             }
         }
