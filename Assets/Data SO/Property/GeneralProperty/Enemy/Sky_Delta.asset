@@ -23,5 +23,5 @@ MonoBehaviour:
   damageType: 0
   buffType: 0
   effectType: 0
-  physicalDefense: 0
-  magicalDefense: 0
+  physicalDefense: 10
+  magicalDefense: 10

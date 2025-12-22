@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabReference: {fileID: 609742258896529918, guid: 2acd155a071eb644a98aa31de33e6098, type: 3}
   levelData: {fileID: 11400000, guid: 1de6aa7a1512eb04499bb61346075875, type: 2}
-  health: 400
-  initialHealth: 400
-  maxHealth: 400
+  health: 350
+  initialHealth: 350
+  maxHealth: 350
   damage: 0
   attackFrequency: 0
   attackSpeedScale: 0
   damageType: 0
   buffType: 0
   effectType: 0
-  physicalDefense: 50
-  magicalDefense: 60
+  physicalDefense: 40
+  magicalDefense: 50

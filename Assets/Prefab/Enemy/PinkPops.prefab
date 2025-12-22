@@ -109,7 +109,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5259758696502363265}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strategyManager: {fileID: 3253385206951134887}
-  prefab: {fileID: 8884754432598066259, guid: 3ca301c53fd4e0843a586207197db891, type: 3}
+  prefab: {fileID: 8884754432598066259, guid: 0db04aea7e116cb49b3b746507923367, type: 3}
   parent: {fileID: 7388181470502382830}
   attackFrequency: 3
   attackSpeedScale: 1

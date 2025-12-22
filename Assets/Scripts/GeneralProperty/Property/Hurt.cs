@@ -23,6 +23,8 @@ public class Hurt : MonoBehaviour, IDamageable
 
     public void TakeDamage(DamageInfomation damage)
     {
+        Debug.Log("hurt");
+        //Debug.Log($"[Ö¡{Time.frameCount}] ÊÕµ½ÉËº¦£¬¹¥»÷Õß£º{damage.source.name}");
         float finalDamage = damage.damageValue;
 
         GameObject attacker = damage.source;
