@@ -7900,9 +7900,9 @@ MonoBehaviour:
   - {fileID: 2108140920}
   planAmount: 5
   enemySpawnTimeType: 1
-  spwanInitialTime: 60
+  spwanInitialTime: 90
   lastSpawn: {fileID: 905275650}
-  spawnFrequency: 2
+  spawnFrequency: 5
 --- !u!114 &905275655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7929,9 +7929,9 @@ MonoBehaviour:
   - {fileID: 2108140920}
   planAmount: 6
   enemySpawnTimeType: 1
-  spwanInitialTime: 40
+  spwanInitialTime: 60
   lastSpawn: {fileID: 905275650}
-  spawnFrequency: 5
+  spawnFrequency: 10
 --- !u!114 &905275656
 MonoBehaviour:
   m_ObjectHideFlags: 0

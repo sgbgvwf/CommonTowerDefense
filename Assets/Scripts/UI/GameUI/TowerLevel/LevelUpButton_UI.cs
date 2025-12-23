@@ -19,7 +19,12 @@ public class LevelUpButton_UI : MonoBehaviour
     /// </summary>
     public void ClickButton()
     {
+
         _currentTower = MousePointStateManager.Instance.blackboard.currentTower;//Ëþ
+        if (_currentTower == null)
+        {
+            return;
+        }
         _levelManager = _currentTower.GetComponent<LevelManager>();
 
         if (_levelManager.LevelUp())
